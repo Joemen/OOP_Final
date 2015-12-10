@@ -9,7 +9,7 @@
       - num_soldier
       - money
       - player_name
-      - ROLE role
+      - Role role
             - role_id
             - role_name
             - Property prop
