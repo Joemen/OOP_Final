@@ -2,11 +2,13 @@ public class Tower{
 	private int defense_soldier;
 	private int point;
 	private int offense_soldier;
+	private int blood;
 
 	public Tower(){
-		this.defense_soldier = 0;
-		this.offense_soldier = 0;
-		this.point = 0;
+		this.setDefSoldier(0);
+		this.setOffSoldier(0);
+		this.setPoint(0);
+		this.setBlood(100);
 	}
 
 	public void setDefSoldier(int def_soldier){
@@ -21,6 +23,10 @@ public class Tower{
 		this.point = point;
 	}
 
+	public void setBlood(int blood){
+		this.blood = blood;
+	}
+
 	public int getPoint(){
 		return this.point;
 	}
@@ -31,6 +37,10 @@ public class Tower{
 
 	public int getOffSoldier(){
 		return this.offense_soldier;
+	}
+
+	public int getBlood(){
+		return this.blood;
 	}
 
 }
