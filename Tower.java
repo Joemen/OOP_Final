@@ -8,7 +8,7 @@ public class Tower{
 		this.offense_soldier = 0;
 		this.point = 0;
 	}
-
+// haha
 	public void setDefSoldier(int def_soldier){
 		this.defense_soldier = def_soldier;
 	}
