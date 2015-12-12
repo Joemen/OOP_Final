@@ -1,5 +1,5 @@
 # OOP_Final
-## 架構now // by which0326
+## 架構 1210
 ### tower
       - blood
       - defense_soldier
