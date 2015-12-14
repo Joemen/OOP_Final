@@ -1,10 +1,11 @@
-public class Tower{
+public class Tower extends Camp{
 	private int defense_soldier;
 	private int point;
 	private int offense_soldier;
 	private int blood;
 
-	public Tower(){
+	public Tower(int num){
+        this.setCampNum(num);
 		this.setDefSoldier(0);
 		this.setOffSoldier(0);
 		this.setPoint(0);
