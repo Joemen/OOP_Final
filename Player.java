@@ -2,23 +2,38 @@ import java.io.*;
 
 public class Player extends Camp{
 	public Role role;
+	private int player_id;
 	private String player_name ;
 	private int money;
 	private int num_soldier;
+	private int num_off_soldier;		// to count total offensive soldier
+	private int num_def_soldier;		// to count total defensive soldier
     public Commander commander = new Commander();
 
-	public Player(int num){
+	public Player(int num, int player_id){
+        // Camp
+        this.setCampName(num);
         this.setCampNum(num);
-		this.setMoney(100); 			// initial money
-		this.setNumSoldier(100); 		// initial soldier
-		this.player_name = new String("player_no_name"+num) ;
+        // Player information
+		this.setMoney(100); 				// initial money
+		this.setNumSoldier(100); 			// initial soldier
+		this.setNumOffSoldier(0); 			// initial offensive soldier
+		this.setNumDefSoldier(0); 			// initial defensive soldier
+        this.setPlayerID( player_id );
+		this.player_name = new String("player_no_name"+this.player_id) ;
 		role = setRole(0);
         
 	}
+
+	////////// about set //////////
 	public void setPlayerName(String name){
-		this.player_name = name;
-		
+        this.player_name = name;
+  	}
+  	
+	public void setPlayerID( int player_id ){
+		this.player_id = player_id;
 	}
+
 	public Role setRole(int role_id){
 		role = new Role( role_id );
 		this.role = role;
@@ -33,6 +48,16 @@ public class Player extends Camp{
 		this.num_soldier = num_soldier;
 	}
 
+	public void setNumOffSoldier( int num_soldier){
+		this.num_off_soldier = num_soldier;
+	}
+
+	public void setNumDefSoldier( int num_soldier){
+		this.num_def_soldier = num_soldier;
+	}
+
+	////////// about get //////////
+
 	public String getPlayerName(){
 		return this.player_name;
 	}
@@ -41,11 +66,23 @@ public class Player extends Camp{
 		return this.money;
 	}
 
+	public int getPlayerID(){
+		return this.player_id;
+	}
+
 	public int getNumSoldier(){
 		return this.num_soldier;
 	}
+
+	public int getNumOffSoldier(){
+		return this.num_off_soldier;
+	}
+
+	public int getNumDefSoldier(){
+		return this.num_def_soldier;
+	}
     
-    public void setArmy(Tower tower) throws IOException{
+    public void setArmy (Tower tower) throws IOException{
         commander.dispatchArmy(this, tower);
     }
 }

@@ -19,25 +19,34 @@ public class Commander extends Camp{
         System.out.println("---------------------------------------------");
         System.out.println(player.getPlayerName()+" have $"+player.getNumSoldier()+" soldiers altogether!");
         
-        System.out.println("Please deside how many soldiers defending the tower:");
-        String buffer=" ";
-        BufferedReader readStake = new BufferedReader(new InputStreamReader(System.in));
-        buffer=readStake.readLine();
-        int option1=Integer.parseInt(buffer);
-        tower.setDefSoldier(option1);
-        
-        System.out.println("Please deside how many soldiers charging:");
-        String buffer1=" ";
-        BufferedReader readStake1 = new BufferedReader(new InputStreamReader(System.in));
-        buffer1=readStake1.readLine();
-        int option2=Integer.parseInt(buffer1);
-        tower.setOffSoldier(option2);
-        if(option2+option1>player.getNumSoldier()){
-            System.out.println("Wrong Number of soldiers! Soldiers are not enough!");
-            this.dispatchArmy(player,tower);
-        }
-    }
-    
-    
+        try{
+            System.out.println("Please decide how many soldiers defending the tower:");
+            String buffer=" ";
+            BufferedReader readStake = new BufferedReader(new InputStreamReader(System.in));
+            buffer=readStake.readLine();
+            int option1=Integer.parseInt(buffer);
+            
+            System.out.println("Please decide how many soldiers charging:");
+            String buffer1=" ";
+            BufferedReader readStake1 = new BufferedReader(new InputStreamReader(System.in));
+            buffer1=readStake1.readLine();
+            int option2=Integer.parseInt(buffer1);
 
+            if(option2+option1>player.getNumSoldier()){
+                System.out.println("Wrong Number of soldiers! Soldiers are not enough!");
+                this.dispatchArmy(player,tower);
+            }
+            else{
+            // adjust the soldier number
+                tower.setDefSoldier( tower.getDefSoldier() + option1);
+                tower.setOffSoldier( tower.getOffSoldier() + option2);
+                player.setNumDefSoldier( option1 );
+                player.setNumOffSoldier( option2 );
+            }
+        }
+        catch(NumberFormatException e) { 
+            System.out.println("Invalid input! Please choose again!");
+            this.dispatchArmy(player,tower); 
+        }    
+    }
 }

@@ -12,6 +12,8 @@ public class Tower extends Camp{
 		this.setBlood(100);
 	}
 
+	/////////////// about set /////////////
+
 	public void setDefSoldier(int def_soldier){
 		this.defense_soldier = def_soldier;
 	}
@@ -27,6 +29,8 @@ public class Tower extends Camp{
 	public void setBlood(int blood){
 		this.blood = blood;
 	}
+	
+	/////////////// about get /////////////
 
 	public int getPoint(){
 		return this.point;
@@ -42,6 +46,12 @@ public class Tower extends Camp{
 
 	public int getBlood(){
 		return this.blood;
+	}
+
+	/////////////// about other /////////////
+
+	public void printBlood(){
+		System.out.println("the remaneing blood : " + this.blood);
 	}
 
 }

@@ -34,11 +34,11 @@ public class UI {
 			g.drawImage(background, 0, 0,712, 292, null);
 			// draw string money amount			
 			setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(205, 173, 0));
-			g.drawString(Integer.toString(Game.player1.getMoney()),30,48);
+			g.drawString(Integer.toString(Game.player[0].getMoney()),30,48);
 
 			// draw string Soldier amount		
 			setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(46, 139, 87));
-			g.drawString(Integer.toString(Game.player1.getNumSoldier()),30,78);
+			g.drawString(Integer.toString(Game.player[0].getNumSoldier()),30,78);
 
 			// draw money sign
 			g.drawImage(money_1, 10, 30,15, 21, null);			
@@ -48,7 +48,7 @@ public class UI {
 
 			// draw player name
 			setMyfont(g,"TimesRoman", Font.ITALIC, 15,Color.BLACK);
-			g.drawString(Game.player1.getPlayerName(),20,20);
+			g.drawString(Game.player[0].getPlayerName(),20,20);
 
 			// draw tower sign
 			g.drawImage(tower_1, 10, 130,100, 135, null);
@@ -56,11 +56,11 @@ public class UI {
 			
 			//	player2
 			setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(205, 173, 0));
-			g.drawString(Integer.toString(Game.player2.getMoney()),680,48);
+			g.drawString(Integer.toString(Game.player[1].getMoney()),680,48);
 
 			// draw string Soldier amount		
 			setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(46, 139, 87));
-			g.drawString(Integer.toString(Game.player2.getNumSoldier()),680,78);
+			g.drawString(Integer.toString(Game.player[1].getNumSoldier()),680,78);
 
 			// draw money sign
 			g.drawImage(money_1, 660, 30,15, 21, null);			
@@ -70,7 +70,7 @@ public class UI {
 
 			// draw player name
 			setMyfont(g,"TimesRoman", Font.ITALIC, 15,Color.BLACK);
-			g.drawString(Game.player2.getPlayerName(),670,20);
+			g.drawString(Game.player[1].getPlayerName(),670,20);
 
 			// draw tower sign
 			g.drawImage(tower_1, 600, 130,100, 135, null);

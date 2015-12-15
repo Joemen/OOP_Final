@@ -1,65 +1,91 @@
 import java.io.*;
+import javax.swing.JFrame;
 
 public class Game{
-	
-	public static Player player1;
-	public static Player player2;
-	public static void main(String[] args) throws IOException{
-		Tower tower1 = new Tower(1);
-        Tower tower2 = new Tower(2);
+    static final int camp_num = 2;
+    static final int total_player_num = Constants.player_num * camp_num;
+    public static Player[] player = new Player[ total_player_num ];
+
+    public static void main(String[] args) throws IOException{
+        // initializstion
+        int i,j;
+        int round=1;
+        int one_side_player_num = Constants.player_num;
+
+        Tower[] tower = new Tower[ camp_num ];
         Computer computer = new Computer();
+        ActivityMenu AM = new ActivityMenu();
         MainFrame window = new MainFrame();
         window.frame.setVisible(true);
-        
-        
-		/*tower1.setDefSoldier(5);
-		tower1.setOffSoldier(6);
-		tower1.setPoint(7);
-		
-		System.out.println( "point = " + tower.getPoint() );
-		System.out.println( "defense soilder = " + tower.getDefSoldier() ); 
-		System.out.println( "offense soldier = " + tower.getOffSoldier() );
-        System.out.println( "tower blood = " + tower.getBlood() );*/
 
-		player1 = new Player(1);
-        player2 = new Player(2);
-        /*
-        String str ="##################Two Camp Game Start!!##################\n"
-        		+ "______________________<Game status>______________________\n"
-        		+ "<player name>     " + player1.getPlayerName() +"      "+player2.getPlayerName()+"\n"
-				+ "<money>           " + player1.getMoney() +"                    "+player2.getMoney()+"\n"
-						+"<num of soldier>  " + player1.getNumSoldier() +"                    "+player2.getNumSoldier()+"\n"
-		;
-        */
-        System.out.println( "##################Two Camp Game Start!!##################");
-        System.out.println( "______________________<Game status>______________________");
         
-        System.out.println( "<player name>     " + player1.getPlayerName() +"      "+player2.getPlayerName());
-		System.out.println( "<money>           " + player1.getMoney() +"                    "+player2.getMoney());
-		System.out.println( "<num of soldier>  " + player1.getNumSoldier() +"                    "+player2.getNumSoldier());
-        System.out.println();
         
-       
-		//System.out.println( "Role Name = " + player1.role.getRoleName() );
-        int i=1;
-        ActivityMenu AM = new ActivityMenu();
+        
+        for(i=0; i<camp_num; i++){
+            tower [ i ] = new Tower( i+1 );
+        }
+        
+        for(i=0; i<camp_num; i++){
+            for(j=0; j<one_side_player_num; j++){
+                int player_id = i*one_side_player_num + j + 1;    // unique player id
+                player[ player_id - 1 ] = new Player( i+1, player_id);                
+           }
+        }
+        // for UI use
+        // public static Player player1 = new Player(1, 1);
+        // player1 = player[0];
+        
+        System.out.println( "################## Two Camp Game Start!! ##################");
+        print_status( player );
 
-        while(i<3){
-            System.out.println( "###################### Round <"+i+"> ######################");
-            AM.Action(player1, tower1);
-            System.out.println( "                                              ");
-            player1.setArmy(tower1);
-            AM.Action(player2, tower2);
-            System.out.println( "                                              ");
-            player2.setArmy(tower2);
-            computer.fight(tower1,tower2,player1,player2);
+        while(round<3){
+            System.out.println( "###################### Round <"+round+"> ######################");
+            
+            // initialize the soldier number
+            for(i=0; i<camp_num; i++){
+                tower[i].setDefSoldier(0); 
+                tower[i].setOffSoldier(0);
+            }
+
+            for(i=0; i<player.length; i++){
+                player[i].setNumDefSoldier(0);
+                player[i].setNumOffSoldier(0);
+            }
+
+            take_action(AM, player, tower); 
+            
+            computer.fight(tower[0], tower[1], player);  // assume 2 camp
+            
             System.out.println( "#########################################################");
-            System.out.println( "______________________<Game status>______________________");
-            System.out.println( "<player name>     " + player1.getPlayerName() +"      "+player2.getPlayerName());
-            System.out.println( "<money>           " + player1.getMoney() +"                    "+player2.getMoney());
-            System.out.println( "<num of soldier>  " + player1.getNumSoldier() +"                    "+player2.getNumSoldier());
-            System.out.println();
-            i++;
+            print_status( player );
+
+            round++;
         }
 	}
+    
+    // ask player to set offensive and defensive soldier and then count the result of the war. 
+    public static void take_action ( ActivityMenu AM, Player[] player, Tower[] tower ) throws IOException  {
+        int i;
+        for(i=0; i<player.length; i++){
+            AM.Action(player[ i ], tower[player[i].getCampNum() - 1] );
+            System.out.println( "                                              ");
+            player[ i ].setArmy(tower[player[i].getCampNum() - 1]);
+        }    
+    }
+
+    // in every round, print the status of every player. 
+    public static void print_status( Player[] player ){
+            // initialization
+            int i;
+            
+            // print player status
+            System.out.println( "______________________<Game status>______________________");
+            for(i=0; i<player.length;i++){
+                System.out.println( "<player name>     " + player[i].getPlayerName() );
+                System.out.println( "<camp name>       " + player[i].getCampName() );
+                System.out.println( "<money>           " + player[i].getMoney() );
+                System.out.println( "<num of soldier>  " + player[i].getNumSoldier() );
+                System.out.println();
+            }
+    }
 }

@@ -35,8 +35,8 @@ public class StateControl {
 		else if(event.getSource() == NewFrame.btnOk ){
 			System.out.println(NewFrame.currentChoice);
 			if(NewFrame.num == 2 ){
-				Game.player1.setPlayerName(NewFrame.textField_1.getText());
-				Game.player2.setPlayerName(NewFrame.textField_2.getText());
+				Game.player[0].setPlayerName(NewFrame.textField_1.getText());
+				Game.player[1].setPlayerName(NewFrame.textField_2.getText());
 				System.out.println("player1 name: " + NewFrame.textField_1.getText());
 				System.out.println("player2 name: " + NewFrame.textField_2.getText());
 			}
