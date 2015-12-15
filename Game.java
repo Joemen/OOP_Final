@@ -1,10 +1,20 @@
+
 import java.io.*;
 
+import javax.swing.JFrame;
+
 public class Game{
+	
+	public static Player player1;
+	public static Player player2;
 	public static void main(String[] args) throws IOException{
 		Tower tower1 = new Tower(1);
         Tower tower2 = new Tower(2);
         Computer computer = new Computer();
+        MainFrame window = new MainFrame();
+        window.frame.setVisible(true);
+        
+        
 		/*tower1.setDefSoldier(5);
 		tower1.setOffSoldier(6);
 		tower1.setPoint(7);
@@ -14,8 +24,16 @@ public class Game{
 		System.out.println( "offense soldier = " + tower.getOffSoldier() );
         System.out.println( "tower blood = " + tower.getBlood() );*/
 
-		Player player1 = new Player(1);
-        Player player2 = new Player(2);
+		player1 = new Player(1);
+        player2 = new Player(2);
+        /*
+        String str ="##################Two Camp Game Start!!##################\n"
+        		+ "______________________<Game status>______________________\n"
+        		+ "<player name>     " + player1.getPlayerName() +"      "+player2.getPlayerName()+"\n"
+				+ "<money>           " + player1.getMoney() +"                    "+player2.getMoney()+"\n"
+						+"<num of soldier>  " + player1.getNumSoldier() +"                    "+player2.getNumSoldier()+"\n"
+		;
+        */
         System.out.println( "##################Two Camp Game Start!!##################");
         System.out.println( "______________________<Game status>______________________");
         
@@ -24,6 +42,7 @@ public class Game{
 		System.out.println( "<num of soldier>  " + player1.getNumSoldier() +"                    "+player2.getNumSoldier());
         System.out.println();
         
+       
 		//System.out.println( "Role Name = " + player1.role.getRoleName() );
         int i=1;
         ActivityMenu AM = new ActivityMenu();
