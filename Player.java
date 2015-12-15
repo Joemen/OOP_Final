@@ -15,7 +15,10 @@ public class Player extends Camp{
 		role = setRole(0);
         
 	}
-
+	public void setPlayerName(String name){
+		this.player_name = name;
+		
+	}
 	public Role setRole(int role_id){
 		role = new Role( role_id );
 		this.role = role;
@@ -42,7 +45,7 @@ public class Player extends Camp{
 		return this.num_soldier;
 	}
     
-    public void setArmy (Tower tower) throws IOException{
+    public void setArmy(Tower tower) throws IOException{
         commander.dispatchArmy(this, tower);
     }
 }

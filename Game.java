@@ -1,7 +1,4 @@
-
 import java.io.*;
-
-import javax.swing.JFrame;
 
 public class Game{
 	

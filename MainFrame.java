@@ -4,10 +4,7 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -15,26 +12,27 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.border.LineBorder;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 public class MainFrame {
 	
 	public JFrame frame;			//	a frame
+	
 	public static JMenu fileMenu ;
-	public static JMenu historyMenu ;
-	public static JMenuItem openFileMenuItem;
-	public static JMenuItem openFileMenuItem2;
-	public static JMenuItem openFileMenuItem3;
-	public JComboBox choice;
+	public static JMenu historyMenu ;	
+	
 	public static JTextArea textArea;
 	public static MyApplet scrollPane;
 	public static JPanel mFrame_panel;
+	public static JScrollPane mFrame_scroll ;
 	public JButton CarParmBtn;
-	private JButton button;
-	private JButton button_1;
 	
+	
+	private JMenuItem exitMenuItem;
+	private JMenuItem newGameMenuItem;
+	
+	public static JButton btnPlayer_1;
+	public static JButton btnClear;
 
 	public MainFrame() {
 		initialize();
@@ -56,7 +54,17 @@ public class MainFrame {
 		historyMenu	= new JMenu("History");		
 		menuBar.add(historyMenu);
 		
-		JMenuItem exitMenuItem = new JMenuItem("CloseProject");
+		newGameMenuItem= new JMenuItem("OpenGame");
+		newGameMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				NewFrame startframe = new NewFrame();
+				startframe.startframe.setVisible(true);
+				
+			}
+		});
+		fileMenu.add(newGameMenuItem);		
+		
+		exitMenuItem = new JMenuItem("CloseProject");
 		exitMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("You have clicked on the close file action");
@@ -74,7 +82,7 @@ public class MainFrame {
 		});
 		historyMenu.add(historyMenuItem);	
 		
-		JScrollPane mFrame_scroll = new JScrollPane();
+		mFrame_scroll = new JScrollPane();
 		mFrame_scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		mFrame_scroll.setPreferredSize(new Dimension(500, 2));
 		mFrame_scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -86,12 +94,19 @@ public class MainFrame {
 		mFrame_panel.setBounds(0, 0, 824, 620);
 		mFrame_scroll.setViewportView(mFrame_panel);
 		mFrame_panel.setLayout(null);
-	
 		
+		btnClear =  new JButton("Clear");
+		btnClear.setBounds(610, 10, 87, 23);		
+		MainFrame.mFrame_panel.add(btnClear);		
+		
+		btnPlayer_1 = new JButton("start game");
+		btnPlayer_1.setBounds(10, 10, 100, 23);		
+		MainFrame.mFrame_panel.add(btnPlayer_1);
 		
 		scrollPane = new MyApplet();				
-		mFrame_panel.add(scrollPane);
+		mFrame_panel.add(scrollPane);		
 		
+	
 		JScrollPane scrollPane_1 = new JScrollPane(textArea);
 		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane_1.setBounds(10, 383, 712, 208);
