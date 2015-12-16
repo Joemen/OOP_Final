@@ -15,55 +15,74 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JTextArea;
 
 public class MainFrame {
-	
-	public JFrame frame;			//	a frame
-	
+
+	public JFrame frame;		
+
 	public static JMenu fileMenu ;
 	public static JMenu historyMenu ;	
-	
+
+	public static JMenuBar menuBar;
+
 	public static JTextArea textArea;
+
 	public static MyApplet scrollPane;
+
 	public static JPanel mFrame_panel;
 	public static JScrollPane mFrame_scroll ;
-	public JButton CarParmBtn;
-	
-	
+
+
 	private JMenuItem exitMenuItem;
 	private JMenuItem newGameMenuItem;
-	
+	private JMenuItem historyMenuItem ;
+
 	public static JButton btnPlayer_1;
 	public static JButton btnClear;
+	public static JButton btnShake;
+	public static JButton btnShake_1;
 
 	public MainFrame() {
 		initialize();
 	}
-	
+
 	private void initialize() {
-		
+
+		//	Basic Frame feature
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(new Rectangle(100, 0, 736, 700));
-		JMenuBar menuBar = new JMenuBar();
-		frame.setJMenuBar(menuBar);		
 		frame.setTitle("Two Camp Game");
-		
+
+		//	Add menuBar
+		menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);		
+		//	Add File Option
 		fileMenu = new JMenu("File");		
 		menuBar.add(fileMenu);
-		
+		//	Add History Option
 		historyMenu	= new JMenu("History");		
 		menuBar.add(historyMenu);
-		
+
+		historyMenuItem = new JMenuItem("History");
+		historyMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("You have clicked on the close file action");
+
+			}
+		});
+		historyMenu.add(historyMenuItem);
+
+		//	Add newGameMenuItem in File
 		newGameMenuItem= new JMenuItem("OpenGame");
 		newGameMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				NewFrame startframe = new NewFrame();
 				startframe.startframe.setVisible(true);
-				
 			}
 		});
 		fileMenu.add(newGameMenuItem);		
-		
+
+		//	Add exitMenuItem in File
 		exitMenuItem = new JMenuItem("CloseProject");
 		exitMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -72,16 +91,7 @@ public class MainFrame {
 			}
 		});
 		fileMenu.add(exitMenuItem);
-		
-		JMenuItem historyMenuItem = new JMenuItem("History");
-		historyMenuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("You have clicked on the close file action");
-				
-			}
-		});
-		historyMenu.add(historyMenuItem);	
-		
+
 		mFrame_scroll = new JScrollPane();
 		mFrame_scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		mFrame_scroll.setPreferredSize(new Dimension(500, 2));
@@ -94,24 +104,25 @@ public class MainFrame {
 		mFrame_panel.setBounds(0, 0, 824, 620);
 		mFrame_scroll.setViewportView(mFrame_panel);
 		mFrame_panel.setLayout(null);
-		
+
 		btnClear =  new JButton("Clear");
 		btnClear.setBounds(610, 10, 87, 23);		
 		MainFrame.mFrame_panel.add(btnClear);		
-		
+
 		btnPlayer_1 = new JButton("start game");
 		btnPlayer_1.setBounds(10, 10, 100, 23);		
 		MainFrame.mFrame_panel.add(btnPlayer_1);
-		
-		scrollPane = new MyApplet();				
+
+		scrollPane = new MyApplet();
+		scrollPane.readFile();
 		mFrame_panel.add(scrollPane);		
-		
-	
+
+
 		JScrollPane scrollPane_1 = new JScrollPane(textArea);
 		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane_1.setBounds(10, 383, 712, 208);
 		mFrame_panel.add(scrollPane_1);
-		
+
 		textArea = new JTextArea();
 		textArea.setLineWrap(true);
 		textArea.setEditable(false);
@@ -121,7 +132,17 @@ public class MainFrame {
 		scrollPane_1.setVerticalScrollBarPolicy(   
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED); 
 		textArea.setSelectedTextColor(Color.RED);
-		
-		
+
+		btnShake = new JButton("Shake");
+		btnShake.setBounds(10, 353, 87, 23);
+		btnShake.addActionListener(scrollPane);
+		mFrame_panel.add(btnShake);
+
+		btnShake_1 = new JButton("Shake");
+		btnShake_1.setBounds(635, 353, 87, 23);
+		btnShake_1.addActionListener(scrollPane);
+		mFrame_panel.add(btnShake_1);
+
+
 	}
 }

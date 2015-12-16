@@ -5,7 +5,7 @@ public class Tower extends Camp{
 	private int blood;
 
 	public Tower(int num){
-        this.setCampNum(num);
+		this.setCampNum(num);
 		this.setDefSoldier(0);
 		this.setOffSoldier(0);
 		this.setPoint(0);
@@ -29,7 +29,7 @@ public class Tower extends Camp{
 	public void setBlood(int blood){
 		this.blood = blood;
 	}
-	
+
 	/////////////// about get /////////////
 
 	public int getPoint(){
