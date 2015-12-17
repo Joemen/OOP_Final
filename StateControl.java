@@ -1,4 +1,6 @@
 import java.awt.event.ActionEvent;
+
+import javax.swing.ImageIcon;
 public class StateControl {	
 
 	public static enum State{ORIGIN,START}
@@ -42,6 +44,10 @@ public class StateControl {
 			drawHello = 2;
 			MainFrame.scrollPane.tower_1.timer.start();
 			MainFrame.scrollPane.repaint();
+			Toaster toasterManager = new Toaster();
+			// Show a simple toaster
+			toasterManager.showToaster( new ImageIcon( "mylogo.gif" ), "A simple toaster with an image" );
+
 		}
 		else if(event.getSource() == MainFrame.btnShake_1 ){
 			drawHello = 3;
