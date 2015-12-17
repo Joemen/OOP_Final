@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -108,18 +109,23 @@ public class MainFrame {
 		mFrame_panel.setLayout(null);
 
 		btnClear =  new JButton("Clear");
-		btnClear.setBounds(610, 10, 87, 23);		
+		btnClear.setBounds(290, 353, 87, 23);		
 		MainFrame.mFrame_panel.add(btnClear);		
-
-		btnPlayer_1 = new JButton("start game");
-		btnPlayer_1.setBounds(10, 10, 100, 23);		
+		mFrame_panel.add(btnClear);
+		
+		btnPlayer_1 = new JButton("start");
+		btnPlayer_1.setBounds(199, 353, 87, 23);
+		mFrame_panel.add(btnPlayer_1);
 		MainFrame.mFrame_panel.add(btnPlayer_1);
 		
 		// upper pane
 		scrollPane = new MyApplet();
 		scrollPane.readFile();
-		mFrame_panel.add(scrollPane);		
-
+		mFrame_panel.add(scrollPane);	
+		
+		btnClear.addActionListener(scrollPane);
+		btnPlayer_1.addActionListener(scrollPane);
+		
 		// lower pane
 		JScrollPane scrollPane_1 = new JScrollPane(textArea);
 		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -160,6 +166,8 @@ public class MainFrame {
 		});
 		button.setBounds(99, 353, 87, 23);
 		mFrame_panel.add(button);
+		
+		
 
 
 	}

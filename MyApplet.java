@@ -23,8 +23,7 @@ public class MyApplet extends JScrollPane implements ActionListener {
 		setViewportBorder(new LineBorder(new Color(0, 0, 0)));
 		setBounds(10, 16, 1712, 325);
 		setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		MainFrame.btnClear.addActionListener(this);
-		MainFrame.btnPlayer_1.addActionListener(this);
+		
 		StateControl.control(StateControl.State.ORIGIN);
 		background_png = new File("pic/background.png");
 		money_png = new File("pic/money_burned.png");
