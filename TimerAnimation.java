@@ -32,14 +32,26 @@ public class TimerAnimation extends MyApplet{
 			timer = new Timer(40, new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					xPos = xPos + (direction*10);				
+					xPos = xPos + (direction*30);				
 					if (xPos + img.getWidth() > xOther) {
 						xPos = xOther - img.getWidth();
-						direction *= -1;						
+						direction *= -1;
+						try {
+							img = ImageIO.read(new File("pic/Artanis_l.png"));
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					} else if (xPos < xStop) {						
 						timer.stop();
 						direction *= -1;
 						xPos = 10;
+						try {
+							img = ImageIO.read(new File("pic/Artanis.png"));
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					}
 					MainFrame.scrollPane.repaint();
 				}
@@ -50,13 +62,25 @@ public class TimerAnimation extends MyApplet{
 			timer = new Timer(40, new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					xPos = xPos - (direction*10);
+					xPos = xPos - (direction*30);
 					if (xPos + img.getWidth() > MainFrame.scrollPane.getWidth()) {
 						xPos = MainFrame.scrollPane.getWidth()- img.getWidth();
 						timer.stop();
-						xPos = 600;
+						try {
+							img = ImageIO.read(new File("pic/Agumon.png"));
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						xPos = 1600;
 						direction *= -1;
 					} else if (xPos < xOther + img.getWidth()) {
+						try {
+							img = ImageIO.read(new File("pic/Agumon_r.png"));
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						direction *= -1;
 					}
 					MainFrame.scrollPane.repaint();

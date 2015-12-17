@@ -15,7 +15,7 @@ public class Toaster
 	private int toasterWidth = 200;
 
 	// Height of the toster
-	private int toasterHeight = 40;
+	private int toasterHeight = 43;
 
 	// Step for the toaster
 	private int step = 20;
@@ -64,7 +64,7 @@ public class Toaster
 	 * @author daniele piras
 	 *
 	 */
-	public Toaster(int xpos, int ypos1, int ypos2)
+	public Toaster(int xpos, int ypos1)
 	{
 		// Set default font...
 		font = new Font("Arial", Font.BOLD, 12);
@@ -76,7 +76,7 @@ public class Toaster
 		// Verify AlwaysOnTop Flag...
 		x = xpos;
 		starty = ypos1;
-		stopy = ypos2;
+		stopy = ypos1;
 		try
 		{
 			JWindow.class.getMethod( "setAlwaysOnTop", new Class[] { Boolean.class } );

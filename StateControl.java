@@ -42,18 +42,18 @@ public class StateControl {
 		}
 		else if(event.getSource() == MainFrame.btnShake ){
 			drawHello = 2;
-			MainFrame.scrollPane.tower_11.timer.start();
+			MainFrame.scrollPane.Artanis.timer.start();
 			MainFrame.scrollPane.repaint();
-			Toaster toasterManager = new Toaster(MainFrame.scrollPane.getLocation().x -150 + MainFrame.scrollPane.getWidth() ,MainFrame.scrollPane.getLocation().y+100,MainFrame.scrollPane.getLocation().y+100 );
+			Toaster toasterManager = new Toaster(MainFrame.scrollPane.getLocation().x -150 + MainFrame.scrollPane.getWidth() ,MainFrame.scrollPane.getLocation().y+95 );
 			// Show a simple toaster
 			toasterManager.showToaster( new ImageIcon( "pic/gif/em17.gif" ), "We are under attack!" );
 
 		}
 		else if(event.getSource() == MainFrame.btnShake_1 ){
 			drawHello = 3;
-			MainFrame.scrollPane.tower_22.timer.start();
+			MainFrame.scrollPane.Agumon.timer.start();
 			MainFrame.scrollPane.repaint();
-			Toaster toasterManager = new Toaster(MainFrame.scrollPane.getLocation().x +210 ,MainFrame.scrollPane.getLocation().y+100,MainFrame.scrollPane.getLocation().y+100 );
+			Toaster toasterManager = new Toaster(MainFrame.scrollPane.getLocation().x +210 ,MainFrame.scrollPane.getLocation().y+95 );
 			// Show a simple toaster
 			toasterManager.showToaster( new ImageIcon( "pic/gif/em17.gif" ), "We are under attack!" );
 

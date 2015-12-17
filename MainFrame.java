@@ -52,7 +52,7 @@ public class MainFrame {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(new Rectangle(100, 0, 736, 700));
+		frame.setBounds(new Rectangle(100, 0, 1736, 700));
 		frame.setTitle("Two Camp Game");
 
 		//	Add menuBar
@@ -96,14 +96,14 @@ public class MainFrame {
 
 		mFrame_scroll = new JScrollPane();
 		mFrame_scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		mFrame_scroll.setPreferredSize(new Dimension(500, 2));
+		mFrame_scroll.setPreferredSize(new Dimension(1500, 2));
 		mFrame_scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		mFrame_scroll.setBounds(0, 0, 731, 624);
+		mFrame_scroll.setBounds(0, 0, 1731, 624);
 		frame.getContentPane().add(mFrame_scroll);
 		
 		mFrame_panel = new JPanel();
-		mFrame_panel.setPreferredSize(new Dimension(700, 620));
-		mFrame_panel.setBounds(0, 0, 824, 620);
+		mFrame_panel.setPreferredSize(new Dimension(1700, 620));
+		mFrame_panel.setBounds(0, 0, 1824, 620);
 		mFrame_scroll.setViewportView(mFrame_panel);
 		mFrame_panel.setLayout(null);
 
@@ -123,7 +123,7 @@ public class MainFrame {
 		// lower pane
 		JScrollPane scrollPane_1 = new JScrollPane(textArea);
 		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane_1.setBounds(10, 383, 712, 208);
+		scrollPane_1.setBounds(10, 383, 1712, 208);
 		mFrame_panel.add(scrollPane_1);
 
 		
@@ -145,7 +145,7 @@ public class MainFrame {
 		mFrame_panel.add(btnShake);
 
 		btnShake_1 = new JButton("Shake");
-		btnShake_1.setBounds(635, 353, 87, 23);
+		btnShake_1.setBounds(1626, 345, 87, 23);
 		btnShake_1.addActionListener(scrollPane);
 		mFrame_panel.add(btnShake_1);
 		

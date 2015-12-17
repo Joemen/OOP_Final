@@ -14,14 +14,14 @@ import javax.swing.border.LineBorder;
 
 
 public class MyApplet extends JScrollPane implements ActionListener {
-	public static TimerAnimation tower_11 = null ,tower_22 = null ;
+	public static TimerAnimation Artanis = null ,Agumon = null ;
 	public static Image background = null , money_1 = null, money_2 = null, soldier_1 = null, soldier_2 = null,
 			tower_1, tower_2;
 	public static File background_png , money_png, tower_png , soldier_png;
 
 	public MyApplet(){		
 		setViewportBorder(new LineBorder(new Color(0, 0, 0)));
-		setBounds(10, 46, 712, 292);
+		setBounds(10, 16, 1712, 325);
 		setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		MainFrame.btnClear.addActionListener(this);
 		MainFrame.btnPlayer_1.addActionListener(this);
@@ -45,11 +45,11 @@ public class MyApplet extends JScrollPane implements ActionListener {
 			e.printStackTrace();
 		}
 		//	Time Animation
-		tower_11 = new TimerAnimation(new File("pic/Artanis.png"),1);
-		tower_11.setPara(10, 150,100, 135,1,10,500);
+		Artanis = new TimerAnimation(new File("pic/Artanis.png"),1);
+		Artanis.setPara(10, 160,100, 135,1,10,1500);
 
-		tower_22 = new TimerAnimation(new File("pic/Agumon.png"),-1);
-		tower_22.setPara(600, 130, 100, 135,-1,0,110);
+		Agumon = new TimerAnimation(new File("pic/Agumon.png"),-1);
+		Agumon.setPara(1600, 130, 100, 135,-1,0,110);
 	}
 	@Override
 	public void actionPerformed(ActionEvent event) {		
@@ -68,25 +68,25 @@ public class MyApplet extends JScrollPane implements ActionListener {
 		// Draw the previously loaded image to Component.
 		if(StateControl.drawHello == -1 || StateControl.drawHello == 0)
 			return ;			
-		g.drawImage(background, 0, 0,712, 292, null);
+		g.drawImage(background, 0, 0,1712, 325, null);
 		if(StateControl.drawHello == 1){
-			g.drawImage(tower_11.img, 10, 150, null);
-			g.drawImage(tower_22.img, 600, 130, null);
+			g.drawImage(Artanis.img, 10, 160, null);
+			g.drawImage(Agumon.img, 1600, 130, null);
 		}
 		else if(StateControl.drawHello == 2){			
 			//	player1				
-			tower_11.paintComponent(g);
+			Artanis.paintComponent(g);
 			// draw tower sign
-			g.drawImage(tower_22.img, 600, 130, null);
+			g.drawImage(Agumon.img, 1600, 130, null);
 
 		}
 		else if(StateControl.drawHello == 3){
-			tower_22.paintComponent(g);
+			Agumon.paintComponent(g);
 			// draw tower sign
-			g.drawImage(tower_11.img, 10, 150, null);
+			g.drawImage(Artanis.img, 10, 160, null);
 		}
 		g.drawImage(tower_1, 110, 50, null);
-		g.drawImage(tower_2, 500, 50, null);
+		g.drawImage(tower_2, 1500, 50, null);
 		
 		// draw string money amount			
 		setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(205, 173, 0));
@@ -108,21 +108,21 @@ public class MyApplet extends JScrollPane implements ActionListener {
 
 		//	player2
 		setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(205, 173, 0));
-		g.drawString(Integer.toString(Game.player[1].getMoney()),680,48);
+		g.drawString(Integer.toString(Game.player[1].getMoney()),1680,48);
 
 		// draw string Soldier amount		
 		setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(46, 139, 87));
-		g.drawString(Integer.toString(Game.player[1].getNumSoldier()),680,78);
+		g.drawString(Integer.toString(Game.player[1].getNumSoldier()),1680,78);
 
 		// draw money sign
-		g.drawImage(money_2, 660, 30, 15, 21, null);			
+		g.drawImage(money_2, 1660, 30, 15, 21, null);			
 
 		// draw soldier sign
-		g.drawImage(soldier_2, 660, 60, 15, 21, null);
+		g.drawImage(soldier_2, 1660, 60, 15, 21, null);
 
 		// draw player name
 		setMyfont(g,"TimesRoman", Font.ITALIC, 15,Color.BLACK);
-		g.drawString(Game.player[1].getPlayerName(),670,20);
+		g.drawString(Game.player[1].getPlayerName(),1670,20);
 	}
 
 	private void setMyfont(Graphics g, String fontType, int fontStyle , int size, Color myColor) {
