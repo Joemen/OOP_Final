@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -39,6 +40,7 @@ public class MainFrame {
 	public static JButton btnClear;
 	public static JButton btnShake;
 	public static JButton btnShake_1;
+	private JButton button;
 
 	public MainFrame() {
 		initialize();
@@ -98,7 +100,7 @@ public class MainFrame {
 		mFrame_scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		mFrame_scroll.setBounds(0, 0, 731, 624);
 		frame.getContentPane().add(mFrame_scroll);
-
+		
 		mFrame_panel = new JPanel();
 		mFrame_panel.setPreferredSize(new Dimension(700, 620));
 		mFrame_panel.setBounds(0, 0, 824, 620);
@@ -112,17 +114,19 @@ public class MainFrame {
 		btnPlayer_1 = new JButton("start game");
 		btnPlayer_1.setBounds(10, 10, 100, 23);		
 		MainFrame.mFrame_panel.add(btnPlayer_1);
-
+		
+		// upper pane
 		scrollPane = new MyApplet();
 		scrollPane.readFile();
 		mFrame_panel.add(scrollPane);		
 
-
+		// lower pane
 		JScrollPane scrollPane_1 = new JScrollPane(textArea);
 		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane_1.setBounds(10, 383, 712, 208);
 		mFrame_panel.add(scrollPane_1);
 
+		
 		textArea = new JTextArea();
 		textArea.setLineWrap(true);
 		textArea.setEditable(false);
@@ -132,6 +136,8 @@ public class MainFrame {
 		scrollPane_1.setVerticalScrollBarPolicy(   
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED); 
 		textArea.setSelectedTextColor(Color.RED);
+		textArea.setFont(new Font("SansSerif", Font.PLAIN, 12) );	
+		
 
 		btnShake = new JButton("Shake");
 		btnShake.setBounds(10, 353, 87, 23);
@@ -142,6 +148,18 @@ public class MainFrame {
 		btnShake_1.setBounds(635, 353, 87, 23);
 		btnShake_1.addActionListener(scrollPane);
 		mFrame_panel.add(btnShake_1);
+		
+		// for action use
+		button = new JButton("Action");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("You have clicked on the action botton");
+				ActionFrame actionframe = new ActionFrame();
+				actionframe.actionframe.setVisible(true);
+			}
+		});
+		button.setBounds(99, 353, 87, 23);
+		mFrame_panel.add(button);
 
 
 	}
