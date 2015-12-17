@@ -12,10 +12,10 @@ import javax.swing.border.*;
 public class Toaster
 {
 	// Width of the toster
-	private int toasterWidth = 300;
+	private int toasterWidth = 200;
 
 	// Height of the toster
-	private int toasterHeight = 80;
+	private int toasterHeight = 40;
 
 	// Step for the toaster
 	private int step = 20;
@@ -24,7 +24,7 @@ public class Toaster
 	private int stepTime = 20;
 
 	// Show time
-	private int displayTime = 3000;
+	private int displayTime = 4000;
 
 	// Current number of toaster...
 	private int currentNumberOfToaster = 0;
@@ -46,7 +46,9 @@ public class Toaster
 
 	// Set message color
 	private Color messageColor;
-
+	
+	private int x ;
+	private int starty,stopy ;
 	// Set the margin
 	int margin;
 
@@ -62,7 +64,7 @@ public class Toaster
 	 * @author daniele piras
 	 *
 	 */
-	public Toaster()
+	public Toaster(int xpos, int ypos1, int ypos2)
 	{
 		// Set default font...
 		font = new Font("Arial", Font.BOLD, 12);
@@ -72,6 +74,9 @@ public class Toaster
 		messageColor = Color.BLACK;
 		useAlwaysOnTop = true;
 		// Verify AlwaysOnTop Flag...
+		x = xpos;
+		starty = ypos1;
+		stopy = ypos2;
 		try
 		{
 			JWindow.class.getMethod( "setAlwaysOnTop", new Class[] { Boolean.class } );
@@ -215,8 +220,9 @@ public class Toaster
 				maxToasterInSceen = screenHeight / toasterHeight;
 
 
-				int posx = (int) screenRect.width - toasterWidth - 1;
-
+				//int posx = (int) screenRect.width - toasterWidth - 1;
+				int posx = x;
+				
 				toaster.setLocation(posx, screenHeight);
 				toaster.setVisible(true);
 				if ( useAlwaysOnTop )
@@ -254,7 +260,8 @@ public class Toaster
 
 				currentNumberOfToaster++;
 				maxToaster++;
-
+				startYPosition = starty;
+				stopYPosition = stopy ;
 
 				animateVertically( posx, startYPosition, stopYPosition );
 				Thread.sleep(displayTime);

@@ -42,17 +42,21 @@ public class StateControl {
 		}
 		else if(event.getSource() == MainFrame.btnShake ){
 			drawHello = 2;
-			MainFrame.scrollPane.tower_1.timer.start();
+			MainFrame.scrollPane.tower_11.timer.start();
 			MainFrame.scrollPane.repaint();
-			Toaster toasterManager = new Toaster();
+			Toaster toasterManager = new Toaster(MainFrame.scrollPane.getLocation().x -150 + MainFrame.scrollPane.getWidth() ,MainFrame.scrollPane.getLocation().y+100,MainFrame.scrollPane.getLocation().y+100 );
 			// Show a simple toaster
-			toasterManager.showToaster( new ImageIcon( "mylogo.gif" ), "A simple toaster with an image" );
+			toasterManager.showToaster( new ImageIcon( "pic/gif/em17.gif" ), "We are under attack!" );
 
 		}
 		else if(event.getSource() == MainFrame.btnShake_1 ){
 			drawHello = 3;
-			MainFrame.scrollPane.tower_2.timer.start();
+			MainFrame.scrollPane.tower_22.timer.start();
 			MainFrame.scrollPane.repaint();
+			Toaster toasterManager = new Toaster(MainFrame.scrollPane.getLocation().x +210 ,MainFrame.scrollPane.getLocation().y+100,MainFrame.scrollPane.getLocation().y+100 );
+			// Show a simple toaster
+			toasterManager.showToaster( new ImageIcon( "pic/gif/em17.gif" ), "We are under attack!" );
+
 		}
 		else {
 

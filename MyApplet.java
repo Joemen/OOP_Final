@@ -14,8 +14,10 @@ import javax.swing.border.LineBorder;
 
 
 public class MyApplet extends JScrollPane implements ActionListener {
-	public static TimerAnimation tower_1 = null ,tower_2 = null ;
-	public static Image background = null , money_1 = null, money_2 = null, soldier_1 = null, soldier_2 = null;
+	public static TimerAnimation tower_11 = null ,tower_22 = null ;
+	public static Image background = null , money_1 = null, money_2 = null, soldier_1 = null, soldier_2 = null,
+			tower_1, tower_2;
+	public static File background_png , money_png, tower_png , soldier_png;
 
 	public MyApplet(){		
 		setViewportBorder(new LineBorder(new Color(0, 0, 0)));
@@ -24,23 +26,30 @@ public class MyApplet extends JScrollPane implements ActionListener {
 		MainFrame.btnClear.addActionListener(this);
 		MainFrame.btnPlayer_1.addActionListener(this);
 		StateControl.control(StateControl.State.ORIGIN);
+		background_png = new File("pic/background.png");
+		money_png = new File("pic/money_burned.png");
+		tower_png = new File("pic/tower.png");
+		soldier_png = new File("pic/soldier.png");
 	}
 	public void readFile(){
 		try {
-			background = ImageIO.read(new File("pic/background.png"));
-			money_1 = ImageIO.read(new File("pic/money_burned.png"));
-			money_2 = ImageIO.read(new File("pic/money_burned.png"));
-			soldier_1 = ImageIO.read(new File("pic/soldier.png"));
-			soldier_2 = ImageIO.read(new File("pic/soldier.png"));
+			background = ImageIO.read(background_png);
+			money_1 = ImageIO.read(money_png);
+			money_2 = ImageIO.read(money_png);
+			soldier_1 = ImageIO.read(soldier_png);
+			soldier_2 = ImageIO.read(soldier_png);
+			tower_1 = ImageIO.read(tower_png);
+			tower_2 = ImageIO.read(tower_png);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		//	Time Animation
-		tower_1 = new TimerAnimation(new File("pic/tower.png"),1);
-		tower_1.setPara(10, 50,100, 135,1,10,600);
+		tower_11 = new TimerAnimation(new File("pic/Artanis.png"),1);
+		tower_11.setPara(10, 150,100, 135,1,10,500);
 
-		tower_2 = new TimerAnimation(new File("pic/tower.png"),-1);
-		tower_2.setPara(600, 50, 100, 135,-1,0,10);
+		tower_22 = new TimerAnimation(new File("pic/Agumon.png"),-1);
+		tower_22.setPara(600, 130, 100, 135,-1,0,110);
 	}
 	@Override
 	public void actionPerformed(ActionEvent event) {		
@@ -61,22 +70,24 @@ public class MyApplet extends JScrollPane implements ActionListener {
 			return ;			
 		g.drawImage(background, 0, 0,712, 292, null);
 		if(StateControl.drawHello == 1){
-			g.drawImage(tower_1.img, 10, 50, null);
-			g.drawImage(tower_2.img, 600, 50, null);
+			g.drawImage(tower_11.img, 10, 150, null);
+			g.drawImage(tower_22.img, 600, 130, null);
 		}
 		else if(StateControl.drawHello == 2){			
 			//	player1				
-			tower_1.paintComponent(g);
+			tower_11.paintComponent(g);
 			// draw tower sign
-			g.drawImage(tower_2.img, 600, 50, null);
+			g.drawImage(tower_22.img, 600, 130, null);
 
 		}
 		else if(StateControl.drawHello == 3){
-			tower_2.paintComponent(g);
+			tower_22.paintComponent(g);
 			// draw tower sign
-			g.drawImage(tower_1.img, 10, 50, null);
+			g.drawImage(tower_11.img, 10, 150, null);
 		}
-
+		g.drawImage(tower_1, 110, 50, null);
+		g.drawImage(tower_2, 500, 50, null);
+		
 		// draw string money amount			
 		setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(205, 173, 0));
 		g.drawString(Integer.toString(Game.player[0].getMoney()),30,48);

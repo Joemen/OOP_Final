@@ -56,7 +56,7 @@ public class TimerAnimation extends MyApplet{
 						timer.stop();
 						xPos = 600;
 						direction *= -1;
-					} else if (xPos < xStop + img.getWidth()) {						
+					} else if (xPos < xOther + img.getWidth()) {
 						direction *= -1;
 					}
 					MainFrame.scrollPane.repaint();
