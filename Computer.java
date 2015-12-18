@@ -114,14 +114,16 @@ public class Computer{
 			if(team == 1){ // camp A
 				float a = player[i].getNumOffSoldier() * a_offense_win_rate;
 				float b = player[i].getNumDefSoldier() * a_defense_win_rate;
-				// total remaining soldier = remaining defense + remaining offense
-				player[i].setNumSoldier( (int)Math.round(a+b) );
+				float c = player[i].getNumSoldier() - player[i].getNumOffSoldier() - player[i].getNumDefSoldier();
+				// total remaining soldier = remaining defense + remaining offense + stayHome soldier
+				player[i].setNumSoldier( (int)Math.round(a+b+c) );
 			}
 			else if(team == 2){
 				float a = (player[i].getNumOffSoldier() * b_offense_win_rate);
 				float b = (player[i].getNumDefSoldier() * b_defense_win_rate);
-				// total remaining soldier = remaining defense + remaining offense
-				player[i].setNumSoldier( (int)Math.round(a+b) );
+				float c = player[i].getNumSoldier() - player[i].getNumOffSoldier() - player[i].getNumDefSoldier();
+				// total remaining soldier = remaining defense + remaining offense + stayHome soldier
+				player[i].setNumSoldier( (int)Math.round(a+b+c) );
 			}
 			else{
 				System.out.println("team number error");
