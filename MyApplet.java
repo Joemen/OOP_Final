@@ -21,7 +21,7 @@ public class MyApplet extends JScrollPane implements ActionListener {
 
 	public MyApplet(){		
 		setViewportBorder(new LineBorder(new Color(0, 0, 0)));
-		setBounds(10, 16, 1712, 325);
+		setBounds(10, 16, 1212, 325);
 		setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		
 		StateControl.control(StateControl.State.ORIGIN);
@@ -45,10 +45,10 @@ public class MyApplet extends JScrollPane implements ActionListener {
 		}
 		//	Time Animation
 		Artanis = new TimerAnimation(new File("pic/Artanis.png"),1);
-		Artanis.setPara(10, 160,100, 135,1,10,1500);
+		Artanis.setPara(10, 160,100, 135,1,10,1000);
 
 		Agumon = new TimerAnimation(new File("pic/Agumon.png"),-1);
-		Agumon.setPara(1600, 130, 100, 135,-1,0,110);
+		Agumon.setPara(1100, 130, 100, 135,-1,0,110);
 	}
 	@Override
 	public void actionPerformed(ActionEvent event) {		
@@ -67,16 +67,16 @@ public class MyApplet extends JScrollPane implements ActionListener {
 		// Draw the previously loaded image to Component.
 		if(StateControl.drawHello == -1 || StateControl.drawHello == 0)
 			return ;			
-		g.drawImage(background, 0, 0,1712, 325, null);
+		g.drawImage(background, 0, 0,1212, 325, null);
 		if(StateControl.drawHello == 1){
 			g.drawImage(Artanis.img, 10, 160, null);
-			g.drawImage(Agumon.img, 1600, 130, null);
+			g.drawImage(Agumon.img, 1100, 130, null);
 		}
 		else if(StateControl.drawHello == 2){			
 			//	player1				
 			Artanis.paintComponent(g);
 			// draw tower sign
-			g.drawImage(Agumon.img, 1600, 130, null);
+			g.drawImage(Agumon.img, 1100, 130, null);
 
 		}
 		else if(StateControl.drawHello == 3){
@@ -85,7 +85,7 @@ public class MyApplet extends JScrollPane implements ActionListener {
 			g.drawImage(Artanis.img, 10, 160, null);
 		}
 		g.drawImage(tower_1, 110, 50, null);
-		g.drawImage(tower_2, 1500, 50, null);
+		g.drawImage(tower_2, 1000, 50, null);
 		
 		// draw string money amount			
 		setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(205, 173, 0));
@@ -107,21 +107,21 @@ public class MyApplet extends JScrollPane implements ActionListener {
 
 		//	player2
 		setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(205, 173, 0));
-		g.drawString(Integer.toString(Game.player[1].getMoney()),1680,48);
+		g.drawString(Integer.toString(Game.player[1].getMoney()),1180,48);
 
 		// draw string Soldier amount		
 		setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(46, 139, 87));
-		g.drawString(Integer.toString(Game.player[1].getNumSoldier()),1680,78);
+		g.drawString(Integer.toString(Game.player[1].getNumSoldier()),1180,78);
 
 		// draw money sign
-		g.drawImage(money_2, 1660, 30, 15, 21, null);			
+		g.drawImage(money_2, 1160, 30, 15, 21, null);			
 
 		// draw soldier sign
-		g.drawImage(soldier_2, 1660, 60, 15, 21, null);
+		g.drawImage(soldier_2, 1160, 60, 15, 21, null);
 
 		// draw player name
 		setMyfont(g,"TimesRoman", Font.ITALIC, 15,Color.BLACK);
-		g.drawString(Game.player[1].getPlayerName(),1670,20);
+		g.drawString(Game.player[1].getPlayerName(),1170,20);
 	}
 
 	private void setMyfont(Graphics g, String fontType, int fontStyle , int size, Color myColor) {

@@ -32,7 +32,7 @@ public class TimerAnimation extends MyApplet{
 			timer = new Timer(40, new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					xPos = xPos + (direction*30);				
+					xPos = xPos + (direction*20);				
 					if (xPos + img.getWidth() > xOther) {
 						xPos = xOther - img.getWidth();
 						direction *= -1;
@@ -62,7 +62,7 @@ public class TimerAnimation extends MyApplet{
 			timer = new Timer(40, new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					xPos = xPos - (direction*30);
+					xPos = xPos - (direction*20);
 					if (xPos + img.getWidth() > MainFrame.scrollPane.getWidth()) {
 						xPos = MainFrame.scrollPane.getWidth()- img.getWidth();
 						timer.stop();
@@ -72,7 +72,7 @@ public class TimerAnimation extends MyApplet{
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						xPos = 1600;
+						xPos = 1100;
 						direction *= -1;
 					} else if (xPos < xOther + img.getWidth()) {
 						try {
