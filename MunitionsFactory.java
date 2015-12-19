@@ -28,9 +28,9 @@ public class MunitionsFactory extends Functions{
 		System.out.println(player.getPlayerName()+" have $"+player.getMoney()+" and "+player.getNumSoldier()+" soldiers.");
     	while(!(option.equals("0")||option.equals("1")||option.equals("2")||option.equals("3"))){
     		System.out.println("Please enter your option: ");
-        	System.out.println("    (1) spend $10 for 10 soldiers. ");
-        	System.out.println("    (2) spend $20 for 20 soldiers. ");
-        	System.out.println("    (3) spend $30 for 30 soldiers. ");
+        	System.out.println("    (1) spend $"+Math.round(this.price[0]*player.getRole().getProperty().is_discount)+" for "+Math.round(this.add_soldier[0]*player.getRole().getProperty().is_add_soldier_generate)+" soldiers. ");
+        	System.out.println("    (2) spend $"+Math.round(this.price[1]*player.getRole().getProperty().is_discount)+" for "+Math.round(this.add_soldier[1]*player.getRole().getProperty().is_add_soldier_generate)+" soldiers. ");
+        	System.out.println("    (3) spend $"+Math.round(this.price[2]*player.getRole().getProperty().is_discount)+" for "+Math.round(this.add_soldier[2]*player.getRole().getProperty().is_add_soldier_generate)+" soldiers. ");
         	System.out.println("    (0) go back to the menu. ");
         	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         	option =br.readLine();
@@ -41,10 +41,10 @@ public class MunitionsFactory extends Functions{
         	if(option.equals("1")||option.equals("2")||option.equals("3")){
         		 int desicion;
         		 desicion =Integer.parseInt(option);
-        		 if(player.getMoney()>=this.price[desicion-1]){
-        			 player.setMoney(player.getMoney()-this.price[desicion-1]);
-        			 player.setNumSoldier(player.getNumSoldier()+this.add_soldier[desicion-1]);
-        			 System.out.println(player.getPlayerName()+" have spent "+this.price[desicion-1]+" to buy "+this.add_soldier[desicion-1]);
+        		 if(player.getMoney()>=Math.round(this.price[desicion-1]*player.getRole().getProperty().is_discount)){
+        			 player.setMoney((int)(player.getMoney()-Math.round(this.price[desicion-1]*player.getRole().getProperty().is_discount)));
+        			 player.setNumSoldier((int)(player.getNumSoldier()+Math.round(this.add_soldier[desicion-1]*player.getRole().getProperty().is_add_soldier_generate)));
+        			 System.out.println(player.getPlayerName()+" have spent "+Math.round(this.price[desicion-1]*player.getRole().getProperty().is_discount)+" to buy "+Math.round(this.add_soldier[desicion-1]*player.getRole().getProperty().is_add_soldier_generate));
         			 System.out.println("Now "+player.getPlayerName()+" have $"+player.getMoney()+" and "+player.getNumSoldier()+" soldiers.");
                      return true;
         		 }

@@ -57,7 +57,10 @@ public class Player extends Camp{
 	}
 
 	////////// about get //////////
-
+	public Role getRole(){
+		return this.role;
+	}
+	
 	public String getPlayerName(){
 		return this.player_name;
 	}

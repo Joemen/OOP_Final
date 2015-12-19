@@ -17,8 +17,8 @@ public class Bank extends Functions{
         System.out.println("|                  Welcome to the <Bank>                  |");
         System.out.println("-----------------------------------------------------------");
 		System.out.println(player.getPlayerName()+" have $"+player.getMoney()+".");
-		System.out.println("The bank gives $20 to "+player.getPlayerName());
-		player.setMoney(player.getMoney()+getgivemoney());
+		System.out.println("The bank gives $"+Math.round(this.give_money*player.getRole().getProperty().is_add_money_rate)+" to "+player.getPlayerName());
+		player.setMoney((int)(player.getMoney()+Math.round(this.give_money*player.getRole().getProperty().is_add_money_rate)));
 		System.out.println("Now, "+player.getPlayerName()+" have $"+player.getMoney()+".");
         return true;
 	}
