@@ -41,7 +41,7 @@ public class MainFrame {
 	public static JButton btnClear;
 	public static JButton btnShake;
 	public static JButton btnShake_1;
-	private JButton button;
+	public static JButton actionbutton;
 
 	public MainFrame() {
 		initialize();
@@ -156,16 +156,17 @@ public class MainFrame {
 		mFrame_panel.add(btnShake_1);
 		
 		// for action use
-		button = new JButton("Action");
-		button.addActionListener(new ActionListener() {
+		actionbutton = new JButton("Action");
+		actionbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("You have clicked on the action botton");
 				ActionFrame actionframe = new ActionFrame();
 				actionframe.actionframe.setVisible(true);
 			}
 		});
-		button.setBounds(99, 353, 87, 23);
-		mFrame_panel.add(button);
+		actionbutton.setBounds(99, 353, 87, 23);
+		actionbutton.setEnabled(false);
+		mFrame_panel.add(actionbutton);
 		
 		// for fight use ===================HuangYuNien===================================================================jedijedijedimaster
 		

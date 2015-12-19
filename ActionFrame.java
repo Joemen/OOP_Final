@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.WindowConstants;
 
 import java.awt.BorderLayout;
 
@@ -34,11 +35,13 @@ public class ActionFrame{
 	public static JLabel lblConstruction1;
 	public static JLabel lblConstruction2;
 	public static JLabel lblConstruction3;
+	public static JComboBox<String> ConstructionCombo;
 	
 	// in munction
 	public static JLabel lblMuntion1 ;
 	public static JLabel lblMuntion2 ;
 	public static JLabel lblMuntion3 ; 
+	public static JComboBox<String> MuntionCombo;
 	
 	// in bank
 	public static JLabel lblBank1;
@@ -49,6 +52,10 @@ public class ActionFrame{
 	public static JLabel lblExplore1;
 	public static JLabel lblExplore2;
 	public static JLabel lblExplore3;
+	public static JLabel lblExplore4;
+	public static JLabel lblExplore5;
+	public static JLabel lblExplore6;
+	public static JComboBox<String> ExploreCombo;
 
 	// in Abandon
 	public static JLabel lblAbandon1;
@@ -77,9 +84,9 @@ public class ActionFrame{
 		lblAction.setBounds(60, 27, 262, 16);
 		mFrame_panel.add(lblAction);
 		
-		// abount combox -- selection of action
+		// about combobox -- selection of action
 		actionchoice = new JComboBox<String>();
-		actionchoice.setBounds(321, 23, 202, 27);
+		actionchoice.setBounds(321, 23, 221, 27);
 		mFrame_panel.add(actionchoice);
 		
 		
@@ -104,12 +111,15 @@ public class ActionFrame{
                 	lblConstruction1.setVisible(true);
                 	lblConstruction2.setVisible(true);
                 	lblConstruction3.setVisible(true);
+                	ConstructionCombo.setVisible(true);
                 }
+                
                 if(currentChoice.equals("Go To Munitions Factory")){
                 	setAllUnVisable();
                 	lblMuntion1.setVisible(true);
                 	lblMuntion2.setVisible(true);
                 	lblMuntion3.setVisible(true);
+                	MuntionCombo.setVisible(true);
                 }
                 if(currentChoice.equals("Go To Bank")){
                 	setAllUnVisable();
@@ -122,6 +132,11 @@ public class ActionFrame{
                 	lblExplore1.setVisible(true);
                 	lblExplore2.setVisible(true);
                 	lblExplore3.setVisible(true);
+                	lblExplore4.setVisible(true);
+            		lblExplore5.setVisible(true);
+            		lblExplore6.setVisible(true);
+            		ExploreCombo.setVisible(true);
+
                 }
                 if(currentChoice.equals("Abandon this round")){
                 	setAllUnVisable();
@@ -131,23 +146,34 @@ public class ActionFrame{
 		});
 		
 		
-		
-		
 		// about buttom
 		btnOk_1 = new JButton("OK");
 		btnOk_1.setBounds(75, 311, 117, 29);
 		mFrame_panel.add(btnOk_1);
 		
+		btnOk_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
 		btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(350, 311, 117, 29);
 		mFrame_panel.add(btnCancel);
+		
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionframe.dispose();
+			}
+		});
 		
 		lblNotice = new JLabel("Notice : If you press OK and will not be able to change your decision !");
 		lblNotice.setForeground(Color.RED);
 		lblNotice.setBounds(48, 284, 461, 16);
 		mFrame_panel.add(lblNotice);
-		
-
+			
+		// when press x 
+		actionframe.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
 	
 	public static void constructAllElement(){
@@ -167,6 +193,20 @@ public class ActionFrame{
 		lblConstruction3.setVisible(false);
 		mFrame_panel.add(lblConstruction3);
 		
+		ConstructionCombo = new JComboBox<String>();
+		ConstructionCombo.setBounds(119, 179, 291, 27);
+		ConstructionCombo.setVisible(false);
+		mFrame_panel.add(ConstructionCombo);
+		// have to be changed for player property
+		String construnctionchoice1 = new String("$10 for blood 20");
+		String construnctionchoice2 = new String("$20 for blood 40");
+		String construnctionchoice3 = new String("$30 for blood 60");
+		
+		ConstructionCombo.addItem(construnctionchoice1); 
+		ConstructionCombo.addItem(construnctionchoice2); 
+		ConstructionCombo.addItem(construnctionchoice3); 
+		ConstructionCombo.setSelectedItem(null);
+		
 		// in Muntion : 
 		lblMuntion1 = new JLabel("Welcom to Munitions Factory !!");
 		lblMuntion1.setBounds(60, 82, 300, 16);
@@ -182,6 +222,20 @@ public class ActionFrame{
 		lblMuntion3.setBounds(60, 137, 300, 16);
 		lblMuntion3.setVisible(false);
 		mFrame_panel.add(lblMuntion3);
+		
+		MuntionCombo = new JComboBox<String>();
+		MuntionCombo.setBounds(119, 179, 291, 27);
+		MuntionCombo.setVisible(false);
+		mFrame_panel.add(MuntionCombo);
+		// have to be changed for player property
+		String muntionchoice1 = new String("$10 for 10 soldiers");
+		String muntionchoice2 = new String("$10 for 20 soldiers");
+		String muntionchoice3 = new String("$30 for 30 soldiers");
+		
+		MuntionCombo.addItem(muntionchoice1); 
+		MuntionCombo.addItem(muntionchoice2); 
+		MuntionCombo.addItem(muntionchoice3); 
+		MuntionCombo.setSelectedItem(null);
 		
 		// in Bamk :
 		lblBank1 = new JLabel("Welcom to Bank !!");
@@ -215,6 +269,36 @@ public class ActionFrame{
 		lblExplore3.setVisible(false);
 		mFrame_panel.add(lblExplore3);
 		
+		lblExplore4 = new JLabel("expeditionary : to explore and may get some soldiers\n !");
+		lblExplore4.setBounds(98, 210, 362, 16);
+		lblExplore4.setVisible(false);
+		mFrame_panel.add(lblExplore4);
+		
+		lblExplore5 = new JLabel("steal money : to find the treasure and may get some money !");
+		lblExplore5.setBounds(98, 230, 401, 16);
+		lblExplore5.setVisible(false);		
+		mFrame_panel.add(lblExplore5);
+		
+		lblExplore6 = new JLabel("spy : to have more win rate against your enemy !");
+		lblExplore6.setBounds(98, 250, 312, 16);
+		lblExplore6.setVisible(false);
+		mFrame_panel.add(lblExplore6);
+		
+		ExploreCombo = new JComboBox<String>();
+		ExploreCombo.setBounds(119, 179, 291, 27);
+		ExploreCombo.setVisible(false);
+		mFrame_panel.add(ExploreCombo);
+		// have to be changed for player property
+		String explorechoice1 = new String("expeditionary");
+		String explorechoice2 = new String("steal money");
+		String explorechoice3 = new String("spy");
+		
+		ExploreCombo.addItem(explorechoice1); 
+		ExploreCombo.addItem(explorechoice2); 
+		ExploreCombo.addItem(explorechoice3); 
+		ExploreCombo.setSelectedItem(null);
+		
+		
 		// in Abandon
 		lblAbandon1 = new JLabel("Good Luck To You !!!!");
 		lblAbandon1.setBounds(60, 110, 400, 16);
@@ -226,10 +310,12 @@ public class ActionFrame{
 		lblConstruction1.setVisible(false);
 		lblConstruction2.setVisible(false);
 		lblConstruction3.setVisible(false);
+		ConstructionCombo.setVisible(false);
 		
 		lblMuntion1.setVisible(false);
 		lblMuntion2.setVisible(false);
 		lblMuntion3.setVisible(false);
+		MuntionCombo.setVisible(false);
 		
 		lblBank1.setVisible(false);
 		lblBank2.setVisible(false);
@@ -238,6 +324,10 @@ public class ActionFrame{
 		lblExplore1.setVisible(false);
 		lblExplore2.setVisible(false);
 		lblExplore3.setVisible(false);
+		lblExplore4.setVisible(false);
+		lblExplore5.setVisible(false);
+		lblExplore6.setVisible(false);
+		ExploreCombo.setVisible(false);
 		
 		lblAbandon1.setVisible(false);
 		

@@ -25,10 +25,12 @@ public class StateControl {
 		if(event.getSource() == MainFrame.btnPlayer_1 ){
 			drawHello = 1;
 			System.out.println("You clicked the button player1");
+			MainFrame.actionbutton.setEnabled(true);
 		}
 		else if(event.getSource() == MainFrame.btnClear ){
 			drawHello = 0;
-			System.out.println("You clicked the button clear");			
+			System.out.println("You clicked the button clear");
+			MainFrame.actionbutton.setEnabled(false);
 		}
 		else if(event.getSource() == NewFrame.btnOk ){
 			if(NewFrame.num == 2 ){

@@ -1,9 +1,8 @@
 import java.io.*;
 
 public class ConstructionDep extends Functions{
-    public int[] fee = new int [3];
+    public static int[] fee = new int [3];
     public int[] ser_func = new int [3];
-    
     
     public ConstructionDep(){
         this.setFee(10, 20, 30);
