@@ -109,12 +109,12 @@ public class MainFrame {
 		mFrame_panel.setLayout(null);
 
 		btnClear =  new JButton("Clear");
-		btnClear.setBounds(290, 353, 87, 23);		
+		btnClear.setBounds(415, 353, 87, 23);		
 		MainFrame.mFrame_panel.add(btnClear);		
 		mFrame_panel.add(btnClear);
 		
 		btnPlayer_1 = new JButton("start");
-		btnPlayer_1.setBounds(199, 353, 87, 23);
+		btnPlayer_1.setBounds(318, 353, 87, 23);
 		mFrame_panel.add(btnPlayer_1);
 		MainFrame.mFrame_panel.add(btnPlayer_1);
 		
@@ -166,6 +166,19 @@ public class MainFrame {
 		});
 		button.setBounds(99, 353, 87, 23);
 		mFrame_panel.add(button);
+		
+		// for fight use ===================HuangYuNien===================================================================jedijedijedimaster
+		
+		JButton btnFight = new JButton("Fight");
+		btnFight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("You have clicked on the Fight botton");
+				FightFrame fightframe = new FightFrame();
+				fightframe.fightframe.setVisible(true);
+			}
+		});
+		btnFight.setBounds(189, 353, 87, 23);
+		mFrame_panel.add(btnFight);
 		
 		
 
