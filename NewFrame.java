@@ -43,7 +43,6 @@ public class NewFrame {
 		startframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		startframe.setBounds(new Rectangle(100, 0, 550, 400));
 		
-		
 		mFrame_scroll = new JScrollPane();
 		mFrame_scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		mFrame_scroll.setPreferredSize(new Dimension(500, 2));
