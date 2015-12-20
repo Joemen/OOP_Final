@@ -19,6 +19,15 @@ import java.awt.Color;
 
 public class ActionFrame{
 	// public JComboBox<String> choice;
+	// for choice usage
+	public static int action_flag;
+	// 0 : not yet decide
+	// 1 : Construction 
+	// 2 : Muntion
+	// 3 : Bank
+	// 4 : Explare
+	// 5 : Do Nothing
+
 	public static JFrame actionframe;
 	public static JScrollPane mFrame_scroll;
 	public static JPanel mFrame_panel;
@@ -61,6 +70,8 @@ public class ActionFrame{
 	public static JLabel lblAbandon1;
 	
 	public ActionFrame(){
+		action_flag = 0;
+
 		actionframe = new JFrame();
 		actionframe.setResizable(false);
 		actionframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -80,6 +91,13 @@ public class ActionFrame{
 		mFrame_scroll.setViewportView(mFrame_panel);
 		mFrame_panel.setLayout(null);
 		
+		String roundplayer = new String("");
+		roundplayer += "round : " + Game.round + "    player : " + Game.player[Game.turn-1].getPlayerName();
+		JLabel label_roundplayer = new JLabel(roundplayer);
+		label_roundplayer.setForeground(Color.BLUE);
+		label_roundplayer.setBounds(21, 6, 262, 16);
+		mFrame_panel.add(label_roundplayer);
+
 		JLabel lblAction = new JLabel("please select the action you want to do : ");
 		lblAction.setBounds(60, 27, 262, 16);
 		mFrame_panel.add(lblAction);
@@ -108,6 +126,7 @@ public class ActionFrame{
                 
                 if(currentChoice.equals("Construction Department")){
                 	setAllUnVisable();
+                	action_flag = 1;
                 	lblConstruction1.setVisible(true);
                 	lblConstruction2.setVisible(true);
                 	lblConstruction3.setVisible(true);
@@ -116,6 +135,7 @@ public class ActionFrame{
                 
                 if(currentChoice.equals("Go To Munitions Factory")){
                 	setAllUnVisable();
+                	action_flag = 2;
                 	lblMuntion1.setVisible(true);
                 	lblMuntion2.setVisible(true);
                 	lblMuntion3.setVisible(true);
@@ -123,12 +143,14 @@ public class ActionFrame{
                 }
                 if(currentChoice.equals("Go To Bank")){
                 	setAllUnVisable();
+                	action_flag = 3;
                 	lblBank1.setVisible(true);
                 	lblBank2.setVisible(true);
                 	lblBank3.setVisible(true);
                 } 
                 if(currentChoice.equals("Go To Explore")){
                 	setAllUnVisable();
+                	action_flag = 4;
                 	lblExplore1.setVisible(true);
                 	lblExplore2.setVisible(true);
                 	lblExplore3.setVisible(true);
@@ -140,6 +162,7 @@ public class ActionFrame{
                 }
                 if(currentChoice.equals("Abandon this round")){
                 	setAllUnVisable();
+                	action_flag = 5;
                 	lblAbandon1.setVisible(true);
                 }
             }
@@ -150,9 +173,56 @@ public class ActionFrame{
 		btnOk_1 = new JButton("OK");
 		btnOk_1.setBounds(75, 311, 117, 29);
 		mFrame_panel.add(btnOk_1);
-		
 		btnOk_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int len;
+				Player player_now = Game.player[Game.turn-1];
+				Tower tower_now = Game.tower[Game.turn-1];
+				if( action_flag == 1){ // Construction
+					/*
+					player[Game.turn-1].setMoney( ... );
+					tower.setBlood( ... );
+					*/
+					MainFrame.textArea.append("The player [ " + player_now.getPlayerName() 
+														+ " ] choose [ Construction Department ]\n");
+					MainFrame.textArea.append("and now their tower have [ " + tower_now.getBlood()
+														+ " ] blood now !\n");
+				}else if(action_flag == 2){ // Muntion
+					/*
+					player.setMoney( ... );
+					player.setNumSoldier( ... );	
+					*/
+					MainFrame.textArea.append("The player [ " + player_now.getPlayerName() 
+														+ " ] choose [ Go To Muntion ]\n");
+					MainFrame.textArea.append("and have [ " + player_now.getNumSoldier()
+														+ " ] soldier(s) now !\n");
+				}else if(action_flag == 3){ // Bank 
+					/*
+					player.setMoney( ... );
+					*/
+					MainFrame.textArea.append("The player [ " + player_now.getPlayerName() 
+														+ " ] choose [ Go To Bank ]\n");
+					MainFrame.textArea.append("and have [ " + player_now.getMoney()
+														+ " ] dollar(s) now !\n");
+				}else if(action_flag == 4){ // Explore
+					/*
+					player.setMoney( ... );
+					player.setNumSoldier( ... );
+					*/
+					MainFrame.textArea.append("The player [ " + player_now.getPlayerName() 
+														+ " ] choose [ Go To Explore ]\n");
+				}else if(action_flag == 5){ // Nothing to do
+					MainFrame.textArea.append("The player [ " + player_now.getPlayerName() 
+														+ " ] choose [Do Nothing]\n");
+				}else{
+					System.out.println("action_flag number error");
+					System.exit(1);
+				}
+				len = MainFrame.textArea.getDocument().getLength();
+				MainFrame.textArea.setCaretPosition(len);
+				
+				actionframe.dispose();
+				Game.blockmain = false;
 				
 			}
 		});
@@ -163,6 +233,7 @@ public class ActionFrame{
 		
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				action_flag = 0;
 				actionframe.dispose();
 			}
 		});
@@ -171,6 +242,8 @@ public class ActionFrame{
 		lblNotice.setForeground(Color.RED);
 		lblNotice.setBounds(48, 284, 461, 16);
 		mFrame_panel.add(lblNotice);
+		
+		
 			
 		// when press x 
 		actionframe.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
