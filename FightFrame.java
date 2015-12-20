@@ -1,10 +1,13 @@
 import java.awt.Dimension;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 
 public class FightFrame {
 	public static JFrame fightframe;
@@ -45,6 +48,20 @@ public class FightFrame {
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(272, 304, 87, 23);
 		fightframe.getContentPane().add(btnCancel);
-		
+
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fightframe.dispose();
+			}
+		});
+
+		btnReady.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Game.blockmain = false;
+				fightframe.dispose();
+			}
+		});
+
+		fightframe.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
 }
