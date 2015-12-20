@@ -42,6 +42,9 @@ public class MainFrame {
 	public static JButton btnShake;
 	public static JButton btnShake_1;
 	public static JButton actionbutton;
+	public static JButton actionbutton2;
+	public static JButton btnFight;
+	public static JButton btnFight2;
 
 	public MainFrame() {
 		initialize();
@@ -151,7 +154,7 @@ public class MainFrame {
 		mFrame_panel.add(btnShake);
 
 		btnShake_1 = new JButton("Shake");
-		btnShake_1.setBounds(1126, 345, 87, 23);
+		btnShake_1.setBounds(1124, 353, 87, 23);
 		btnShake_1.addActionListener(scrollPane);
 		mFrame_panel.add(btnShake_1);
 		
@@ -168,9 +171,21 @@ public class MainFrame {
 		actionbutton.setEnabled(false);
 		mFrame_panel.add(actionbutton);
 		
+		actionbutton2 = new JButton("Action");
+		actionbutton2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("You have clicked on the action2 botton");
+				ActionFrame actionframe = new ActionFrame();
+				actionframe.actionframe.setVisible(true);
+			}
+		});
+		actionbutton2.setEnabled(false);
+		actionbutton2.setBounds(937, 353, 87, 23);
+		mFrame_panel.add(actionbutton2);
+		
 		// for fight use ===================HuangYuNien===================================================================jedijedijedimaster
 		
-		JButton btnFight = new JButton("Fight");
+		btnFight = new JButton("Fight");
 		btnFight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("You have clicked on the Fight botton");
@@ -179,10 +194,20 @@ public class MainFrame {
 			}
 		});
 		btnFight.setBounds(189, 353, 87, 23);
+		btnFight.setEnabled(false);
 		mFrame_panel.add(btnFight);
 		
-		
-
+		btnFight2 = new JButton("Fight");
+		btnFight2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("You have clicked on the Fight2 botton");
+				FightFrame fightframe = new FightFrame();
+				fightframe.fightframe.setVisible(true);
+			}
+		});
+		btnFight2.setBounds(1025, 353, 87, 23);
+		btnFight2.setEnabled(false);
+		mFrame_panel.add(btnFight2);
 
 	}
 }
