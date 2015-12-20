@@ -11,4 +11,7 @@ public class Constants{
 	
 	public static final float advantage_of_def = 1.1f;
 	// # advantage ratio of defense
+
+	public static final int total_round = 3;
+	// # total round in a game
 }
