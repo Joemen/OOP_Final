@@ -96,8 +96,8 @@ public class Computer{
 		
 		float a_defense_win_rate = (100 - win_rate_of_A_tower)/100;
 		float b_offense_win_rate = (win_rate_of_A_tower)/100;
-		float a_offense_win_rate = (win_rate_of_B_tower)/100;
-		float b_defense_win_rate = (100 - win_rate_of_B_tower)/100;
+		float a_offense_win_rate = (100 - win_rate_of_B_tower)/100;
+		float b_defense_win_rate = (win_rate_of_B_tower)/100;
 
 		// count and set remaining blood of the tower
 		setTowerBlood( a_defense_win_rate, tower_a);
