@@ -23,9 +23,9 @@ public class ActionFrame{
 	public static int action_flag;
 	// 0 : not yet decide
 	// 1 : Construction 
-	// 2 : Muntion
+	// 2 : Munition
 	// 3 : Bank
-	// 4 : Explare
+	// 4 : Explore
 	// 5 : Do Nothing
 
 	public static JFrame actionframe;
@@ -39,6 +39,7 @@ public class ActionFrame{
 	public static JButton btnOk_1;
 	public static JButton btnCancel;
 	public static JLabel lblNotice;
+	public static JLabel lblalarm;
 	
 	// in Construction
 	public static JLabel lblConstruction1;
@@ -46,7 +47,7 @@ public class ActionFrame{
 	public static JLabel lblConstruction3;
 	public static JComboBox<String> ConstructionCombo;
 	
-	// in munction
+	// in munition
 	public static JLabel lblMuntion1 ;
 	public static JLabel lblMuntion2 ;
 	public static JLabel lblMuntion3 ; 
@@ -56,6 +57,7 @@ public class ActionFrame{
 	public static JLabel lblBank1;
 	public static JLabel lblBank2;
 	public static JLabel lblBank3;
+	public static JLabel lblBankNum;
 	
 	// in Explore
 	public static JLabel lblExplore1;
@@ -92,11 +94,17 @@ public class ActionFrame{
 		mFrame_panel.setLayout(null);
 		
 		String roundplayer = new String("");
-		roundplayer += "round : " + Game.round + "    player : " + Game.player[Game.turn-1].getPlayerName();
+		String moneyarmyblood = new String("");
+		roundplayer += "round : " + Game.round + "    player : " + Game.player[(Game.turn+1)%2].getPlayerName() ;
+		moneyarmyblood = "  Money : " + Game.player[(Game.turn+1)%2].getMoney() + "     Army : "  + Game.player[(Game.turn+1)%2].getNumSoldier() +"     Tower : "+Game.tower[Game.player[(Game.turn+1)%2].getCampNum()-1].getBlood();
 		JLabel label_roundplayer = new JLabel(roundplayer);
+		JLabel label_moneyarmyblood = new JLabel(moneyarmyblood);
 		label_roundplayer.setForeground(Color.BLUE);
 		label_roundplayer.setBounds(21, 6, 262, 16);
 		mFrame_panel.add(label_roundplayer);
+		label_moneyarmyblood.setForeground(Color.BLUE);
+		label_moneyarmyblood.setBounds(230, 6, 300, 16);
+		mFrame_panel.add(label_moneyarmyblood);
 
 		JLabel lblAction = new JLabel("please select the action you want to do : ");
 		lblAction.setBounds(60, 27, 262, 16);
@@ -147,6 +155,7 @@ public class ActionFrame{
                 	lblBank1.setVisible(true);
                 	lblBank2.setVisible(true);
                 	lblBank3.setVisible(true);
+                	lblBankNum.setVisible(true);
                 } 
                 if(currentChoice.equals("Go To Explore")){
                 	setAllUnVisable();
@@ -176,30 +185,24 @@ public class ActionFrame{
 		btnOk_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int len;
-				Player player_now = Game.player[Game.turn-1];
-				Tower tower_now = Game.tower[Game.turn-1];
+				Player player_now = Game.player[(Game.turn+1)%2];
+				Tower tower_now = Game.tower[(Game.turn+1)%2];
 				if( action_flag == 1){ // Construction
-					/*
-					player[Game.turn-1].setMoney( ... );
-					tower.setBlood( ... );
-					*/
+					ConstructionDep.RepairTower_UI( Game.player[(Game.turn+1)%2], Game.tower[Game.player[(Game.turn+1)%2].getCampNum()-1] );
+			                
 					MainFrame.textArea.append("The player [ " + player_now.getPlayerName() 
 														+ " ] choose [ Construction Department ]\n");
 					MainFrame.textArea.append("and now their tower have [ " + tower_now.getBlood()
 														+ " ] blood now !\n");
-				}else if(action_flag == 2){ // Muntion
-					/*
-					player.setMoney( ... );
-					player.setNumSoldier( ... );	
-					*/
+				}else if(action_flag == 2){ // Munition
+					MunitionsFactory.BuySoldier_UI(Game.player[(Game.turn+1)%2]);
+					
 					MainFrame.textArea.append("The player [ " + player_now.getPlayerName() 
 														+ " ] choose [ Go To Muntion ]\n");
 					MainFrame.textArea.append("and have [ " + player_now.getNumSoldier()
 														+ " ] soldier(s) now !\n");
 				}else if(action_flag == 3){ // Bank 
-					/*
-					player.setMoney( ... );
-					*/
+					Game.player[(Game.turn+1)%2].setMoney((int)(Game.player[(Game.turn+1)%2].getMoney()+Math.round(Bank.give_money*Game.player[(Game.turn+1)%2].getRole().getProperty().is_add_money_rate)));
 					MainFrame.textArea.append("The player [ " + player_now.getPlayerName() 
 														+ " ] choose [ Go To Bank ]\n");
 					MainFrame.textArea.append("and have [ " + player_now.getMoney()
@@ -215,8 +218,11 @@ public class ActionFrame{
 					MainFrame.textArea.append("The player [ " + player_now.getPlayerName() 
 														+ " ] choose [Do Nothing]\n");
 				}else{
-					System.out.println("action_flag number error");
-					System.exit(1);
+					/*System.out.println("action_flag number error");
+					System.exit(1);*/
+					//maybe ask again
+					MainFrame.textArea.append("The player [ " + player_now.getPlayerName() 
+					+ " ] choose [Do Nothing]\n");
 				}
 				len = MainFrame.textArea.getDocument().getLength();
 				MainFrame.textArea.setCaretPosition(len);
@@ -243,7 +249,37 @@ public class ActionFrame{
 		lblNotice.setBounds(48, 284, 461, 16);
 		mFrame_panel.add(lblNotice);
 		
+		lblalarm = new JLabel("Not enough $$");
+		lblalarm.setForeground(Color.RED);
+		lblalarm.setBounds(420, 179, 291, 27);
+		lblalarm.setVisible(false);
+		mFrame_panel.add(lblalarm);
 		
+		ConstructionCombo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(Game.player[(Game.turn+1)%2].getMoney()-Math.round(ConstructionDep.fee[ConstructionCombo.getSelectedIndex()]*Game.player[(Game.turn+1)%2].getRole().getProperty().is_discount)<0){
+					btnOk_1.setEnabled(false);
+					lblalarm.setVisible(true);
+				}
+				else {
+					btnOk_1.setEnabled(true);
+					lblalarm.setVisible(false);
+				}
+					
+			}});
+			
+		MuntionCombo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(Game.player[(Game.turn+1)%2].getMoney()-Math.round(MunitionsFactory.price[MuntionCombo.getSelectedIndex()]*Game.player[(Game.turn+1)%2].getRole().getProperty().is_discount)<0){
+					btnOk_1.setEnabled(false);
+					lblalarm.setVisible(true);
+				}
+				else {
+					btnOk_1.setEnabled(true);
+					lblalarm.setVisible(false);
+				}
+					
+			}});
 			
 		// when press x 
 		actionframe.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -325,6 +361,11 @@ public class ActionFrame{
 		lblBank3.setBounds(60, 137, 400, 16);
 		lblBank3.setVisible(false);
 		mFrame_panel.add(lblBank3);
+		
+		lblBankNum = new JLabel("You can get $$ "+Math.round(Bank.give_money*Game.player[(Game.turn+1)%2].getRole().getProperty().is_add_money_rate));
+		lblBankNum.setBounds(119, 179, 500, 27);
+		lblBankNum.setVisible(false);
+		mFrame_panel.add(lblBankNum);
 		
 		// in Explore :
 		lblExplore1 = new JLabel("Welcom to Explore !!");

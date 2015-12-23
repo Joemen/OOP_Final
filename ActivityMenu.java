@@ -20,7 +20,7 @@ public class ActivityMenu {
         System.out.println("=======================================================");
         System.out.println("===================YOU CAN GO TO ONE PLACE EACH TURN===");
         System.out.println("=======================================================");
-        System.out.println(" <Player"+player.getPlayerID()+"> -- " + player.getCampName());
+        System.out.println(" <Player"+player.getPlayerID()+"> :"+player.getPlayerName()+"-- " + player.getCampName());
         System.out.println("  (1) Construction Department  **** REPAIR YOUR TOWER ****");
         System.out.println("  (2) Munitions Factory        ****  BUILD YOUR ARMY  ****");
         System.out.println("  (3) Bank                     ****  GET EXTRA MONEY  ****");

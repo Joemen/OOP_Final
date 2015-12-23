@@ -17,7 +17,7 @@ public class Commander extends Camp{
         System.out.println("---------------------------------------------");
         System.out.println("|       Time to arrange your army!          |");
         System.out.println("---------------------------------------------");
-        System.out.println(player.getPlayerName()+" have $"+player.getNumSoldier()+" soldiers altogether!");
+        System.out.println(player.getPlayerName()+" have "+player.getNumSoldier()+" soldiers altogether!");
         
         try{
             System.out.println("Please decide how many soldiers defending the tower:");

@@ -18,12 +18,12 @@ import javax.swing.JTextArea;
 
 public class MainFrame {
 
-	public JFrame frame;		
-
+	public JFrame frame;
+	
+	public static JMenuBar menuBar;
+	
 	public static JMenu fileMenu ;
 	public static JMenu historyMenu ;	
-
-	public static JMenuBar menuBar;
 
 	public static JTextArea textArea;
 
@@ -31,7 +31,6 @@ public class MainFrame {
 
 	public static JPanel mFrame_panel;
 	public static JScrollPane mFrame_scroll ;
-
 
 	private JMenuItem exitMenuItem;
 	private JMenuItem newGameMenuItem;

@@ -8,11 +8,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+import javax.swing.JTextPane;
+import javax.swing.JSpinner;
 
 public class FightFrame {
 	public static JFrame fightframe;
-	private JTextField txtEnteroff;
-	private JTextField txtEnterdef;
+	private JSpinner Enteroff;
+	private JSpinner Enterdef;
 	
 	
 	public FightFrame(){
@@ -31,15 +33,17 @@ public class FightFrame {
 		lblSetYourDefense.setBounds(272, 51, 160, 34);
 		fightframe.getContentPane().add(lblSetYourDefense);
 		
-		txtEnteroff = new JTextField();
-		txtEnteroff.setBounds(53, 109, 96, 21);
-		fightframe.getContentPane().add(txtEnteroff);
-		txtEnteroff.setColumns(10);
+		Enteroff = new JSpinner();
+		Enteroff.setBounds(53, 109, 96, 21);
 		
-		txtEnterdef = new JTextField();
-		txtEnterdef.setBounds(272, 109, 96, 21);
-		fightframe.getContentPane().add(txtEnterdef);
-		txtEnterdef.setColumns(10);
+		fightframe.getContentPane().add(Enteroff);
+		
+		
+		Enterdef = new JSpinner();
+		Enterdef.setBounds(272, 109, 96, 21);
+		
+		fightframe.getContentPane().add(Enterdef);
+		
 		
 		JButton btnReady = new JButton("Ready");
 		btnReady.setBounds(53, 304, 87, 23);
@@ -48,6 +52,9 @@ public class FightFrame {
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(272, 304, 87, 23);
 		fightframe.getContentPane().add(btnCancel);
+		
+		
+		
 
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -128,7 +128,7 @@ public class Computer{
 			else{
 				System.out.println("team number error");
 			}
-			System.out.println("********************* war result of player "+(i+1)+" *********************");
+			System.out.println("*********** war result of player "+player[i].getPlayerID()+" "+player[i].getPlayerName()+" *********");
 			System.out.println("original off : " + player[i].getNumOffSoldier() + " original def : " + player[i].getNumDefSoldier());
 			if(team == 1){
 				System.out.println("wining rate : (offense) "+ a_offense_win_rate +": (defense) " + a_defense_win_rate);

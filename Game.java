@@ -13,12 +13,13 @@ public class Game{
 	public static boolean blockmain;
 	
 	public static void main(String[] args) throws IOException{
-		// initializstion
+		// initialization
 		int i,j;
 		int one_side_player_num = Constants.player_num;
 
 		Computer computer = new Computer();
 		ActivityMenu AM = new ActivityMenu();
+		Create create = new Create();
 		round = 1;
 		turn = 1;
 
@@ -29,7 +30,7 @@ public class Game{
 		for(i=0; i<camp_num; i++){
 			for(j=0; j<one_side_player_num; j++){
 				int player_id = i*one_side_player_num + j + 1;    // unique player id
-				player[ player_id - 1 ] = new Player( i+1, player_id);                
+				player[ player_id - 1 ] = new Player( i+1, player_id);
 			}
 		}
 		// for UI use
@@ -39,6 +40,14 @@ public class Game{
 		int term_or_UI = Integer.parseInt(args[0]);
 
 		if( term_or_UI == 0){ // for terminal usage
+			
+			
+			for(i=0; i<camp_num; i++){
+				for(j=0; j<one_side_player_num; j++){
+					int player_id = i*one_side_player_num + j + 1;    // unique player id
+					create.set_name_role(player[ player_id - 1]);
+				}
+			}
 
 			System.out.println( "################## Two Camp Game Start!! ##################");
 			print_status( player );
@@ -66,6 +75,12 @@ public class Game{
 
 				round++;
 			}
+			
+			
+			
+			
+			
+			
 		}else if(term_or_UI == 1){ // for GUI usage
 			MainFrame window = new MainFrame();
 			//	new a Frame
@@ -80,7 +95,7 @@ public class Game{
 				    Thread.currentThread().interrupt();
 				}
 
-				// System.out.println("waiting game start");
+				 //System.out.println("waiting game start");
 			}
 
 			MainFrame.textArea.append("############ Two Camp Game Start!! ############\n\n");
@@ -147,10 +162,20 @@ public class Game{
 				MainFrame.btnFight2.setEnabled(false);
 
 				print_msg_to_UI("\nNow Computer counting result and display\n", MainFrame.textArea);
+				turn++;
+				//round++;
 			}
 		}
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
 	//////////////////////////////// for terminal usage ///////////////////////////////////////
 
 	// ask player to set offensive and defensive soldier and then count the result of the war. 
