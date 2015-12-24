@@ -25,7 +25,9 @@ public class StateControl {
 		if(event.getSource() == MainFrame.btnPlayer_1 ){
 			drawHello = 1;
 			System.out.println("You clicked the button player1");
+			MainFrame.shopbutton.setEnabled(true);
 			Game.blockmain = false;
+			MainFrame.btnPlayer_1.setEnabled(false);
 		}
 		else if(event.getSource() == MainFrame.btnClear ){
 			drawHello = 0;

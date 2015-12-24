@@ -189,10 +189,12 @@ public class MainFrame {
         public void actionPerformed(ActionEvent e) {
             System.out.println("You have clicked on the shop botton");
             ShopFrame shopframe = new ShopFrame();
+            ShopFrame.setMoneyNotEnough(Game.player[(Game.turn+1)%2]);
         	shopframe.shopframe.setVisible(true);
         }
         });
         shopbutton.setBounds(678, 350, 93, 29);
+        MainFrame.shopbutton.setEnabled(false);
         mFrame_panel.add(shopbutton);
         
 		
@@ -222,6 +224,7 @@ public class MainFrame {
 		btnFight2.setEnabled(false);
 		mFrame_panel.add(btnFight2);
 		
+		// about war
 		btnWar = new JButton("WAR!!");
 		btnWar.setBounds(500, 353, 117, 29);
 		btnWar.setEnabled(false);
