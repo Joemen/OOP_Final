@@ -8,6 +8,7 @@ public class Game{
 	static final int total_player_num = Constants.player_num * camp_num;
 	public static Player[] player = new Player[ total_player_num ];
 	public static Tower[] tower = new Tower[ camp_num ];
+	public static Shop shop = new Shop();
 	public static int round;
 	public static int turn ;
 	public static boolean blockmain;
