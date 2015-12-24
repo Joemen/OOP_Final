@@ -1,7 +1,7 @@
 import java.io.*;
 public class MunitionsFactory extends Functions{
     public static int[] price = new int [3];
-    private static int[] add_soldier = new int [3];
+    public static int[] add_soldier = new int [3];
     private static int selection;
     
     

@@ -307,9 +307,9 @@ public class ActionFrame{
 		ConstructionCombo.setVisible(false);
 		mFrame_panel.add(ConstructionCombo);
 		// have to be changed for player property
-		String construnctionchoice1 = new String("$10 for blood 20");
-		String construnctionchoice2 = new String("$20 for blood 40");
-		String construnctionchoice3 = new String("$30 for blood 60");
+		String construnctionchoice1 = new String("$"+Math.round(ConstructionDep.fee[0]*Game.player[(Game.turn+1)%2].getRole().getProperty().is_discount)+" for blood "+Math.round(ConstructionDep.ser_func[0]*Game.player[(Game.turn+1)%2].getRole().getProperty().is_tower_repair_rate));
+		String construnctionchoice2 = new String("$"+Math.round(ConstructionDep.fee[1]*Game.player[(Game.turn+1)%2].getRole().getProperty().is_discount)+" for blood "+Math.round(ConstructionDep.ser_func[1]*Game.player[(Game.turn+1)%2].getRole().getProperty().is_tower_repair_rate));
+		String construnctionchoice3 = new String("$"+Math.round(ConstructionDep.fee[2]*Game.player[(Game.turn+1)%2].getRole().getProperty().is_discount)+" for blood "+Math.round(ConstructionDep.ser_func[2]*Game.player[(Game.turn+1)%2].getRole().getProperty().is_tower_repair_rate));
 		
 		ConstructionCombo.addItem(construnctionchoice1); 
 		ConstructionCombo.addItem(construnctionchoice2); 
@@ -337,9 +337,9 @@ public class ActionFrame{
 		MuntionCombo.setVisible(false);
 		mFrame_panel.add(MuntionCombo);
 		// have to be changed for player property
-		String muntionchoice1 = new String("$10 for 10 soldiers");
-		String muntionchoice2 = new String("$10 for 20 soldiers");
-		String muntionchoice3 = new String("$30 for 30 soldiers");
+		String muntionchoice1 = new String("$"+Math.round(MunitionsFactory.price[0]*Game.player[(Game.turn+1)%2].getRole().getProperty().is_discount)+" for "+Math.round(MunitionsFactory.add_soldier[0]*Game.player[(Game.turn+1)%2].getRole().getProperty().is_add_soldier_generate)+" soldiers");
+		String muntionchoice2 = new String("$"+Math.round(MunitionsFactory.price[1]*Game.player[(Game.turn+1)%2].getRole().getProperty().is_discount)+" for "+Math.round(MunitionsFactory.add_soldier[1]*Game.player[(Game.turn+1)%2].getRole().getProperty().is_add_soldier_generate)+" soldiers");
+		String muntionchoice3 = new String("$"+Math.round(MunitionsFactory.price[2]*Game.player[(Game.turn+1)%2].getRole().getProperty().is_discount)+" for "+Math.round(MunitionsFactory.add_soldier[2]*Game.player[(Game.turn+1)%2].getRole().getProperty().is_add_soldier_generate)+" soldiers");
 		
 		MuntionCombo.addItem(muntionchoice1); 
 		MuntionCombo.addItem(muntionchoice2); 
