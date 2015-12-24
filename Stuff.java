@@ -22,6 +22,10 @@ public class Stuff{
 	public int getPrice(){
 		return this.price;
 	}
+	
+	public int getPoint(){
+		return this.point;
+	}
 
 	// about set
 	public void setPrice(int number){
