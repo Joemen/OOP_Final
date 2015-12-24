@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.imageio.ImageIO;
 import javax.swing.JScrollPane;
@@ -17,6 +18,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
@@ -28,6 +30,7 @@ public class ShopFrame{
 	JPanel mFrame_panel;
 
 	// about label
+	public static JLabel lblroundplayer;
 	public static JLabel welcomelbl1;
 	public static JLabel welcomlbl2;
 	public static JLabel noticelbl;
@@ -41,10 +44,14 @@ public class ShopFrame{
 	public static JScrollPane treasure2_pane;
 	public static JScrollPane treasure3_pane;
 	public static JScrollPane treasure4_pane;
+	public static ButtonGroup choice;
 	public static JRadioButton rdbtnthreasure1; 
 	public static JRadioButton rdbtnthreasure2; 
 	public static JRadioButton rdbtnthreasure3; 
-	public static JRadioButton rdbtnthreasure4; 
+	public static JRadioButton rdbtnthreasure4;
+
+	// about stuff
+	
 
 	public ShopFrame(){
 		shopframe = new JFrame();
@@ -66,6 +73,16 @@ public class ShopFrame{
 		mFrame_scroll.setViewportView(mFrame_panel);
 		mFrame_panel.setLayout(null);
 		
+		// about label
+		Player player_this_round = Game.player[ (Game.turn+1)%2 ];
+		String roundplayer = new String("");
+		roundplayer += "round : " + Game.round + "    player : " + player_this_round.getPlayerName() 
+					+ "    money : " + player_this_round.getMoney();
+		lblroundplayer = new JLabel("" + roundplayer);
+		lblroundplayer.setForeground(Color.BLUE);
+		lblroundplayer.setBounds(44, 6, 441, 16);
+		mFrame_panel.add(lblroundplayer);
+		
 		welcomelbl1 = new JLabel("Welcome to the shop!");
 		welcomelbl1.setBounds(44, 27, 148, 16);
 		mFrame_panel.add(welcomelbl1);
@@ -82,6 +99,45 @@ public class ShopFrame{
 		
 		// about button
 		btnok = new JButton("OK");
+		btnok.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String temp = getSelectedButtonText(choice);
+				System.out.println( temp );
+				if(temp != null){
+					Player player_this_turn = Game.player[(Game.turn+1)%2];
+					int money = player_this_turn.getMoney();
+					if( temp.indexOf("" + Game.shop.stuff[0].getPrice()) >= 0 ){
+						player_this_turn.setMoney( money - Game.shop.stuff[0].getPrice());
+						Game.shop.stuff_sold_out[0] = true;
+						System.out.println("Buy " + Game.shop.stuff[0].getName() + " Success!");
+						System.out.println( player_this_turn.getPlayerName() + " now have $" 
+												+ player_this_turn.getMoney());
+					}else if(temp.indexOf( "" + Game.shop.stuff[1].getPrice()) >= 0 ){
+						player_this_turn.setMoney( money - Game.shop.stuff[1].getPrice());
+						Game.shop.stuff_sold_out[1] = true;
+						Game.print_msg_to_UI("Buy " + Game.shop.stuff[1].getName() + " Success!\n", MainFrame.textArea);
+						Game.print_msg_to_UI( player_this_turn.getPlayerName() + " now have $" 
+												+ player_this_turn.getMoney() + "\n", MainFrame.textArea);
+					}else if(temp.indexOf( "" + Game.shop.stuff[2].getPrice())>=0 ){
+						player_this_turn.setMoney( money - Game.shop.stuff[2].getPrice());
+						Game.shop.stuff_sold_out[2] = true;
+						Game.print_msg_to_UI("Buy " + Game.shop.stuff[2].getName() + " Success!\n", MainFrame.textArea);
+						Game.print_msg_to_UI( player_this_turn.getPlayerName() + " now have $" 
+												+ player_this_turn.getMoney() + "\n", MainFrame.textArea);
+					}else if(temp.indexOf( "" + Game.shop.stuff[3].getPrice()) >= 0 ){
+						player_this_turn.setMoney( money - Game.shop.stuff[3].getPrice());
+						Game.shop.stuff_sold_out[3] = true;
+						Game.print_msg_to_UI("Buy " + Game.shop.stuff[3].getName() + " Success!\n", MainFrame.textArea);
+						Game.print_msg_to_UI( player_this_turn.getPlayerName() + " now have $" 
+												+ player_this_turn.getMoney() + "\n", MainFrame.textArea);
+					}else{
+						System.out.println("get treasure name error");
+						System.exit(1);
+					}
+				}
+				shopframe.dispose();
+			}
+		});
 		btnok.setBounds(345, 617, 117, 29);
 		mFrame_panel.add(btnok);
 		
@@ -97,52 +153,130 @@ public class ShopFrame{
 		Stuff treasure;
 		String treasure_name;
 		int treasure_price;
+		int treasure_point;
+		String rdbtuname = new String("");
 		// treasure1 
 		treasure = Game.shop.getStuff(0);
-		treasure_name = treasure.getName();
+		treasure_name = treasure.getName()  + "              ";
 		treasure_price = treasure.getPrice();
-		treasure1_pane = new ImagePanel("pic/treasure1.png", 20, 25);
+		treasure_point = treasure.getPoint();
+		rdbtuname = "$" +treasure_price + "  " + treasure_point + " points";
+		treasure1_pane = new ImagePanel("pic/treasure1.png", 20, 45, treasure_name);
 		treasure1_pane.setBounds(44, 91, 182, 191);
 		mFrame_panel.add(treasure1_pane);
 		
-		rdbtnthreasure1 = new JRadioButton(treasure_name + "  $" +treasure_price);
-		rdbtnthreasure1.setBounds(65, 290, 141, 23);
+		rdbtnthreasure1 = new JRadioButton(rdbtuname);
+		rdbtnthreasure1.setBounds(65, 290, 156, 23);
 		mFrame_panel.add(rdbtnthreasure1);
 		
 		// treasure 2
-		treasure2_pane = new ImagePanel("pic/treasure1.png", 20, 25);
+		treasure = Game.shop.getStuff(1);
+		treasure_name = treasure.getName()  + "        " ;
+		treasure_price = treasure.getPrice();
+		treasure_point = treasure.getPoint();
+		rdbtuname = "$" +treasure_price + "  " + treasure_point + " points";
+		treasure2_pane = new ImagePanel("pic/shan_kuo_ting.png", 12, 68, treasure_name);
 		treasure2_pane.setBounds(262, 91, 182, 191);
 		mFrame_panel.add(treasure2_pane);
 		
-		rdbtnthreasure2 = new JRadioButton("treasure1  $120");
-		rdbtnthreasure2.setBounds(285, 290, 141, 23);
+		rdbtnthreasure2 = new JRadioButton(rdbtuname);
+		rdbtnthreasure2.setBounds(289, 290, 141, 23);
 		mFrame_panel.add(rdbtnthreasure2);
 		
 		// treasure 3
-		treasure3_pane = new ImagePanel("pic/treasure1.png", 20, 25);
+		treasure = Game.shop.getStuff(2);
+		treasure_name = treasure.getName()  + "            " ;
+		treasure_price = treasure.getPrice();
+		treasure_point = treasure.getPoint();
+		rdbtuname = "$" +treasure_price + "  " + treasure_point + " points";
+		treasure3_pane = new ImagePanel("pic/Spring_Fall.png", 20, 70, treasure_name);
 		treasure3_pane.setBounds(480, 91, 182, 191);
 		mFrame_panel.add(treasure3_pane);
 		
-		rdbtnthreasure3 = new JRadioButton("treasure1  $120");
+		rdbtnthreasure3 = new JRadioButton(rdbtuname);
 		rdbtnthreasure3.setBounds(500, 290, 141, 23);
 		mFrame_panel.add(rdbtnthreasure3);
 
 		// treasure 4
-		treasure4_pane = new ImagePanel("pic/treasure1.png", 20, 25);
+		treasure = Game.shop.getStuff(3);
+		treasure_name = treasure.getName()  + "                  " ;
+		treasure_price = treasure.getPrice();
+		treasure_point = treasure.getPoint();
+		rdbtuname = "$" +treasure_price + "  " + treasure_point + " points";
+		treasure4_pane = new ImagePanel("pic/bow.png", 15, 65, treasure_name);
 		treasure4_pane.setBounds(44, 324, 182, 191);
 		mFrame_panel.add(treasure4_pane);
 		
-		rdbtnthreasure4 = new JRadioButton("treasure1  $120");
+		rdbtnthreasure4 = new JRadioButton(rdbtuname);
 		rdbtnthreasure4.setBounds(65, 524, 141, 23);
 		mFrame_panel.add(rdbtnthreasure4);
 		
-		ButtonGroup choice = new ButtonGroup();
+
+		choice = new ButtonGroup();
 		choice.add(rdbtnthreasure1);
 		choice.add(rdbtnthreasure2);
 		choice.add(rdbtnthreasure3);
 		choice.add(rdbtnthreasure4);
 		
+		
 		shopframe.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		
+	}
+	
+	public String getSelectedButtonText(ButtonGroup buttonGroup) {
+        String choice = null;
+		for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+
+            if (button.isSelected()) {
+                choice = button.getText();
+            }
+        }
+
+        return choice;
+    }
+	
+	public static void setMoneyNotEnough(Player player){
+		setAllEnable();
+		int money = player.getMoney();
+		int i;
+		for(i=0; i<Game.shop.stuff_acc; i++){
+			if(money < Game.shop.stuff[i].price){
+				if(Game.shop.stuff_sold_out[0] ){
+					rdbtnthreasure1.setEnabled(false);
+				}else if(Game.shop.stuff_sold_out[1]){
+					rdbtnthreasure2.setEnabled(false);
+				}else if(Game.shop.stuff_sold_out[2]){
+					rdbtnthreasure3.setEnabled(false);
+				}else if(Game.shop.stuff_sold_out[3]){
+					rdbtnthreasure4.setEnabled(false);
+				}else{
+					///// nothing
+				}
+			}
+		}
+		System.out.println(Game.shop.stuff[3].price);
+		for(i=0; i<Game.shop.stuff_acc; i++){
+			if(money < Game.shop.stuff[i].price){
+				if(i == 0){
+					rdbtnthreasure1.setEnabled(false);
+				}else if(i == 1){
+					rdbtnthreasure2.setEnabled(false);
+				}else if( i == 2){
+					rdbtnthreasure3.setEnabled(false);
+				}else if(i == 3 ){
+					rdbtnthreasure4.setEnabled(false);
+				}else{
+					///// nothing
+				}
+			}
+		}
+	}
+	
+	public static void setAllEnable(){
+		rdbtnthreasure1.setEnabled(true);
+		rdbtnthreasure2.setEnabled(true);
+		rdbtnthreasure3.setEnabled(true);
+		rdbtnthreasure4.setEnabled(true);
 	}
 }
