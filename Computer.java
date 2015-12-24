@@ -1,10 +1,10 @@
 public class Computer{
-	private int a_off_death;
-	private int b_off_death;
-	private int a_def_death;
-	private int b_def_death;
-	private int a_loss_blood;
-	private int b_loss_blood;
+	private static int a_off_death;
+	private static int b_off_death;
+	private static int a_def_death;
+	private static int b_def_death;
+	private static int a_loss_blood;
+	private static int b_loss_blood;
 	
 	/*
 	public Computer(){
@@ -64,6 +64,64 @@ public class Computer{
 		return this.b_loss_blood;
 	}
 	*/
+	public static void fight_UI (Tower tower_a, Tower tower_b, Player[] player){
+		// property ratio between two team
+				int property_ratio_a = 1;
+				int property_ratio_b = 1;
+				
+				// count the offensive troop's win rate
+				// B offense, A defense towerA
+				if(tower_a.getDefSoldier() == 0 && tower_b.getOffSoldier() == 0){
+					// To be done later
+				}
+				
+				float win_rate_of_A_tower = countWinRate(tower_b.getOffSoldier(), tower_a.getDefSoldier(), property_ratio_b );
+				
+				// A offense, B defense towerB
+				if(tower_b.getDefSoldier() == 0 && tower_a.getOffSoldier() == 0){
+					// To be done later
+				}
+				
+				float win_rate_of_B_tower = countWinRate(tower_a.getOffSoldier(), tower_b.getDefSoldier(), property_ratio_a );
+				
+				float a_defense_win_rate = (100 - win_rate_of_A_tower)/100;
+				float b_offense_win_rate = (win_rate_of_A_tower)/100;
+				float a_offense_win_rate = (100 - win_rate_of_B_tower)/100;
+				float b_defense_win_rate = (win_rate_of_B_tower)/100;
+
+				// count and set remaining blood of the tower
+				setTowerBlood( a_defense_win_rate, tower_a);
+				setTowerBlood( b_defense_win_rate, tower_b);
+
+				// for testing usage print
+				// System.out.println("the win rate under A tower of B is  " + b_offense_win_rate);
+				// System.out.println("the win rate under B tower of A is  " + a_offense_win_rate);
+
+				// for each player, count their remaining soldier
+				int i;
+				for(i=0; i<player.length; i++){
+					int team = player[i].getCampNum();
+					if(team == 1){ // camp A
+						float a = player[i].getNumOffSoldier() * a_offense_win_rate;
+						float b = player[i].getNumDefSoldier() * a_defense_win_rate;
+						float c = player[i].getNumSoldier() - player[i].getNumOffSoldier() - player[i].getNumDefSoldier();
+						// total remaining soldier = remaining defense + remaining offense + stayHome soldier
+						player[i].setNumSoldier( (int)Math.round(a+b+c) );
+					}
+					else if(team == 2){
+						float a = (player[i].getNumOffSoldier() * b_offense_win_rate);
+						float b = (player[i].getNumDefSoldier() * b_defense_win_rate);
+						float c = player[i].getNumSoldier() - player[i].getNumOffSoldier() - player[i].getNumDefSoldier();
+						// total remaining soldier = remaining defense + remaining offense + stayHome soldier
+						player[i].setNumSoldier( (int)Math.round(a+b+c) );
+					}
+					else {
+						
+					}
+				}
+	}
+	
+	
 	public void fight (Tower tower_a, Tower tower_b, Player[] player){
 		int randdeath;
         System.out.println("--------------------------------");
@@ -153,7 +211,7 @@ public class Computer{
 	// 	
 	// 	property ratio is : (offensive property / defensive property)
 	// 	defense advantage ratio : defense have some advantage over offense
-	public float countWinRate(int off_soldier, int def_soldier, int property_ratio ){
+	public static float countWinRate(int off_soldier, int def_soldier, int property_ratio ){
 		float advantage_of_def = Constants.advantage_of_def;
 		float rand = (float) ((Math.random() * 20) - 10);
 		float win_rate;
@@ -193,7 +251,7 @@ public class Computer{
 	//  if def win rate > 75 % ==> 0 loss
 	//  if def win rate < 25 % ==> 20 blood loss
 	//  else ( def win rate * (-40) ) + 30
-	public void setTowerBlood(float def_win_rate, Tower tower){
+	public static void setTowerBlood(float def_win_rate, Tower tower){
 		
 
 		if( def_win_rate > 0.75f){

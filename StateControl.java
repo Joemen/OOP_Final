@@ -60,6 +60,12 @@ public class StateControl {
 			toasterManager.showToaster( new ImageIcon( "pic/gif/em17.gif" ), "We are under attack!" );
 
 		}
+		else if(event.getSource() == MainFrame.btnWar){
+			drawHello = 4;
+			System.out.println("You clicked the button War");
+			Computer.fight_UI(Game.tower[Game.player[(Game.turn)%2].getCampNum()-1], Game.tower[Game.player[(Game.turn+1)%2].getCampNum()-1], Game.player);
+			
+		}
 		else {
 
 		}

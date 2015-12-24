@@ -178,7 +178,7 @@ public class ActionFrame{
 		});
 		
 		
-		// about buttom
+		// about button
 		btnOk_1 = new JButton("OK");
 		btnOk_1.setBounds(75, 311, 117, 29);
 		mFrame_panel.add(btnOk_1);
@@ -316,7 +316,7 @@ public class ActionFrame{
 		ConstructionCombo.addItem(construnctionchoice3); 
 		ConstructionCombo.setSelectedItem(null);
 		
-		// in Muntion : 
+		// in Munition : 
 		lblMuntion1 = new JLabel("Welcom to Munitions Factory !!");
 		lblMuntion1.setBounds(60, 82, 300, 16);
 		lblMuntion1.setVisible(false);
@@ -346,7 +346,7 @@ public class ActionFrame{
 		MuntionCombo.addItem(muntionchoice3); 
 		MuntionCombo.setSelectedItem(null);
 		
-		// in Bamk :
+		// in Bank :
 		lblBank1 = new JLabel("Welcom to Bank !!");
 		lblBank1.setBounds(60, 82, 300, 16);
 		lblBank1.setVisible(false);
@@ -434,6 +434,7 @@ public class ActionFrame{
 		lblBank1.setVisible(false);
 		lblBank2.setVisible(false);
 		lblBank3.setVisible(false);
+		lblBankNum.setVisible(false);
 		
 		lblExplore1.setVisible(false);
 		lblExplore2.setVisible(false);
@@ -444,6 +445,7 @@ public class ActionFrame{
 		ExploreCombo.setVisible(false);
 		
 		lblAbandon1.setVisible(false);
+		lblalarm.setVisible(false);
 		
 	}
 }

@@ -8,7 +8,7 @@ public class Game{
 	static final int total_player_num = Constants.player_num * camp_num;
 	public static Player[] player = new Player[ total_player_num ];
 	public static Tower[] tower = new Tower[ camp_num ];
-	public static Shop shop = new Shop();
+    public static Shop shop = new Shop();
 	public static int round;
 	public static int turn ;
 	public static boolean blockmain;
@@ -104,6 +104,19 @@ public class Game{
 
 			// true game loop 
 			while(round <= Constants.total_round){
+				
+				// initialize the soldier number
+				for(i=0; i<camp_num; i++){
+					tower[i].setDefSoldier(0); 
+					tower[i].setOffSoldier(0);
+				}
+
+				for(i=0; i<player.length; i++){
+					player[i].setNumDefSoldier(0);
+					player[i].setNumOffSoldier(0);
+				}
+
+				
 				// set player1 action
 				blockmain = true;
 				///// player 1
@@ -161,7 +174,19 @@ public class Game{
 					}
 				}
 				MainFrame.btnFight2.setEnabled(false);
-
+				
+				//war
+				blockmain = true;
+				MainFrame.btnWar.setEnabled(true);
+				while( blockmain ){
+					// do nothing
+					try {
+					    Thread.sleep(200);                 //1000 milliseconds is one second.
+					} catch(InterruptedException ex) {
+					    Thread.currentThread().interrupt();
+					}
+				}
+				MainFrame.btnWar.setEnabled(false);
 				print_msg_to_UI("\nNow Computer counting result and display\n", MainFrame.textArea);
 				turn++;
 				//round++;

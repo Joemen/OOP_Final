@@ -12,6 +12,13 @@ public class Commander extends Camp{
         this.setCampNum(num);
     }
     
+    public static void dispatchArmy_UI (Player player, Tower tower) {
+    	tower.setDefSoldier( tower.getDefSoldier() + Integer.valueOf(FightFrame.amount_Def.getText()));
+        tower.setOffSoldier( tower.getOffSoldier() + Integer.valueOf(FightFrame.amount_Off.getText()));
+        player.setNumDefSoldier( Integer.valueOf(FightFrame.amount_Def.getText()) );
+        player.setNumOffSoldier( Integer.valueOf(FightFrame.amount_Off.getText()) );
+    	
+    }
 
     public void dispatchArmy (Player player, Tower tower) throws IOException{
         System.out.println("---------------------------------------------");
