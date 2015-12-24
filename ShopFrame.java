@@ -17,6 +17,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
@@ -135,8 +136,12 @@ public class ShopFrame{
 		rdbtnthreasure4.setBounds(65, 524, 141, 23);
 		mFrame_panel.add(rdbtnthreasure4);
 		
+		ButtonGroup choice = new ButtonGroup();
+		choice.add(rdbtnthreasure1);
+		choice.add(rdbtnthreasure2);
+		choice.add(rdbtnthreasure3);
+		choice.add(rdbtnthreasure4);
 		
-
 		shopframe.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		
 	}
