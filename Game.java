@@ -101,6 +101,7 @@ public class Game{
 
 			MainFrame.textArea.append("############ Two Camp Game Start!! ############\n\n");
 			print_status_to_UI( player, MainFrame.textArea);
+			
 
 			// true game loop 
 			while(round <= Constants.total_round){
