@@ -44,6 +44,7 @@ public class MainFrame {
 	public static JButton actionbutton2;
 	public static JButton btnFight;
 	public static JButton btnFight2;
+	public static JButton shopbutton;	
 
 	public MainFrame() {
 		initialize();
@@ -181,7 +182,17 @@ public class MainFrame {
 		actionbutton2.setEnabled(false);
 		actionbutton2.setBounds(937, 353, 87, 23);
 		mFrame_panel.add(actionbutton2);
-		
+		// for shop use
+		shopbutton = new JButton("shop");
+		shopbutton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("You have clicked on the shop botton");
+				ShopFrame shopframe = new ShopFrame();
+				shopframe.shopframe.setVisible(true);
+			}
+		});
+		shopbutton.setBounds(678, 350, 93, 29);
+		mFrame_panel.add(shopbutton);		
 		// for fight use ===================HuangYuNien===================================================================jedijedijedimaster
 		
 		btnFight = new JButton("Fight");
