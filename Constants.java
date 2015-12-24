@@ -15,6 +15,6 @@ public class Constants{
 	public static final int total_round = 10;
 	// # total round in a game
 
-	public static final int total_shop_stuff = 1;
+	public static final int total_shop_stuff = 4;
 	// # total stuff will be in the shop 
 }
