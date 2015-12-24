@@ -93,10 +93,13 @@ public class ActionFrame{
 		mFrame_scroll.setViewportView(mFrame_panel);
 		mFrame_panel.setLayout(null);
 		
+		Player player_this_round = Game.player[(Game.turn+1)%2];
 		String roundplayer = new String("");
 		String moneyarmyblood = new String("");
-		roundplayer += "round : " + Game.round + "    player : " + Game.player[(Game.turn+1)%2].getPlayerName() ;
-		moneyarmyblood = "  Money : " + Game.player[(Game.turn+1)%2].getMoney() + "     Army : "  + Game.player[(Game.turn+1)%2].getNumSoldier() +"     Tower : "+Game.tower[Game.player[(Game.turn+1)%2].getCampNum()-1].getBlood();
+		roundplayer += "round : " + Game.round + "    player : " + player_this_round.getPlayerName() ;
+		moneyarmyblood = "  Money : " + player_this_round.getMoney() 
+						+ "     Army : "  + player_this_round.getNumSoldier() 
+						+"     Tower : "+Game.tower[player_this_round.getCampNum()-1].getBlood();
 		JLabel label_roundplayer = new JLabel(roundplayer);
 		JLabel label_moneyarmyblood = new JLabel(moneyarmyblood);
 		label_roundplayer.setForeground(Color.BLUE);
