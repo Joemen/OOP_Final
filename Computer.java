@@ -68,26 +68,43 @@ public class Computer{
 		// property ratio between two team
 				int property_ratio_a = 1;
 				int property_ratio_b = 1;
-				
+				boolean[] war_flag = new boolean[2];
 				// count the offensive troop's win rate
 				// B offense, A defense towerA
 				if(tower_a.getDefSoldier() == 0 && tower_b.getOffSoldier() == 0){
-					// To be done later
+					war_flag[0] = false;
+				}else{
+					war_flag[0] = true;
 				}
 				
 				float win_rate_of_A_tower = countWinRate(tower_b.getOffSoldier(), tower_a.getDefSoldier(), property_ratio_b );
 				
 				// A offense, B defense towerB
 				if(tower_b.getDefSoldier() == 0 && tower_a.getOffSoldier() == 0){
-					// To be done later
+					war_flag[1] = false;
+				}else{
+					war_flag[1] = true;
 				}
 				
 				float win_rate_of_B_tower = countWinRate(tower_a.getOffSoldier(), tower_b.getDefSoldier(), property_ratio_a );
-				
-				float a_defense_win_rate = (100 - win_rate_of_A_tower)/100;
-				float b_offense_win_rate = (win_rate_of_A_tower)/100;
-				float a_offense_win_rate = (100 - win_rate_of_B_tower)/100;
-				float b_defense_win_rate = (win_rate_of_B_tower)/100;
+				float a_defense_win_rate, b_offense_win_rate, a_offense_win_rate, b_defense_win_rate;
+				if( war_flag[0] == true){
+					a_defense_win_rate = (100 - win_rate_of_A_tower)/100;
+					b_offense_win_rate = (win_rate_of_A_tower)/100;
+				}
+				else{ // no war happen
+					a_defense_win_rate = 100;
+					b_offense_win_rate = 100;
+				}
+
+				if( war_flag[1] == true){
+					a_offense_win_rate = (win_rate_of_B_tower)/100;
+					b_defense_win_rate = (100 - win_rate_of_B_tower)/100;
+				}
+				else{ // no war happen
+					a_offense_win_rate = 100;
+					b_defense_win_rate = 100;
+				}
 
 				// count and set remaining blood of the tower
 				setTowerBlood( a_defense_win_rate, tower_a);
@@ -118,6 +135,30 @@ public class Computer{
 					else {
 						
 					}
+					if(war_flag[0] == false){
+						Game.print_msg_to_textArea("under tower A, now war happen\n");
+					}
+					if(war_flag[1] == false){
+						Game.print_msg_to_textArea("under tower B, now war happen\n");
+					}
+					
+					
+					Game.print_msg_to_textArea("*********** war result of player "+player[i].getPlayerID()
+											+"    "+player[i].getPlayerName()+" *********" + "\n");
+					Game.print_msg_to_textArea("original off : " + player[i].getNumOffSoldier() 
+										+ " original def : " + player[i].getNumDefSoldier() + "\n");
+					if(team == 1){
+						Game.print_msg_to_textArea("wining rate : (offense) "+ a_offense_win_rate 
+											+": (defense) " + a_defense_win_rate + "\n");
+						Game.print_msg_to_textArea("tower remaining : " + tower_a.getBlood() + "\n");
+					}
+					else if(team == 2){
+						Game.print_msg_to_textArea("wining rate : (offense) "+ b_offense_win_rate +": (defense) " + b_defense_win_rate + "\n");
+						Game.print_msg_to_textArea("tower remaining : " + tower_b.getBlood() + "\n");
+					}
+
+					Game.print_msg_to_textArea("remaining army : " + player[i].getNumSoldier() + "\n");
+					Game.print_msg_to_textArea("******************************************************\n\n");
 				}
 	}
 	
@@ -136,26 +177,43 @@ public class Computer{
 		// property ratio between two team
 		int property_ratio_a = 1;
 		int property_ratio_b = 1;
+		boolean[] war_flag = new boolean[2];
 		
 		// count the offensive troop's win rate
 		// B offense, A defense towerA
 		if(tower_a.getDefSoldier() == 0 && tower_b.getOffSoldier() == 0){
-			// To be done later
+			war_flag[0] = false;
+		}else{
+			war_flag[0] = true;
 		}
-		
-		float win_rate_of_A_tower = countWinRate(tower_b.getOffSoldier(), tower_a.getDefSoldier(), property_ratio_b );
 		
 		// A offense, B defense towerB
 		if(tower_b.getDefSoldier() == 0 && tower_a.getOffSoldier() == 0){
-			// To be done later
+			war_flag[1] = false;
+		}else{
+			war_flag[1] = true;
 		}
 		
+		float win_rate_of_A_tower = countWinRate(tower_b.getOffSoldier(), tower_a.getDefSoldier(), property_ratio_b );
 		float win_rate_of_B_tower = countWinRate(tower_a.getOffSoldier(), tower_b.getDefSoldier(), property_ratio_a );
-		
-		float a_defense_win_rate = (100 - win_rate_of_A_tower)/100;
-		float b_offense_win_rate = (win_rate_of_A_tower)/100;
-		float a_offense_win_rate = (100 - win_rate_of_B_tower)/100;
-		float b_defense_win_rate = (win_rate_of_B_tower)/100;
+		float a_defense_win_rate, b_offense_win_rate, a_offense_win_rate, b_defense_win_rate;
+		if( war_flag[0] == true){
+			a_defense_win_rate = (100 - win_rate_of_A_tower)/100;
+			b_offense_win_rate = (win_rate_of_A_tower)/100;
+		}
+		else{ // no war happen
+			a_defense_win_rate = 100;
+			b_offense_win_rate = 100;
+		}
+
+		if( war_flag[1] == true){
+			a_offense_win_rate = (win_rate_of_B_tower)/100;
+			b_defense_win_rate = (100 - win_rate_of_B_tower)/100;
+		}
+		else{ // no war happen
+			a_offense_win_rate = 100;
+			b_defense_win_rate = 100;
+		}
 
 		// count and set remaining blood of the tower
 		setTowerBlood( a_defense_win_rate, tower_a);
@@ -214,16 +272,20 @@ public class Computer{
 	public static float countWinRate(int off_soldier, int def_soldier, int property_ratio ){
 		float advantage_of_def = Constants.advantage_of_def;
 		float rand = (float) ((Math.random() * 20) - 10);
-		float win_rate;
-		float ratio = (float)off_soldier / (def_soldier*1.1f) * property_ratio;
-
-		// test print
-		// System.out.println("The Random rate of this round : "+rand + "%");
-
+		float win_rate, ratio ;
+		
+		if( def_soldier == 0){ // to avoid divide by 0
+			ratio = 0;
+		}else{
+			ratio = (float)off_soldier / (def_soldier*advantage_of_def) * property_ratio;
+		}
+		
+		// debug print
+		System.out.println("ratio = " + ratio);
+		
 		if( def_soldier == 0){ // to avoid divide by 0
 			win_rate = 0;
-		}
-		else if(ratio > 4)
+		}else if(ratio > 4)
 			win_rate = 100;
 		else if( ratio < 0.25)
 			win_rate = 0;
@@ -236,7 +298,7 @@ public class Computer{
 		else if( ratio < 1 && ratio >= 0.5 ){ // to be in 25% to 50%
 			win_rate = (ratio - 0.5f )*50 + 25 + rand;
 		}
-		else if( ratio >= 0.5 && ratio <=0.25){ // to be in 10% to 25%
+		else if( ratio <= 0.5 && ratio >= 0.25){ // to be in 10% to 25%
 			win_rate = (ratio - 0.25f )*60 + 10 + rand;
 		}
 		else{
