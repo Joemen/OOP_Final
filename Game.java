@@ -177,6 +177,7 @@ public class Game{
 				MainFrame.btnFight2.setEnabled(false);
 				
 				//war
+				print_msg_to_textArea("now please press War!!!!!!!!\n");
 				blockmain = true;
 				MainFrame.btnWar.setEnabled(true);
 				while( blockmain ){
@@ -188,9 +189,9 @@ public class Game{
 					}
 				}
 				MainFrame.btnWar.setEnabled(false);
-				print_msg_to_UI("\nNow Computer counting result and display\n", MainFrame.textArea);
+				// print_msg_to_textArea("\nNow Computer counting result and display\n");
 				turn++;
-				//round++;
+				round++;
 			}
 		}
 	}
@@ -258,6 +259,10 @@ public class Game{
 		textarea.append(msg);
 		int len = textarea.getDocument().getLength();
 		textarea.setCaretPosition(len);
+	}
+
+	public static void print_msg_to_textArea(String msg){
+		print_msg_to_UI(msg, MainFrame.textArea);
 	}
 
 }
