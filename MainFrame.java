@@ -113,12 +113,12 @@ public class MainFrame {
 		mFrame_panel.setLayout(null);
 
 		btnClear =  new JButton("Clear");
-		btnClear.setBounds(415, 353, 87, 23);		
+		btnClear.setBounds(487, 353, 87, 23);		
 		MainFrame.mFrame_panel.add(btnClear);		
 		mFrame_panel.add(btnClear);
 		
 		btnPlayer_1 = new JButton("start");
-		btnPlayer_1.setBounds(318, 353, 87, 23);
+		btnPlayer_1.setBounds(402, 353, 87, 23);
 		mFrame_panel.add(btnPlayer_1);
 		MainFrame.mFrame_panel.add(btnPlayer_1);
 		
@@ -193,7 +193,7 @@ public class MainFrame {
         	shopframe.shopframe.setVisible(true);
         }
         });
-        shopbutton.setBounds(678, 350, 93, 29);
+        shopbutton.setBounds(714, 350, 93, 29);
         MainFrame.shopbutton.setEnabled(false);
         mFrame_panel.add(shopbutton);
         
@@ -226,7 +226,9 @@ public class MainFrame {
 		
 		// about war
 		btnWar = new JButton("WAR!!");
-		btnWar.setBounds(500, 353, 117, 29);
+		btnWar.setForeground(new Color(0, 0, 255));
+		btnWar.setBackground(new Color(255, 0, 0));
+		btnWar.setBounds(595, 347, 117, 35);
 		btnWar.setEnabled(false);
 		btnWar.addActionListener(scrollPane);
 		mFrame_panel.add(btnWar);
