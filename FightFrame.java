@@ -39,6 +39,7 @@ public class FightFrame extends JPanel implements PropertyChangeListener  {
 	private int amount_2 = 0;
 	private NumberFormat amountFormat;
 	private static JButton btnReady;
+	private static JLabel lblIncorrectInput;
 	
 	public static JLabel lblalarm;
 	
@@ -58,10 +59,10 @@ public class FightFrame extends JPanel implements PropertyChangeListener  {
 		JLabel label_moneyarmyblood = new JLabel(armyblood);
 		label_roundplayer.setForeground(Color.BLUE);
 		label_roundplayer.setBounds(21, 6, 262, 16);
-		fightframe.add(label_roundplayer);
+		fightframe.getContentPane().add(label_roundplayer);
 		label_moneyarmyblood.setForeground(Color.BLUE);
 		label_moneyarmyblood.setBounds(230, 6, 300, 16);
-		fightframe.add(label_moneyarmyblood);
+		fightframe.getContentPane().add(label_moneyarmyblood);
 		
 		
 		JLabel lblSetYourOffense = new JLabel("Set your offense soldier");
@@ -73,25 +74,39 @@ public class FightFrame extends JPanel implements PropertyChangeListener  {
 		fightframe.getContentPane().add(lblSetYourDefense);
 	
 		
-		amount_Off = new JFormattedTextField(amountFormat);
+		amount_Off = new JFormattedTextField(
+			new InternationalFormatter(NumberFormat.getIntegerInstance()) {
+				protected DocumentFilter getDocumentFilter() {
+                return filter;
+            }
+            private DocumentFilter filter = new IntFilter();
+        });
 		amount_Off.setValue(amount_1);
 		amount_Off.setBounds(53, 109, 96, 21);
 		amount_Off.setColumns(10);
 		amount_Off.addPropertyChangeListener("value", this);
-		fightframe.getContentPane().add(amount_Off);
 		
-		amount_Def = new JFormattedTextField(amountFormat);
+		fightframe.getContentPane().add(amount_Off);
+
+		amount_Def = new JFormattedTextField(
+			new InternationalFormatter(NumberFormat.getIntegerInstance()) {
+				protected DocumentFilter getDocumentFilter() {
+                return filter;
+            }
+            private DocumentFilter filter = new IntFilter();
+        });
 		amount_Def.setValue(amount_2);
 		amount_Def.setBounds(272, 109, 96, 21);
 		amount_Def.setColumns(10);
 		amount_Def.addPropertyChangeListener("value", this);
+		
 		fightframe.getContentPane().add(amount_Def);
 		
 		lblalarm = new JLabel("Not enough Soldiers");
 		lblalarm.setForeground(Color.RED);
 		lblalarm.setBounds(400, 107, 291, 27);
 		lblalarm.setVisible(false);
-		fightframe.add(lblalarm);
+		fightframe.getContentPane().add(lblalarm);
 		
 		btnReady = new JButton("Ready");
 		btnReady.setBounds(53, 304, 87, 23);
@@ -100,6 +115,12 @@ public class FightFrame extends JPanel implements PropertyChangeListener  {
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(272, 304, 87, 23);
 		fightframe.getContentPane().add(btnCancel);
+		
+		lblIncorrectInput = new JLabel("Incorrect Input!   Please check again!");
+		lblIncorrectInput.setForeground(Color.RED);
+		lblIncorrectInput.setBounds(88, 274, 300, 27);
+		lblIncorrectInput.setVisible(false);
+		fightframe.getContentPane().add(lblIncorrectInput);
 		
 		
 		
@@ -111,10 +132,22 @@ public class FightFrame extends JPanel implements PropertyChangeListener  {
 
 		btnReady.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Commander.dispatchArmy_UI(Game.player[(Game.turn+1)%2], Game.tower[Game.player[(Game.turn+1)%2].getCampNum()-1]);
-				Game.blockmain = false;
-				fightframe.dispose();
-			}
+				int i = -1;
+				int j = -1;
+				
+				i = Integer.parseInt(amount_Off.getText());
+				j = Integer.parseInt(amount_Def.getText());
+				
+				if( i>=0 && j>=0 && Game.player[(Game.turn+1)%2].getNumSoldier()-Integer.parseInt(amount_Off.getText())-Integer.parseInt(amount_Def.getText())>=0){
+					Commander.dispatchArmy_UI(Game.player[(Game.turn+1)%2], Game.tower[Game.player[(Game.turn+1)%2].getCampNum()-1]);
+					Game.blockmain = false;
+					fightframe.dispose();
+				}
+				else if (i<0 || j<0)
+					lblIncorrectInput.setVisible(true);
+				else
+					lblalarm.setVisible(true);
+			}	
 		});
 		
 
@@ -133,15 +166,56 @@ public class FightFrame extends JPanel implements PropertyChangeListener  {
 	        } else if (source == amount_Def) {
 	            amount_2 = ((Number)amount_Def.getValue()).intValue();
 	        } 
-	        
-	        if(Game.player[(Game.turn+1)%2].getNumSoldier()-Integer.parseInt(amount_Off.getText())-Integer.parseInt(amount_Def.getText())<0){
-				btnReady.setEnabled(false);
-				lblalarm.setVisible(true);
+	        int i = -1;
+			int j = -1;
+			
+			i = Integer.parseInt(amount_Off.getText());
+			j = Integer.parseInt(amount_Def.getText());
+			
+			if( i>=0 && j>=0){
+				lblIncorrectInput.setVisible(false);
 			}
-			else {
-				btnReady.setEnabled(true);
+	        
+	        if(Game.player[(Game.turn+1)%2].getNumSoldier()-Integer.parseInt(amount_Off.getText())-Integer.parseInt(amount_Def.getText())>=0){	
 				lblalarm.setVisible(false);
 			}
 	}
-	
 }
+
+class IntFilter extends DocumentFilter {
+	//重載insertString方法
+	    public void insertString(FilterBypass fb, int offset, String string,
+	            AttributeSet attr) throws BadLocationException {
+	        StringBuilder builder = new StringBuilder(string);
+	        for (int i = builder.length() - 1; i >= 0; i--) {
+	            int cp = builder.codePointAt(i);
+	            if (!Character.isDigit(cp) && cp != '-') {
+	                builder.deleteCharAt(i);
+	                if (Character.isSupplementaryCodePoint(cp)) {
+	                    i--;
+	                    builder.deleteCharAt(i);
+	                }
+	            }
+	        }
+	        super.insertString(fb, offset, builder.toString(), attr);
+	    }
+	//重載replace方法
+	    public void replace(FilterBypass fb, int offset, int length, String string,
+	            AttributeSet attr) throws BadLocationException {
+	        if (string != null) {
+	            StringBuilder builder = new StringBuilder(string);
+	            for (int i = builder.length() - 1; i >= 0; i--) {
+	                int cp = builder.codePointAt(i);
+	                if (!Character.isDigit(cp) && cp != '-') {
+	                    builder.deleteCharAt(i);
+	                    if (Character.isSupplementaryCodePoint(cp)) {
+	                        i--;
+	                        builder.deleteCharAt(i);
+	                    }
+	                }
+	            }
+	            string = builder.toString();
+	        }
+	        super.replace(fb, offset, length, string, attr);
+	    }
+	}
