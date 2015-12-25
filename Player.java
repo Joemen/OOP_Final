@@ -9,6 +9,7 @@ public class Player extends Camp{
 	private int num_off_soldier;		// to count total offensive soldier
 	private int num_def_soldier;		// to count total defensive soldier
     public Commander commander = new Commander();
+    private int intelligence;
 
 	public Player(int num, int player_id){
         // Camp
@@ -20,8 +21,10 @@ public class Player extends Camp{
 		this.setNumOffSoldier(0); 			// initial offensive soldier
 		this.setNumDefSoldier(0); 			// initial defensive soldier
         this.setPlayerID( player_id );
-		this.player_name = new String("player_no_name"+this.player_id) ;
+		this.setIntelligence(0);
+        this.player_name = new String("player_no_name"+this.player_id) ;
 		role = setRole(0);
+		
         
 	}
 
@@ -55,6 +58,9 @@ public class Player extends Camp{
 	public void setNumDefSoldier( int num_soldier){
 		this.num_def_soldier = num_soldier;
 	}
+	public void setIntelligence(int num){
+    	this.intelligence = num;
+    }
 
 	////////// about get //////////
 	public Role getRole(){
@@ -88,4 +94,8 @@ public class Player extends Camp{
     public void setArmy (Tower tower) throws IOException{
         commander.dispatchArmy(this, tower);
     }
+    
+    public int getIntelligence(){
+		return this.intelligence;
+	}
 }

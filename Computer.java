@@ -5,7 +5,18 @@ public class Computer{
 	private static int b_def_death;
 	private static int a_loss_blood;
 	private static int b_loss_blood;
+	private static float weighted_rate;
 	
+	
+	public static float getITeffect (Player player){
+		if (player.getIntelligence()==0)
+			weighted_rate = 1;
+		else if (player.getIntelligence()==1)
+			weighted_rate = 1.04f;
+		else if (player.getIntelligence()==2)
+			weighted_rate = 1.08f;
+		return weighted_rate;
+	}
 	/*
 	public Computer(){
 		this.seta_off_death(0);
@@ -69,6 +80,8 @@ public class Computer{
 				int property_ratio_a = 1;
 				int property_ratio_b = 1;
 				boolean[] war_flag = new boolean[2];
+				
+				
 				// count the offensive troop's win rate
 				// B offense, A defense towerA
 				if(tower_a.getDefSoldier() == 0 && tower_b.getOffSoldier() == 0){

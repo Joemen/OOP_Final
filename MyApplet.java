@@ -89,17 +89,17 @@ public class MyApplet extends JScrollPane implements ActionListener {
 		
 		// draw string money amount			
 		setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(205, 173, 0));
-		g.drawString(Integer.toString(Game.player[0].getMoney()),30,48);
+		g.drawString(Integer.toString(Game.player[0].getMoney()),30,78);
 
 		// draw string Soldier amount		
 		setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(46, 139, 87));
-		g.drawString(Integer.toString(Game.player[0].getNumSoldier()),30,78);
+		g.drawString(Integer.toString(Game.player[0].getNumSoldier()),30,108);
 
 		// draw money sign
-		g.drawImage(money_1, 10, 30,15, 21, null);			
+		g.drawImage(money_1, 10, 60,15, 21, null);			
 
 		// draw soldier sign
-		g.drawImage(soldier_1,10,60,15, 21, null);
+		g.drawImage(soldier_1,10,90,15, 21, null);
 
 		// draw player name
 		setMyfont(g,"TimesRoman", Font.ITALIC, 15,Color.BLACK);
@@ -107,21 +107,28 @@ public class MyApplet extends JScrollPane implements ActionListener {
 
 		//	player2
 		setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(205, 173, 0));
-		g.drawString(Integer.toString(Game.player[1].getMoney()),1180,48);
+		g.drawString(Integer.toString(Game.player[1].getMoney()),1180,78);
 
 		// draw string Soldier amount		
 		setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(46, 139, 87));
-		g.drawString(Integer.toString(Game.player[1].getNumSoldier()),1180,78);
+		g.drawString(Integer.toString(Game.player[1].getNumSoldier()),1180,108);
 
 		// draw money sign
-		g.drawImage(money_2, 1160, 30, 15, 21, null);			
+		g.drawImage(money_2, 1160, 60, 15, 21, null);			
 
 		// draw soldier sign
-		g.drawImage(soldier_2, 1160, 60, 15, 21, null);
+		g.drawImage(soldier_2, 1160, 90, 15, 21, null);
 
 		// draw player name
 		setMyfont(g,"TimesRoman", Font.ITALIC, 15,Color.BLACK);
 		g.drawString(Game.player[1].getPlayerName(),1170,20);
+		
+		//draw player role
+		setMyfont(g,"TimesRoman", Font.ITALIC, 15,Color.BLACK);
+		g.drawString(Game.player[0].getRole().getRoleName(),20,48);
+		
+		setMyfont(g,"TimesRoman", Font.ITALIC, 15,Color.BLACK);
+		g.drawString(Game.player[1].getRole().getRoleName(),1170,48);
 	}
 
 	private void setMyfont(Graphics g, String fontType, int fontStyle , int size, Color myColor) {

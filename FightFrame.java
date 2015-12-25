@@ -134,11 +134,13 @@ public class FightFrame extends JPanel implements PropertyChangeListener  {
 			public void actionPerformed(ActionEvent e) {
 				int i = -1;
 				int j = -1;
-				
-				i = Integer.parseInt(amount_Off.getText());
-				j = Integer.parseInt(amount_Def.getText());
-				
-				if( i>=0 && j>=0 && Game.player[(Game.turn+1)%2].getNumSoldier()-Integer.parseInt(amount_Off.getText())-Integer.parseInt(amount_Def.getText())>=0){
+				try{
+					i = Integer.parseInt(amount_Off.getText());
+					j = Integer.parseInt(amount_Def.getText());
+				} catch (Exception ex){
+					
+				}
+				if( i>=0 && j>=0 && Game.player[(Game.turn+1)%2].getNumSoldier()-((Number)amount_Off.getValue()).intValue()-((Number)amount_Def.getValue()).intValue()>=0){
 					Commander.dispatchArmy_UI(Game.player[(Game.turn+1)%2], Game.tower[Game.player[(Game.turn+1)%2].getCampNum()-1]);
 					Game.blockmain = false;
 					fightframe.dispose();
@@ -169,14 +171,17 @@ public class FightFrame extends JPanel implements PropertyChangeListener  {
 	        int i = -1;
 			int j = -1;
 			
-			i = Integer.parseInt(amount_Off.getText());
-			j = Integer.parseInt(amount_Def.getText());
-			
+			try{
+				i = Integer.parseInt(amount_Off.getText());
+				j = Integer.parseInt(amount_Def.getText());
+			} catch (Exception ex){
+				
+			}
 			if( i>=0 && j>=0){
 				lblIncorrectInput.setVisible(false);
 			}
 	        
-	        if(Game.player[(Game.turn+1)%2].getNumSoldier()-Integer.parseInt(amount_Off.getText())-Integer.parseInt(amount_Def.getText())>=0){	
+	        if(Game.player[(Game.turn+1)%2].getNumSoldier()-((Number)amount_Off.getValue()).intValue()-((Number)amount_Def.getValue()).intValue()>=0){	
 				lblalarm.setVisible(false);
 			}
 	}

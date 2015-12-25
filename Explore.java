@@ -14,7 +14,7 @@ public class Explore extends Functions {
     	
     	while( true ){
     		System.out.println("Please enter your option: ");
-        	System.out.println("    (1) expeditionary --- to explore and may get soldier ! ");
+        	System.out.println("    (1) expeditionary --- to explore and may get or lose some of your soldiers ! ");
         	System.out.println("    (2) steal money ---  to give your enemy surprise ! ");
         	System.out.println("    (3) spy --- to have more win rate against enemy ! ");
         	System.out.println("    (0) go back to the menu. --- bye");
@@ -121,7 +121,30 @@ public class Explore extends Functions {
     }
 
     public static void spy(Player player){
+    	Random rand = new Random();
+    	int element = 10;
+    	int res = rand.nextInt( element ) ;
     	System.out.println("******************* spy result *******************");
+    	if( res == 0 || res == 1 || res == 2 ){
+    		System.out.println("Your spy is getting his way! Your win rate is rasied !");
+    		player.setIntelligence( 1 );
+    	}
+    	else if( res == 3 || res == 4){
+    		System.out.println("Mission failed. Your spy came back with nothing helpful !");
+    	}
+    	else if( res == 5 || res == 6 || res == 7 || res == 8 ){
+    		int temp = rand.nextInt( 10 ) + 1;
+    		System.out.println("Your spy failed and got caught! ");
+    		player.setNumSoldier( player.getNumSoldier() - temp );
+    		if( player.getNumSoldier() < 0 ){
+    			player.setNumSoldier( 0 );
+    		}
+    		System.out.println("You lose your spy! You now have " + player.getNumSoldier() + " soldiers.");
+    	}
+    	else if( res == 9){
+    		System.out.println("Big success!! Your got enemy's strategy! Win rate boosts!");
+    		player.setIntelligence( 2 );
+    	}
 
     }
 
