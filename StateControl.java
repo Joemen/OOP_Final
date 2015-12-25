@@ -33,6 +33,7 @@ public class StateControl {
 			drawHello = 0;
 			System.out.println("You clicked the button clear");
 			MainFrame.actionbutton.setEnabled(false);
+			MainFrame.btnPlayer_1.setEnabled(true);
 		}
 		else if(event.getSource() == NewFrame.btnOk ){
 			if(NewFrame.num == 2 ){
@@ -63,8 +64,9 @@ public class StateControl {
 
 		}
 		else if(event.getSource() == MainFrame.btnWar){
-			drawHello = 4;
+			drawHello = 1;
 			System.out.println("You clicked the button War");
+			Game.blockmain = false;
 			Computer.fight_UI(Game.tower[Game.player[(Game.turn)%2].getCampNum()-1], Game.tower[Game.player[(Game.turn+1)%2].getCampNum()-1], Game.player);
 			
 		}
