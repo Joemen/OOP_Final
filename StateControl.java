@@ -39,7 +39,9 @@ public class StateControl {
 				Game.player[0].setPlayerName(NewFrame.textField_1.getText());
 				Game.player[1].setPlayerName(NewFrame.textField_2.getText());				
 			}
-			if(NewFrame.currentChoice !=null && NewFrame.textField_1.getText().length()!=0 && NewFrame.textField_2.getText().length()!=0 ){
+			if(NewFrame.currentChoice !=null && NewFrame.player1roleChoice !=null && NewFrame.player2roleChoice !=null && NewFrame.textField_1.getText().length()!=0 && NewFrame.textField_2.getText().length()!=0 ){
+				Game.player[0].setRole(NewFrame.player1_role_num);
+				Game.player[1].setRole(NewFrame.player2_role_num);
 				NewFrame.startframe.dispose();
 				StateControl.control(StateControl.State.START);
 			}

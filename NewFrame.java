@@ -25,6 +25,9 @@ public class NewFrame {
 	public static JPanel mFrame_panel;
 	public static JScrollPane mFrame_scroll ;
 	public static String currentChoice ;
+	public static String player1roleChoice;
+	public static String player2roleChoice;
+	
 	
 	public static JButton btnOk;
 	public static JButton btncnl ;
@@ -111,6 +114,8 @@ public class NewFrame {
 		btncnl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentChoice = null;
+				player1roleChoice =null;
+				player2roleChoice =null;
 				startframe.dispose();
 			}
 		});
@@ -259,9 +264,9 @@ public class NewFrame {
 		player1_role.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				JComboBox<?> combo = (JComboBox<?>)e.getSource();
-                currentChoice = (String)combo.getSelectedItem();
+				player1roleChoice = (String)combo.getSelectedItem();
             
-                player1_role_num = Integer.parseInt(currentChoice);
+                player1_role_num = Integer.parseInt(player1roleChoice);
                 if(player1_role_num == 0 ){
                 	set1UnVisable();
                 	Label_1_0.setVisible(true);
@@ -292,9 +297,9 @@ public class NewFrame {
 		player2_role.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				JComboBox<?> combo = (JComboBox<?>)e.getSource();
-                currentChoice = (String)combo.getSelectedItem();
+				player2roleChoice = (String)combo.getSelectedItem();
             
-                player2_role_num = Integer.parseInt(currentChoice);
+                player2_role_num = Integer.parseInt(player2roleChoice);
                 if(player2_role_num == 0 ){
                 	set2UnVisable();
                 	Label_2_0.setVisible(true);
