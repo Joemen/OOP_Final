@@ -83,7 +83,7 @@ public class Explore extends Functions {
     		int temp = rand.nextInt( 50 ) + 50;
     		MainFrame.textArea.append("You steal lots money from enemy and get " + temp + " dollars.\n");
     		player.setMoney( player.getMoney() + temp );
-    		MainFrame.textArea.append("You now have " + player.getMoney() + " soldiers.\n");
+    		MainFrame.textArea.append("You now have " + player.getMoney() + " dollars.\n");
     	}
 
 	}
@@ -228,7 +228,7 @@ public class Explore extends Functions {
     		int temp = rand.nextInt( 50 ) + 50;
     		System.out.println("You steal lots money from enemy and get " + temp + " dollars.");
     		player.setMoney( player.getMoney() + temp );
-    		System.out.println("You now have " + player.getMoney() + " soldiers.");
+    		System.out.println("You now have " + player.getMoney() + " dollars.");
     	}
 
     }
