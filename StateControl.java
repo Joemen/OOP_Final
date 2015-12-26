@@ -67,7 +67,7 @@ public class StateControl {
 		else if(event.getSource() == MainFrame.btnWar){
 			drawHello = 1;
 			Game.print_msg_to_textArea("\nWar Start !!!\n");
-			Computer.fight_UI(Game.tower[Game.player[(Game.turn)%2].getCampNum()-1], Game.tower[Game.player[(Game.turn+1)%2].getCampNum()-1], Game.player);
+			Computer.fight_UI(Game.tower[Game.player[(Game.turn+1)%2].getCampNum()-1], Game.tower[Game.player[(Game.turn)%2].getCampNum()-1], Game.player);
 			MainFrame.btnWar.setEnabled(false);
 			Game.blockmain = false;
 		}

@@ -5,7 +5,120 @@ public class Explore extends Functions {
 	public Explore(){
 
 	}
+	//for UI
+	public static void explore_UI (Player player) {
+		MainFrame.textArea.append("The player [ " + player.getPlayerName() + " ] choose [ Go To Explore ]\n");
+		int num =-1;
+		num = ActionFrame.ExploreCombo.getSelectedIndex();
+		
+		if( num == 0 ){
+			expeditionary_UI( player );
+		}
+		else if( num == 1){
+			steal_money_UI( player );
+		}
+		else if( num == 2){
+			spy_UI( player );
+		}
+	}
+	
+	public static void expeditionary_UI (Player player) {
+		Random rand = new Random();
+    	int element = 10;
+    	int res = rand.nextInt( element ) ;
+    	MainFrame.textArea.append("and go expeditionary!\n");
+    	
+    	if( res == 0 || res == 1 || res == 2 ){
+    		int temp = rand.nextInt( 35 ) + 1;
+    		MainFrame.textArea.append("You defeat the foreign enemy and get " + temp + " soldiers.\n");
+    		player.setNumSoldier( player.getNumSoldier() + temp );
+    		MainFrame.textArea.append("You now have " + player.getNumSoldier() + " soldiers.\n");
+    	}
+    	else if( res == 3 || res == 4){
+    		MainFrame.textArea.append("Nothing acquire ... \n");
+    	}
+    	else if( res == 5 || res == 6 || res == 7 || res == 8 ){
+    		int temp = rand.nextInt( 35 ) + 1;
+    		MainFrame.textArea.append("You are beaten by the foreign enemy and lose " + temp + " soldiers.\n");
+    		player.setNumSoldier( player.getNumSoldier() - temp );
+    		if( player.getNumSoldier() < 0 ){
+    			player.setNumSoldier( 0 );
+    		}
+    		MainFrame.textArea.append("You now have " + player.getNumSoldier() + " soldiers.\n");
+    	}
+    	else if( res == 9){
+    		int temp = rand.nextInt( 35 ) + 20;
+    		MainFrame.textArea.append("You conquer the foreign enemy and get " + temp + " soldiers.\n");
+    		player.setNumSoldier( player.getNumSoldier() + temp );
+    		MainFrame.textArea.append("You now have " + player.getNumSoldier() + " soldiers.\n");
+    	}
+		
+	}
+	
+	public static void steal_money_UI (Player player) {
+		Random rand = new Random();
+    	int element = 10;
+    	int res = rand.nextInt( element ) ;
+    	MainFrame.textArea.append("and commit a burglary !\n");
 
+    	if( res == 0 || res == 1 || res == 2 ){
+    		int temp = rand.nextInt( 30 ) + 20 ;
+    		MainFrame.textArea.append("You found and pick up " + temp + " dollars.\n");
+    		player.setMoney( player.getMoney() + temp );
+    		MainFrame.textArea.append("You now have " + player.getMoney() + " dollars.\n");
+    	}
+    	else if( res == 3 || res == 4){
+    		MainFrame.textArea.append("Nothing acquire ... \n");
+    	}
+    	else if( res == 5 || res == 6 || res == 7 || res == 8 ){
+    		int temp = rand.nextInt( 35 ) + 1;
+    		MainFrame.textArea.append("You're money are stolen and lose " + temp + " dollars.\n");
+    		player.setMoney( player.getMoney() - temp );
+    		if( player.getMoney() < 0 ){
+    			player.setMoney( 0 );
+    		}
+    		MainFrame.textArea.append("You now have " + player.getMoney() + " dollars.\n");
+    	}
+    	else if( res == 9){
+    		int temp = rand.nextInt( 50 ) + 50;
+    		MainFrame.textArea.append("You steal lots money from enemy and get " + temp + " dollars.\n");
+    		player.setMoney( player.getMoney() + temp );
+    		MainFrame.textArea.append("You now have " + player.getMoney() + " soldiers.\n");
+    	}
+
+	}
+	
+	public static void spy_UI (Player player) {
+		Random rand = new Random();
+    	int element = 10;
+    	int res = rand.nextInt( element ) ;
+    	MainFrame.textArea.append("and a spy sneaked in !\n");
+    	if( res == 0 || res == 1 || res == 2 ){
+    		MainFrame.textArea.append("Your spy is getting his way! Your win rate is raised !\n");
+    		player.setIntelligence( 1 );
+    	}
+    	else if( res == 3 || res == 4){
+    		MainFrame.textArea.append("Mission failed. Your spy came back with nothing helpful !\n");
+    	}
+    	else if( res == 5 || res == 6 || res == 7 || res == 8 ){
+    		int temp = rand.nextInt( 10 ) + 1;
+    		MainFrame.textArea.append("Your spy failed and got caught! \n");
+    		player.setNumSoldier( player.getNumSoldier() - temp );
+    		if( player.getNumSoldier() < 0 ){
+    			player.setNumSoldier( 0 );
+    		}
+    		MainFrame.textArea.append("You lose your spy! You now have " + player.getNumSoldier() + " soldiers.\n");
+    	}
+    	else if( res == 9){
+    		MainFrame.textArea.append("Big success!! Your got enemy's strategy! Win rate boosts!\n");
+    		player.setIntelligence( 2 );
+    	}
+
+	}
+	
+	
+	
+	//for terminal
 	public boolean explore (Player player) {
 		System.out.println("-----------------------------------------------------------");
     	System.out.println("|                Welcome to the < Explore >               |");
@@ -126,7 +239,7 @@ public class Explore extends Functions {
     	int res = rand.nextInt( element ) ;
     	System.out.println("******************* spy result *******************");
     	if( res == 0 || res == 1 || res == 2 ){
-    		System.out.println("Your spy is getting his way! Your win rate is rasied !");
+    		System.out.println("Your spy is getting his way! Your win rate is raised !");
     		player.setIntelligence( 1 );
     	}
     	else if( res == 3 || res == 4){

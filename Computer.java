@@ -12,9 +12,9 @@ public class Computer{
 		if (player.getIntelligence()==0)
 			weighted_rate = 1;
 		else if (player.getIntelligence()==1)
-			weighted_rate = 1.04f;
+			weighted_rate = 1.05f;
 		else if (player.getIntelligence()==2)
-			weighted_rate = 1.08f;
+			weighted_rate = 1.1f;
 		return weighted_rate;
 	}
 	/*
@@ -81,7 +81,6 @@ public class Computer{
 				int property_ratio_b = 1;
 				boolean[] war_flag = new boolean[2];
 				
-				
 				// count the offensive troop's win rate
 				// B offense, A defense towerA
 				if(tower_a.getDefSoldier() == 0 && tower_b.getOffSoldier() == 0){
@@ -101,6 +100,21 @@ public class Computer{
 				
 				float win_rate_of_B_tower = countWinRate(tower_a.getOffSoldier(), tower_b.getDefSoldier(), property_ratio_a );
 				float a_defense_win_rate, b_offense_win_rate, a_offense_win_rate, b_defense_win_rate;
+				
+				int k;
+				for(k=0; k<player.length; k++){
+					int cam = player[k].getCampNum();
+					if(cam == 1){ // camp A
+						win_rate_of_B_tower = win_rate_of_B_tower*getITeffect(player[k]);
+					}
+					else if(cam == 2){//camp B
+						win_rate_of_A_tower = win_rate_of_A_tower*getITeffect(player[k]);
+					}
+					else {
+						
+					}
+				}
+				
 				if( war_flag[0] == true){
 					a_defense_win_rate = (100 - win_rate_of_A_tower)/100;
 					b_offense_win_rate = (win_rate_of_A_tower)/100;
@@ -210,6 +224,21 @@ public class Computer{
 		float win_rate_of_A_tower = countWinRate(tower_b.getOffSoldier(), tower_a.getDefSoldier(), property_ratio_b );
 		float win_rate_of_B_tower = countWinRate(tower_a.getOffSoldier(), tower_b.getDefSoldier(), property_ratio_a );
 		float a_defense_win_rate, b_offense_win_rate, a_offense_win_rate, b_defense_win_rate;
+		
+		int k;
+		for(k=0; k<player.length; k++){
+			int cam = player[k].getCampNum();
+			if(cam == 1){ // camp A
+				win_rate_of_A_tower = win_rate_of_A_tower*getITeffect(player[k]);
+			}
+			else if(cam == 2){//camp B
+				win_rate_of_B_tower = win_rate_of_B_tower*getITeffect(player[k]);
+			}
+			else {
+				
+			}
+		}
+		
 		if( war_flag[0] == true){
 			a_defense_win_rate = (100 - win_rate_of_A_tower)/100;
 			b_offense_win_rate = (win_rate_of_A_tower)/100;

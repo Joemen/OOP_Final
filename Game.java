@@ -77,9 +77,7 @@ public class Game{
 				round++;
 			}
 			
-			
-			
-			
+		
 			
 			
 		}else if(term_or_UI == 1){ // for GUI usage
@@ -175,7 +173,7 @@ public class Game{
 					}
 				}
 				MainFrame.btnFight2.setEnabled(false);
-				
+				turn++;
 				//war
 				print_msg_to_textArea("now please press War!!!!!!!!\n");
 				blockmain = true;
@@ -190,7 +188,7 @@ public class Game{
 				}
 				MainFrame.btnWar.setEnabled(false);
 				// print_msg_to_textArea("\nNow Computer counting result and display\n");
-				turn++;
+				
 				round++;
 			}
 		}

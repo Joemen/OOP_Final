@@ -25,6 +25,8 @@ public class MunitionsFactory extends Functions{
     	selection = ActionFrame.MuntionCombo.getSelectedIndex();
 		player.setMoney((int)(player.getMoney()-Math.round(price[selection]*player.getRole().getProperty().is_discount)));
 		player.setNumSoldier((int)(player.getNumSoldier()+Math.round(add_soldier[selection]*player.getRole().getProperty().is_add_soldier_generate)));
+		MainFrame.textArea.append("The player [ " + player.getPlayerName() + " ] choose [ Go To MunitionFactory ]\n");
+		MainFrame.textArea.append("and have [ " + player.getNumSoldier() + " ] (+ "+Math.round(add_soldier[selection]*player.getRole().getProperty().is_add_soldier_generate)+") soldier(s) now !\n");
 		
     }
     
