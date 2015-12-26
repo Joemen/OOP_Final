@@ -25,9 +25,6 @@ public class NewFrame {
 	public static JPanel mFrame_panel;
 	public static JScrollPane mFrame_scroll ;
 	public static String currentChoice ;
-	public static String player1roleChoice;
-	public static String player2roleChoice;
-	
 	
 	public static JButton btnOk;
 	public static JButton btncnl ;
@@ -114,8 +111,6 @@ public class NewFrame {
 		btncnl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentChoice = null;
-				player1roleChoice =null;
-				player2roleChoice =null;
 				startframe.dispose();
 			}
 		});
@@ -157,7 +152,7 @@ public class NewFrame {
 		//=============================JEDIJEDI=======master==================================================
 		
 		player1_role = new JComboBox<String>();
-		player1_role.setBounds(334, 196, 90, 29);
+		player1_role.setBounds(334, 196, 52, 29);
 		player1_role.setVisible(false);
 		mFrame_panel.add(player1_role);
 		
@@ -170,37 +165,37 @@ public class NewFrame {
 		player1_role.setSelectedItem(null);
 		
 		Label_1_0 = new JLabel("Liu:Good at tower repair");
-		Label_1_0.setBounds(334, 243, 300, 15);
+		Label_1_0.setBounds(392, 210, 300, 15);
 		mFrame_panel.add(Label_1_0);
 		Label_1_0.setVisible(false);
 		
 		Label_1_1 = new JLabel("Sun:Good at gaining money");
-		Label_1_1.setBounds(334, 243, 300, 15);
+		Label_1_1.setBounds(392, 210, 300, 15);
 		mFrame_panel.add(Label_1_1);
 		Label_1_1.setVisible(false);
 		
 		Label_1_2 = new JLabel("Cao:Good at building army");
-		Label_1_2.setBounds(334, 243, 300, 15);
+		Label_1_2.setBounds(392, 210, 300, 15);
 		mFrame_panel.add(Label_1_2);
 		Label_1_2.setVisible(false);
 		
 		Label_1_3 = new JLabel("Zhao:Good at tower repair and building army");
-		Label_1_3.setBounds(334, 243, 300, 15);
+		Label_1_3.setBounds(392, 210, 300, 15);
 		mFrame_panel.add(Label_1_3);
 		Label_1_3.setVisible(false);
 		
 		Label_1_4 = new JLabel("Chou:Good at gaining money and save money");
-		Label_1_4.setBounds(334, 243, 300, 15);
+		Label_1_4.setBounds(392, 210, 300, 15);
 		mFrame_panel.add(Label_1_4);
 		Label_1_4.setVisible(false);
 		
 		Label_1_5 = new JLabel("Chang:Good at building army and gaining money");
-		Label_1_5.setBounds(334, 243, 300, 15);
+		Label_1_5.setBounds(392, 210, 300, 15);
 		mFrame_panel.add(Label_1_5);
 		Label_1_5.setVisible(false);
 		
 		player2_role = new JComboBox<String>();
-		player2_role.setBounds(334, 388, 90, 29);
+		player2_role.setBounds(334, 388, 52, 29);
 		mFrame_panel.add(player2_role);
 		player2_role.setVisible(false);
 		player2_role.addItem("0");
@@ -212,32 +207,32 @@ public class NewFrame {
 		player2_role.setSelectedItem(null);
 		
 		Label_2_0 = new JLabel("Liu:Good at tower repair");
-		Label_2_0.setBounds(334, 436, 300, 15);
+		Label_2_0.setBounds(392, 402, 300, 15);
 		mFrame_panel.add(Label_2_0);
 		Label_2_0.setVisible(false);
 		
 		Label_2_1 = new JLabel("Sun:Good at gaining money");
-		Label_2_1.setBounds(334, 436, 300, 15);
+		Label_2_1.setBounds(392, 402, 300, 15);
 		mFrame_panel.add(Label_2_1);
 		Label_2_1.setVisible(false);
 		
 		Label_2_2 = new JLabel("Cao:Good at building army");
-		Label_2_2.setBounds(334, 436, 300, 15);
+		Label_2_2.setBounds(392, 402, 300, 15);
 		mFrame_panel.add(Label_2_2);
 		Label_2_2.setVisible(false);
 		
 		Label_2_3 = new JLabel("Zhao:Good at tower repair and building army");
-		Label_2_3.setBounds(334, 436, 300, 15);
+		Label_2_3.setBounds(392, 402, 300, 15);
 		mFrame_panel.add(Label_2_3);
 		Label_2_3.setVisible(false);
 		
 		Label_2_4 = new JLabel("Chou:Good at gaining money and save money");
-		Label_2_4.setBounds(334, 436, 300, 15);
+		Label_2_4.setBounds(392, 402, 300, 15);
 		mFrame_panel.add(Label_2_4);
 		Label_2_4.setVisible(false);
 		
 		Label_2_5 = new JLabel("Chang:Good at building army and gaining money");
-		Label_2_5.setBounds(334, 436, 300, 15);
+		Label_2_5.setBounds(392, 402, 300, 15);
 		mFrame_panel.add(Label_2_5);
 		Label_2_5.setVisible(false);
 		
@@ -264,9 +259,9 @@ public class NewFrame {
 		player1_role.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				JComboBox<?> combo = (JComboBox<?>)e.getSource();
-				player1roleChoice = (String)combo.getSelectedItem();
+                currentChoice = (String)combo.getSelectedItem();
             
-                player1_role_num = Integer.parseInt(player1roleChoice);
+                player1_role_num = Integer.parseInt(currentChoice);
                 if(player1_role_num == 0 ){
                 	set1UnVisable();
                 	Label_1_0.setVisible(true);
@@ -297,9 +292,9 @@ public class NewFrame {
 		player2_role.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				JComboBox<?> combo = (JComboBox<?>)e.getSource();
-				player2roleChoice = (String)combo.getSelectedItem();
+                currentChoice = (String)combo.getSelectedItem();
             
-                player2_role_num = Integer.parseInt(player2roleChoice);
+                player2_role_num = Integer.parseInt(currentChoice);
                 if(player2_role_num == 0 ){
                 	set2UnVisable();
                 	Label_2_0.setVisible(true);
@@ -326,7 +321,8 @@ public class NewFrame {
                 }
             }
 		});
-	
+		
+		startframe.getRootPane().setDefaultButton(btnOk);
 	}
 	
 	public static void set1UnVisable(){
