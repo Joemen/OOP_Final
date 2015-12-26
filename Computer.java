@@ -120,8 +120,8 @@ public class Computer{
 					b_offense_win_rate = (win_rate_of_A_tower)/100;
 				}
 				else{ // no war happen
-					a_defense_win_rate = 100;
-					b_offense_win_rate = 100;
+					a_defense_win_rate = 100/100;
+					b_offense_win_rate = 100/100;
 				}
 
 				if( war_flag[1] == true){
@@ -129,8 +129,8 @@ public class Computer{
 					b_defense_win_rate = (100 - win_rate_of_B_tower)/100;
 				}
 				else{ // no war happen
-					a_offense_win_rate = 100;
-					b_defense_win_rate = 100;
+					a_offense_win_rate = 100/100;
+					b_defense_win_rate = 100/100;
 				}
 
 				// count and set remaining blood of the tower
