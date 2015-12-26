@@ -25,12 +25,11 @@ public class StateControl {
 		if(event.getSource() == MainFrame.btnPlayer_1 ){
 			drawHello = 1;
 			System.out.println("You clicked the button player1");
-			MainFrame.shopbutton.setEnabled(true);
 			Game.blockmain = false;
 			MainFrame.btnPlayer_1.setEnabled(false);
 		}
 		else if(event.getSource() == MainFrame.btnClear ){
-			drawHello = 0;
+			Game.blockmain = false;
 			System.out.println("You clicked the button clear");
 			MainFrame.actionbutton.setEnabled(false);
 		}
@@ -39,10 +38,9 @@ public class StateControl {
 				Game.player[0].setPlayerName(NewFrame.textField_1.getText());
 				Game.player[1].setPlayerName(NewFrame.textField_2.getText());				
 			}
-			if(NewFrame.currentChoice !=null && NewFrame.player1roleChoice !=null && NewFrame.player2roleChoice !=null && NewFrame.textField_1.getText().length()!=0 && NewFrame.textField_2.getText().length()!=0 ){
-				Game.player[0].setRole(NewFrame.player1_role_num);
-				Game.player[1].setRole(NewFrame.player2_role_num);
+			if(NewFrame.currentChoice !=null && NewFrame.textField_1.getText().length()!=0 && NewFrame.textField_2.getText().length()!=0 ){
 				NewFrame.startframe.dispose();
+				TotalPrint.printPressStart();
 				StateControl.control(StateControl.State.START);
 			}
 		}
