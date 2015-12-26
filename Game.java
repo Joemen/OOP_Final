@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.io.*;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
@@ -9,6 +10,7 @@ public class Game{
 	public static Player[] player = new Player[ total_player_num ];
 	public static Tower[] tower = new Tower[ camp_num ];
     public static Shop shop = new Shop();
+    public static TotalPrint totalprint = new TotalPrint();
 	public static int round;
 	public static int turn ;
 	public static boolean blockmain;
@@ -76,9 +78,7 @@ public class Game{
 
 				round++;
 			}
-			
-		
-			
+
 			
 		}else if(term_or_UI == 1){ // for GUI usage
 			MainFrame window = new MainFrame();
@@ -96,13 +96,14 @@ public class Game{
 
 				 //System.out.println("waiting game start");
 			}
-
+			TotalPrint.clearTextArea();
 			MainFrame.textArea.append("############ Two Camp Game Start!! ############\n\n");
-			print_status_to_UI( player, MainFrame.textArea);
+			
 			
 
 			// true game loop 
 			while(round <= Constants.total_round){
+				print_status_to_UI( player, MainFrame.textArea);
 				
 				// initialize the soldier number
 				for(i=0; i<camp_num; i++){
@@ -120,9 +121,12 @@ public class Game{
 				blockmain = true;
 				///// player 1
 				// action
-				print_msg_to_UI("\n############ round " + round + " ############", MainFrame.textArea);
+				print_msg_to_textArea("\n############ round " + round + " ############\n\n");
 				MainFrame.actionbutton.setEnabled(true);
-				print_msg_to_UI("\nNow please set [ Action ], player1\n", MainFrame.textArea);
+				MainFrame.shopbutton.setEnabled(true);
+				MainFrame.btnClear.setEnabled(false);
+				TotalPrint.printTurn(1);
+				print_msg_to_textArea("\nPlease set [ Action ], player1\n");
 				while( blockmain ){
 					// do nothing
 					try {
@@ -135,7 +139,7 @@ public class Game{
 				// fight
 				blockmain = true;
 				MainFrame.btnFight.setEnabled(true);
-				print_msg_to_UI("\nNow please set [ Fight ], player1\n", MainFrame.textArea);
+				print_msg_to_textArea("\nNow please set [ Fight ], player1\n\n");
 				while( blockmain ){
 					// do nothing
 					try {
@@ -150,7 +154,8 @@ public class Game{
 				turn ++;
 				blockmain = true;
 				MainFrame.actionbutton2.setEnabled(true);
-				print_msg_to_UI("\nNow please set [ Action ], player2\n", MainFrame.textArea);
+				TotalPrint.printTurn(2);
+				print_msg_to_textArea("\nPlease set [ Action ], player2\n");
 				while( blockmain ){
 					// do nothing
 					try {
@@ -163,7 +168,7 @@ public class Game{
 				// fight
 				blockmain = true;
 				MainFrame.btnFight2.setEnabled(true);
-				print_msg_to_UI("\nNow please set [ Fight ], player2\n", MainFrame.textArea);
+				print_msg_to_textArea("\nNow please set [ Fight ], player2\n");
 				while( blockmain ){
 					// do nothing
 					try {
@@ -174,9 +179,10 @@ public class Game{
 				}
 				MainFrame.btnFight2.setEnabled(false);
 				turn++;
-				//war
-				print_msg_to_textArea("now please press War!!!!!!!!\n");
-				blockmain = true;
+				
+				// war
+				TotalPrint.printPressWar();
+				blockmain = true; 
 				MainFrame.btnWar.setEnabled(true);
 				while( blockmain ){
 					// do nothing
@@ -187,7 +193,37 @@ public class Game{
 					}
 				}
 				MainFrame.btnWar.setEnabled(false);
-				// print_msg_to_textArea("\nNow Computer counting result and display\n");
+				MainFrame.shopbutton.setEnabled(false);
+				
+				// store round information back to history.txt
+				MainFrame.btnClear.setEnabled(true);
+				print_msg_to_textArea("\n\nPlease Check the result. Press [ clear ] to go to the next round... \n");
+				blockmain = true; 
+				while( blockmain ){
+					// do nothing
+					try {
+					    Thread.sleep(200);                 //1000 milliseconds is one second.
+					} catch(InterruptedException ex) {
+					    Thread.currentThread().interrupt();
+					}
+				}
+				
+				try {
+					FileWriter fileWritter = new FileWriter("history.txt",true);
+				    String myString1 = MainFrame.textArea.getText();
+				    if(round == 1){
+				    	PrintWriter writer = new PrintWriter("history.txt");
+				    	writer.print("");
+				    	writer.close();
+				    	fileWritter.append(myString1 + "\n");
+				    }else{
+				    	fileWritter.append(myString1 + "\n");
+				    }    
+				    fileWritter.close();
+				} catch (IOException ioe) {
+				    ioe.printStackTrace();
+				}
+				TotalPrint.clearTextArea();
 				
 				round++;
 			}
