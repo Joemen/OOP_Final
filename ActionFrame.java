@@ -273,6 +273,7 @@ public class ActionFrame{
 			
 		// when press x 
 		actionframe.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		actionframe.getRootPane().setDefaultButton(btnOk_1);
 	}
 	
 	public static void constructAllElement(){

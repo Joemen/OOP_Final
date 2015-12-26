@@ -73,7 +73,9 @@ public class MainFrame {
 		historyMenuItem = new JMenuItem("History");
 		historyMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("You have clicked on the close file action");
+				HistoryFrame historyframe = new HistoryFrame();
+				historyframe.printHistory();
+				historyframe.historyframe.setVisible(true);
 
 			}
 		});
@@ -114,7 +116,8 @@ public class MainFrame {
 
 		btnClear =  new JButton("Clear");
 		btnClear.setBounds(487, 353, 87, 23);		
-		MainFrame.mFrame_panel.add(btnClear);		
+		MainFrame.mFrame_panel.add(btnClear);
+		MainFrame.btnClear.setEnabled(false);
 		mFrame_panel.add(btnClear);
 		
 		btnPlayer_1 = new JButton("start");
@@ -146,7 +149,7 @@ public class MainFrame {
 		scrollPane_1.setVerticalScrollBarPolicy(   
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED); 
 		textArea.setSelectedTextColor(Color.RED);
-		textArea.setFont(new Font("SansSerif", Font.PLAIN, 12) );	
+		textArea.setFont(new Font("Arial", Font.PLAIN, 12) );	
 		
 
 		btnShake = new JButton("Shake");
