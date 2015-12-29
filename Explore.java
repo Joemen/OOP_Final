@@ -2,122 +2,101 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class Explore extends Functions {
+	public static int cases;
+	public static int amount;
 	public Explore(){
 
 	}
 	//for UI
 	public static void explore_UI (Player player) {
-		//MainFrame.textArea.append("The player [ " + player.getPlayerName() + " ] choose [ Go To Explore ]\n");
 		int num =-1;
 		num = ActionFrame.ExploreCombo.getSelectedIndex();
-		
-		if( num == 0 ){
+		if( num == 0 )
 			expeditionary_UI( player );
-		}
-		else if( num == 1){
+		else if( num == 1)
 			steal_money_UI( player );
-		}
-		else if( num == 2){
+		else if( num == 2)
 			spy_UI( player );
-		}
 	}
 	
 	public static void expeditionary_UI (Player player) {
 		Random rand = new Random();
     	int element = 10;
+    	cases = -1;
     	int res = rand.nextInt( element ) ;
-    	TotalPrint.print_msg_to_textArea("and go expeditionary!\n", (Game.turn+1)%2);
     	
     	if( res == 0 || res == 1 || res == 2 ){
-    		int temp = rand.nextInt( 35 ) + 1;
-    		TotalPrint.print_msg_to_textArea("You defeat the foreign enemy and get " + temp + " soldiers.\n", (Game.turn+1)%2);
-    		player.setNumSoldier( player.getNumSoldier() + temp );
-    		TotalPrint.print_msg_to_textArea("You now have " + player.getNumSoldier() + " soldiers.\n", (Game.turn+1)%2);
+    		amount = rand.nextInt( 35 ) + 1;
+    		player.setNumSoldier( player.getNumSoldier() + amount );
+    		cases = 0;
     	}
-    	else if( res == 3 || res == 4){
-    		TotalPrint.print_msg_to_textArea("Nothing acquire ... \n", (Game.turn+1)%2);
-    	}
+    	else if( res == 3 || res == 4)
+    		cases = 1;
     	else if( res == 5 || res == 6 || res == 7 || res == 8 ){
-    		int temp = rand.nextInt( 35 ) + 1;
-    		TotalPrint.print_msg_to_textArea("You are beaten by the foreign enemy and lose " + temp + " soldiers.\n", (Game.turn+1)%2);
-    		player.setNumSoldier( player.getNumSoldier() - temp );
+    		amount = rand.nextInt( 35 ) + 1;
+    		player.setNumSoldier( player.getNumSoldier() - amount );
     		if( player.getNumSoldier() < 0 ){
     			player.setNumSoldier( 0 );
     		}
-    		TotalPrint.print_msg_to_textArea("You now have " + player.getNumSoldier() + " soldiers.\n", (Game.turn+1)%2);
+    		cases = 2;
     	}
     	else if( res == 9){
-    		int temp = rand.nextInt( 35 ) + 20;
-    		TotalPrint.print_msg_to_textArea("You conquer the foreign enemy and get " + temp + " soldiers.\n", (Game.turn+1)%2);
-    		player.setNumSoldier( player.getNumSoldier() + temp );
-    		TotalPrint.print_msg_to_textArea("You now have " + player.getNumSoldier() + " soldiers.\n", (Game.turn+1)%2);
+    		amount = rand.nextInt( 35 ) + 20;
+    		player.setNumSoldier( player.getNumSoldier() + amount );
+    		cases = 3;
     	}
-		
 	}
 	
 	public static void steal_money_UI (Player player) {
 		Random rand = new Random();
     	int element = 10;
     	int res = rand.nextInt( element ) ;
-    	TotalPrint.print_msg_to_textArea("and commit a burglary !\n", (Game.turn+1)%2);
-
     	if( res == 0 || res == 1 || res == 2 ){
-    		int temp = rand.nextInt( 30 ) + 20 ;
-    		TotalPrint.print_msg_to_textArea("You found and pick up " + temp + " dollars.\n", (Game.turn+1)%2);
-    		player.setMoney( player.getMoney() + temp );
-    		TotalPrint.print_msg_to_textArea("You now have " + player.getMoney() + " dollars.\n", (Game.turn+1)%2);
+    		amount = rand.nextInt( 30 ) + 20 ;
+    		player.setMoney( player.getMoney() + amount );
+    		cases = 0;
     	}
-    	else if( res == 3 || res == 4){
-    		TotalPrint.print_msg_to_textArea("Nothing acquire ... \n", (Game.turn+1)%2);
-    	}
+    	else if( res == 3 || res == 4)
+    		cases = 1;
     	else if( res == 5 || res == 6 || res == 7 || res == 8 ){
-    		int temp = rand.nextInt( 35 ) + 1;
-    		TotalPrint.print_msg_to_textArea("You're money are stolen and lose " + temp + " dollars.\n", (Game.turn+1)%2);
-    		player.setMoney( player.getMoney() - temp );
+    		amount = rand.nextInt( 35 ) + 1;
+    		player.setMoney( player.getMoney() - amount );
     		if( player.getMoney() < 0 ){
     			player.setMoney( 0 );
     		}
-    		TotalPrint.print_msg_to_textArea("You now have " + player.getMoney() + " dollars.\n", (Game.turn+1)%2);
+    		cases = 2;
     	}
     	else if( res == 9){
-    		int temp = rand.nextInt( 50 ) + 50;
-    		TotalPrint.print_msg_to_textArea("You steal lots money from enemy and get " + temp + " dollars.\n", (Game.turn+1)%2);
-    		player.setMoney( player.getMoney() + temp );
-    		TotalPrint.print_msg_to_textArea("You now have " + player.getMoney() + " dollars.\n", (Game.turn+1)%2);
+    		amount = rand.nextInt( 50 ) + 50;
+    		player.setMoney( player.getMoney() + amount );
+    		cases = 3;
     	}
-
 	}
 	
 	public static void spy_UI (Player player) {
 		Random rand = new Random();
     	int element = 10;
     	int res = rand.nextInt( element ) ;
-    	TotalPrint.print_msg_to_textArea("and a spy sneaked in !\n", (Game.turn+1)%2);
     	if( res == 0 || res == 1 || res == 2 ){
-    		TotalPrint.print_msg_to_textArea("Your spy is getting his way! Your win rate is raised !\n", (Game.turn+1)%2);
     		player.setIntelligence( 1 );
+    		cases = 0;
     	}
-    	else if( res == 3 || res == 4){
-    		TotalPrint.print_msg_to_textArea("Mission failed. Your spy came back with nothing helpful !\n", (Game.turn+1)%2);
-    	}
+    	else if( res == 3 || res == 4)
+    		cases = 1;
     	else if( res == 5 || res == 6 || res == 7 || res == 8 ){
-    		int temp = rand.nextInt( 10 ) + 1;
-    		TotalPrint.print_msg_to_textArea("Your spy failed and got caught! \n", (Game.turn+1)%2);
-    		player.setNumSoldier( player.getNumSoldier() - temp );
+    		amount = rand.nextInt( 10 ) + 1;
+    		player.setNumSoldier( player.getNumSoldier() - amount );
     		if( player.getNumSoldier() < 0 ){
     			player.setNumSoldier( 0 );
     		}
-    		TotalPrint.print_msg_to_textArea("You lose your spy! You now have " + player.getNumSoldier() + " soldiers.\n", (Game.turn+1)%2);
+    		cases = 2;
     	}
     	else if( res == 9){
-    		TotalPrint.print_msg_to_textArea("Big success!! Your got enemy's strategy! Win rate boosts!\n", (Game.turn+1)%2);
     		player.setIntelligence( 2 );
+    		cases = 3; 
     	}
-
 	}
-	
-	
-	
+
 	//for terminal
 	public boolean explore (Player player) {
 		System.out.println("-----------------------------------------------------------");

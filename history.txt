@@ -1,12 +1,12 @@
 ############ Two Camp Game Start!! ############
 
 ________________<Game status>________________
-                <player name>     123
+                <player name>     g
                 <camp name>       A Camp
                 <money>           100
                 <num of soldier>  100
 
-                <player name>     1
+                <player name>     nlk
                 <camp name>       B Camp
                 <money>           100
                 <num of soldier>  100
@@ -20,26 +20,80 @@ _____________________________________________
 
 Please set [ Action ], player1
 [ Action ] completed.
-The player [ 123 ] choose [ Go To Bank ]
-and have [ Player@2521f586 ] (+ 20) dollar(s) now !
+The player [ g ] choose [ Go To Explore ]
+and a spy sneaked in !
+Big success!! Your got enemy's strategy! Win rate boosts!
 
-Now please set [ Fight ], player1
+Now please set [ Deploy ], player1
 
 Deployment completed!
 Please press [ War!! ] to see the result ...... 
 War Start !!!
+under tower A, no war happen
+under tower B, no war happen
 *************** war result ***************
-player1 [ 123 ]
-original offense unit : 30 original defense unit : 70
+player1 [ g ]
+original offense unit : 0 original defense unit : 0
 wining rate : (offense) 1.0: (defense) 1.0
 tower remaining : 100
 remaining army : 100
 ****************************************
 
-player2 [ 1 ]
+player2 [ nlk ]
 original offense unit : 0 original defense unit : 0
-wining rate : (offense) 0.0: (defense) 0.0
-tower remaining : 80
+wining rate : (offense) 1.0: (defense) 1.0
+tower remaining : 100
+remaining army : 100
+****************************************
+
+
+
+Please Check the result. Press [ clear ] to go to the next round... 
+
+________________<Game status>________________
+                <player name>     g
+                <camp name>       A Camp
+                <money>           100
+                <num of soldier>  100
+
+                <player name>     nlk
+                <camp name>       B Camp
+                <money>           100
+                <num of soldier>  100
+_____________________________________________
+
+############ round 2 ############
+
+******************************
+*** Now is player1's turn ***
+******************************
+
+Please set [ Action ], player1
+[ Action ] completed.
+The player [ g ] choose [ Go To Explore ]
+and a spy sneaked in !
+Your spy failed and got caught! 
+You lose your spy! You now have 98 soldiers.
+
+Now please set [ Deploy ], player1
+
+Deployment completed!
+Please press [ War!! ] to see the result ...... 
+War Start !!!
+under tower A, no war happen
+under tower B, no war happen
+*************** war result ***************
+player1 [ g ]
+original offense unit : 0 original defense unit : 0
+wining rate : (offense) 1.0: (defense) 1.0
+tower remaining : 100
+remaining army : 98
+****************************************
+
+player2 [ nlk ]
+original offense unit : 0 original defense unit : 0
+wining rate : (offense) 1.0: (defense) 1.0
+tower remaining : 100
 remaining army : 100
 ****************************************
 

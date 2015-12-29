@@ -24,8 +24,53 @@ public class TotalPrint{
 		else if (ActionFrame.action_flag == 4){
 			print_msg_to_textArea("[ Action ] completed.\n", (Game.turn+1)%2);
 			print_msg_to_textArea("The player [ " + Game.player[(Game.turn+1)%2].getPlayerName() + " ] choose [ Go To Explore ]\n", (Game.turn+1)%2);
-			//if (ActionFrame.ExploreCombo.getSelectedIndex() == 0 )
-			//print_msg_to_textArea("and have [ " + Game.player[(Game.turn+1)%2] + " ] (+ "+Math.round(Bank.give_money*Game.player[(Game.turn+1)%2].getRole().getProperty().is_add_money_rate)+") dollar(s) now !\n", (Game.turn+1)%2);
+			if (ActionFrame.ExploreCombo.getSelectedIndex() == 0 ) {
+				print_msg_to_textArea("and go expeditionary!\n", (Game.turn+1)%2);
+				if (Explore.cases == 0) 
+					print_msg_to_textArea("You defeat the foreign enemy and get " + Explore.amount + " soldiers.\n", (Game.turn+1)%2);
+				else if (Explore.cases == 1) 
+					print_msg_to_textArea("Nothing acquire ... \n", (Game.turn+1)%2);
+				else if (Explore.cases == 2) 
+					print_msg_to_textArea("You are beaten by the foreign enemy and lose " + Explore.amount + " soldiers.\n", (Game.turn+1)%2);
+				else if (Explore.cases == 3) 
+					print_msg_to_textArea("You conquer the foreign enemy and get " + Explore.amount + " soldiers.\n", (Game.turn+1)%2);
+				else {
+					
+				}
+				print_msg_to_textArea("You now have " + Game.player[(Game.turn+1)%2].getNumSoldier() + " soldiers.\n", (Game.turn+1)%2);
+			}
+			else if (ActionFrame.ExploreCombo.getSelectedIndex() == 1 ) {
+				print_msg_to_textArea("and commit a burglary !\n", (Game.turn+1)%2);
+				if (Explore.cases == 0)
+					print_msg_to_textArea("You found and pick up " + Explore.amount + " dollars.\n", (Game.turn+1)%2);
+				else if (Explore.cases == 1)
+					print_msg_to_textArea("Nothing acquire ... \n", (Game.turn+1)%2);
+				else if (Explore.cases == 2) 
+					print_msg_to_textArea("You're money are stolen and lose " + Explore.amount + " dollars.\n", (Game.turn+1)%2);
+				else if (Explore.cases == 3) 
+					print_msg_to_textArea("You steal lots money from enemy and get " + Explore.amount + " dollars.\n", (Game.turn+1)%2);
+				else {
+					
+				}
+				print_msg_to_textArea("You now have " + Game.player[(Game.turn+1)%2].getMoney() + " dollars.\n", (Game.turn+1)%2);
+			}
+			else if (ActionFrame.ExploreCombo.getSelectedIndex() == 2 ) {
+				print_msg_to_textArea("and a spy sneaked in !\n", (Game.turn+1)%2);
+				if (Explore.cases == 0)
+					print_msg_to_textArea("Your spy is getting his way! Your win rate is raised !\n", (Game.turn+1)%2);
+				else if (Explore.cases == 1)
+					print_msg_to_textArea("Mission failed. Your spy came back with nothing helpful !\n", (Game.turn+1)%2);
+				else if (Explore.cases == 2) {
+					print_msg_to_textArea("Your spy failed and got caught! \n", (Game.turn+1)%2);
+					print_msg_to_textArea("You lose your spy! You now have " + Game.player[(Game.turn+1)%2].getNumSoldier() + " soldiers.\n", (Game.turn+1)%2);
+				}
+				else if (Explore.cases == 3)
+					print_msg_to_textArea("Big success!! Your got enemy's strategy! Win rate boosts!\n", (Game.turn+1)%2);
+				else {
+					
+				}
+			}
+				
 		}
 		
 	}

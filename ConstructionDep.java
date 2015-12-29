@@ -25,10 +25,7 @@ public class ConstructionDep extends Functions{
     	
     	selection = ActionFrame.ConstructionCombo.getSelectedIndex();
 		player.setMoney((int)(player.getMoney()-Math.round(fee[selection]*player.getRole().getProperty().is_discount)));
-        tower.setBlood((int)(tower.getBlood()+Math.round(ser_func[selection]*player.getRole().getProperty().is_tower_repair_rate)));
-        //MainFrame.textArea.append("The player [ " + player.getPlayerName() + " ] choose [ Construction Department ]\n");
-        //MainFrame.textArea.append("and now their tower have [ " + tower.getBlood() + " ]  (+ "+Math.round(ser_func[selection]*player.getRole().getProperty().is_tower_repair_rate)+") blood now !\n");    
-			
+        tower.setBlood((int)(tower.getBlood()+Math.round(ser_func[selection]*player.getRole().getProperty().is_tower_repair_rate)));	
     }
     
     public boolean RepairTower(Player player, Tower tower) throws IOException{
