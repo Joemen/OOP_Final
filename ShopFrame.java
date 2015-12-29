@@ -115,21 +115,21 @@ public class ShopFrame{
 					}else if(temp.indexOf( "" + Game.shop.stuff[1].getPrice()) >= 0 ){
 						player_this_turn.setMoney( money - Game.shop.stuff[1].getPrice());
 						Game.shop.stuff_sold_out[1] = true;
-						Game.print_msg_to_UI("Buy " + Game.shop.stuff[1].getName() + " Success!\n", MainFrame.textArea);
-						Game.print_msg_to_UI( player_this_turn.getPlayerName() + " now have $" 
-												+ player_this_turn.getMoney() + "\n", MainFrame.textArea);
+						TotalPrint.print_msg_to_textArea("Buy " + Game.shop.stuff[1].getName() + " Success!\n", (Game.turn+1)%2);
+						TotalPrint.print_msg_to_textArea( player_this_turn.getPlayerName() + " now have $" 
+												+ player_this_turn.getMoney() + "\n", (Game.turn+1)%2);
 					}else if(temp.indexOf( "" + Game.shop.stuff[2].getPrice())>=0 ){
 						player_this_turn.setMoney( money - Game.shop.stuff[2].getPrice());
 						Game.shop.stuff_sold_out[2] = true;
-						Game.print_msg_to_UI("Buy " + Game.shop.stuff[2].getName() + " Success!\n", MainFrame.textArea);
-						Game.print_msg_to_UI( player_this_turn.getPlayerName() + " now have $" 
-												+ player_this_turn.getMoney() + "\n", MainFrame.textArea);
+						TotalPrint.print_msg_to_textArea("Buy " + Game.shop.stuff[2].getName() + " Success!\n", (Game.turn+1)%2);
+						TotalPrint.print_msg_to_textArea( player_this_turn.getPlayerName() + " now have $" 
+												+ player_this_turn.getMoney() + "\n", (Game.turn+1)%2);
 					}else if(temp.indexOf( "" + Game.shop.stuff[3].getPrice()) >= 0 ){
 						player_this_turn.setMoney( money - Game.shop.stuff[3].getPrice());
 						Game.shop.stuff_sold_out[3] = true;
-						Game.print_msg_to_UI("Buy " + Game.shop.stuff[3].getName() + " Success!\n", MainFrame.textArea);
-						Game.print_msg_to_UI( player_this_turn.getPlayerName() + " now have $" 
-												+ player_this_turn.getMoney() + "\n", MainFrame.textArea);
+						TotalPrint.print_msg_to_textArea("Buy " + Game.shop.stuff[3].getName() + " Success!\n", (Game.turn+1)%2);
+						TotalPrint.print_msg_to_textArea( player_this_turn.getPlayerName() + " now have $" 
+												+ player_this_turn.getMoney() + "\n", (Game.turn+1)%2);
 					}else{
 						System.out.println("get treasure name error");
 						System.exit(1);

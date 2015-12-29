@@ -7,7 +7,7 @@ public class Explore extends Functions {
 	}
 	//for UI
 	public static void explore_UI (Player player) {
-		MainFrame.textArea.append("The player [ " + player.getPlayerName() + " ] choose [ Go To Explore ]\n");
+		//MainFrame.textArea.append("The player [ " + player.getPlayerName() + " ] choose [ Go To Explore ]\n");
 		int num =-1;
 		num = ActionFrame.ExploreCombo.getSelectedIndex();
 		
@@ -26,31 +26,31 @@ public class Explore extends Functions {
 		Random rand = new Random();
     	int element = 10;
     	int res = rand.nextInt( element ) ;
-    	MainFrame.textArea.append("and go expeditionary!\n");
+    	TotalPrint.print_msg_to_textArea("and go expeditionary!\n", (Game.turn+1)%2);
     	
     	if( res == 0 || res == 1 || res == 2 ){
     		int temp = rand.nextInt( 35 ) + 1;
-    		MainFrame.textArea.append("You defeat the foreign enemy and get " + temp + " soldiers.\n");
+    		TotalPrint.print_msg_to_textArea("You defeat the foreign enemy and get " + temp + " soldiers.\n", (Game.turn+1)%2);
     		player.setNumSoldier( player.getNumSoldier() + temp );
-    		MainFrame.textArea.append("You now have " + player.getNumSoldier() + " soldiers.\n");
+    		TotalPrint.print_msg_to_textArea("You now have " + player.getNumSoldier() + " soldiers.\n", (Game.turn+1)%2);
     	}
     	else if( res == 3 || res == 4){
-    		MainFrame.textArea.append("Nothing acquire ... \n");
+    		TotalPrint.print_msg_to_textArea("Nothing acquire ... \n", (Game.turn+1)%2);
     	}
     	else if( res == 5 || res == 6 || res == 7 || res == 8 ){
     		int temp = rand.nextInt( 35 ) + 1;
-    		MainFrame.textArea.append("You are beaten by the foreign enemy and lose " + temp + " soldiers.\n");
+    		TotalPrint.print_msg_to_textArea("You are beaten by the foreign enemy and lose " + temp + " soldiers.\n", (Game.turn+1)%2);
     		player.setNumSoldier( player.getNumSoldier() - temp );
     		if( player.getNumSoldier() < 0 ){
     			player.setNumSoldier( 0 );
     		}
-    		MainFrame.textArea.append("You now have " + player.getNumSoldier() + " soldiers.\n");
+    		TotalPrint.print_msg_to_textArea("You now have " + player.getNumSoldier() + " soldiers.\n", (Game.turn+1)%2);
     	}
     	else if( res == 9){
     		int temp = rand.nextInt( 35 ) + 20;
-    		MainFrame.textArea.append("You conquer the foreign enemy and get " + temp + " soldiers.\n");
+    		TotalPrint.print_msg_to_textArea("You conquer the foreign enemy and get " + temp + " soldiers.\n", (Game.turn+1)%2);
     		player.setNumSoldier( player.getNumSoldier() + temp );
-    		MainFrame.textArea.append("You now have " + player.getNumSoldier() + " soldiers.\n");
+    		TotalPrint.print_msg_to_textArea("You now have " + player.getNumSoldier() + " soldiers.\n", (Game.turn+1)%2);
     	}
 		
 	}
@@ -59,31 +59,31 @@ public class Explore extends Functions {
 		Random rand = new Random();
     	int element = 10;
     	int res = rand.nextInt( element ) ;
-    	MainFrame.textArea.append("and commit a burglary !\n");
+    	TotalPrint.print_msg_to_textArea("and commit a burglary !\n", (Game.turn+1)%2);
 
     	if( res == 0 || res == 1 || res == 2 ){
     		int temp = rand.nextInt( 30 ) + 20 ;
-    		MainFrame.textArea.append("You found and pick up " + temp + " dollars.\n");
+    		TotalPrint.print_msg_to_textArea("You found and pick up " + temp + " dollars.\n", (Game.turn+1)%2);
     		player.setMoney( player.getMoney() + temp );
-    		MainFrame.textArea.append("You now have " + player.getMoney() + " dollars.\n");
+    		TotalPrint.print_msg_to_textArea("You now have " + player.getMoney() + " dollars.\n", (Game.turn+1)%2);
     	}
     	else if( res == 3 || res == 4){
-    		MainFrame.textArea.append("Nothing acquire ... \n");
+    		TotalPrint.print_msg_to_textArea("Nothing acquire ... \n", (Game.turn+1)%2);
     	}
     	else if( res == 5 || res == 6 || res == 7 || res == 8 ){
     		int temp = rand.nextInt( 35 ) + 1;
-    		MainFrame.textArea.append("You're money are stolen and lose " + temp + " dollars.\n");
+    		TotalPrint.print_msg_to_textArea("You're money are stolen and lose " + temp + " dollars.\n", (Game.turn+1)%2);
     		player.setMoney( player.getMoney() - temp );
     		if( player.getMoney() < 0 ){
     			player.setMoney( 0 );
     		}
-    		MainFrame.textArea.append("You now have " + player.getMoney() + " dollars.\n");
+    		TotalPrint.print_msg_to_textArea("You now have " + player.getMoney() + " dollars.\n", (Game.turn+1)%2);
     	}
     	else if( res == 9){
     		int temp = rand.nextInt( 50 ) + 50;
-    		MainFrame.textArea.append("You steal lots money from enemy and get " + temp + " dollars.\n");
+    		TotalPrint.print_msg_to_textArea("You steal lots money from enemy and get " + temp + " dollars.\n", (Game.turn+1)%2);
     		player.setMoney( player.getMoney() + temp );
-    		MainFrame.textArea.append("You now have " + player.getMoney() + " dollars.\n");
+    		TotalPrint.print_msg_to_textArea("You now have " + player.getMoney() + " dollars.\n", (Game.turn+1)%2);
     	}
 
 	}
@@ -92,25 +92,25 @@ public class Explore extends Functions {
 		Random rand = new Random();
     	int element = 10;
     	int res = rand.nextInt( element ) ;
-    	MainFrame.textArea.append("and a spy sneaked in !\n");
+    	TotalPrint.print_msg_to_textArea("and a spy sneaked in !\n", (Game.turn+1)%2);
     	if( res == 0 || res == 1 || res == 2 ){
-    		MainFrame.textArea.append("Your spy is getting his way! Your win rate is raised !\n");
+    		TotalPrint.print_msg_to_textArea("Your spy is getting his way! Your win rate is raised !\n", (Game.turn+1)%2);
     		player.setIntelligence( 1 );
     	}
     	else if( res == 3 || res == 4){
-    		MainFrame.textArea.append("Mission failed. Your spy came back with nothing helpful !\n");
+    		TotalPrint.print_msg_to_textArea("Mission failed. Your spy came back with nothing helpful !\n", (Game.turn+1)%2);
     	}
     	else if( res == 5 || res == 6 || res == 7 || res == 8 ){
     		int temp = rand.nextInt( 10 ) + 1;
-    		MainFrame.textArea.append("Your spy failed and got caught! \n");
+    		TotalPrint.print_msg_to_textArea("Your spy failed and got caught! \n", (Game.turn+1)%2);
     		player.setNumSoldier( player.getNumSoldier() - temp );
     		if( player.getNumSoldier() < 0 ){
     			player.setNumSoldier( 0 );
     		}
-    		MainFrame.textArea.append("You lose your spy! You now have " + player.getNumSoldier() + " soldiers.\n");
+    		TotalPrint.print_msg_to_textArea("You lose your spy! You now have " + player.getNumSoldier() + " soldiers.\n", (Game.turn+1)%2);
     	}
     	else if( res == 9){
-    		MainFrame.textArea.append("Big success!! Your got enemy's strategy! Win rate boosts!\n");
+    		TotalPrint.print_msg_to_textArea("Big success!! Your got enemy's strategy! Win rate boosts!\n", (Game.turn+1)%2);
     		player.setIntelligence( 2 );
     	}
 

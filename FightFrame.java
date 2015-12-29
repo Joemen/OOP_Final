@@ -143,6 +143,7 @@ public class FightFrame extends JPanel implements PropertyChangeListener  {
                 if( i>=0 && j>=0 && Game.player[(Game.turn+1)%2].getNumSoldier()-((Number)amount_Off.getValue()).intValue()-((Number)amount_Def.getValue()).intValue()>=0){
                     Commander.dispatchArmy_UI(Game.player[(Game.turn+1)%2], Game.tower[Game.player[(Game.turn+1)%2].getCampNum()-1]);
                     Game.blockmain = false;
+                    TotalPrint.printPressReady();
                     fightframe.dispose();
                 }
                 else if (i<0 || j<0)

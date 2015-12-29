@@ -187,8 +187,7 @@ public class ActionFrame{
 		mFrame_panel.add(btnOk_1);
 		btnOk_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int len;
-				Player player_now = Game.player[(Game.turn+1)%2];
+				
 				if( action_flag == 1){ // Construction
 					ConstructionDep.RepairTower_UI( Game.player[(Game.turn+1)%2], Game.tower[Game.player[(Game.turn+1)%2].getCampNum()-1] );
 					
@@ -197,26 +196,19 @@ public class ActionFrame{
 		
 				}else if(action_flag == 3){ // Bank 
 					Game.player[(Game.turn+1)%2].setMoney((int)(Game.player[(Game.turn+1)%2].getMoney()+Math.round(Bank.give_money*Game.player[(Game.turn+1)%2].getRole().getProperty().is_add_money_rate)));
-					MainFrame.textArea.append("The player [ " + player_now.getPlayerName() 
-														+ " ] choose [ Go To Bank ]\n");
-					MainFrame.textArea.append("and have [ " + player_now.getMoney()
-														+ " ] (+ "+Math.round(Bank.give_money*Game.player[(Game.turn+1)%2].getRole().getProperty().is_add_money_rate)+") dollar(s) now !\n");
+					
 				}else if(action_flag == 4){ // Explore
 					Explore.explore_UI(Game.player[(Game.turn+1)%2]);
 					
 				}else if(action_flag == 5){ // Nothing to do
-					MainFrame.textArea.append("The player [ " + player_now.getPlayerName() 
-														+ " ] choose [Do Nothing]\n");
+					
 				}else{
 					/*System.out.println("action_flag number error");
 					System.exit(1);*/
 					//maybe ask again
-					MainFrame.textArea.append("The player [ " + player_now.getPlayerName() 
-					+ " ] choose [Do Nothing]\n");
+					
 				}
-				len = MainFrame.textArea.getDocument().getLength();
-				MainFrame.textArea.setCaretPosition(len);
-				
+				TotalPrint.printAction();
 				actionframe.dispose();
 				Game.blockmain = false;
 				

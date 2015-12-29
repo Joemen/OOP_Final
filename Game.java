@@ -97,13 +97,13 @@ public class Game{
 				 //System.out.println("waiting game start");
 			}
 			TotalPrint.clearTextArea();
-			MainFrame.textArea.append("############ Two Camp Game Start!! ############\n\n");
+			TotalPrint.print_msg_to_textArea("############ Two Camp Game Start!! ############\n\n", 3);
 			
 			
 
 			// true game loop 
 			while(round <= Constants.total_round){
-				print_status_to_UI( player, MainFrame.textArea);
+				TotalPrint.printStatus();
 				
 				// initialize the soldier number
 				for(i=0; i<camp_num; i++){
@@ -121,12 +121,12 @@ public class Game{
 				blockmain = true;
 				///// player 1
 				// action
-				print_msg_to_textArea("\n############ round " + round + " ############\n\n");
+				TotalPrint.print_msg_to_textArea("\n############ round " + round + " ############\n\n", (turn+1)%2);
 				MainFrame.actionbutton.setEnabled(true);
 				MainFrame.shopbutton.setEnabled(true);
 				MainFrame.btnClear.setEnabled(false);
 				TotalPrint.printTurn(1);
-				print_msg_to_textArea("\nPlease set [ Action ], player1\n");
+				TotalPrint.print_msg_to_textArea("\nPlease set [ Action ], player1\n", (turn+1)%2);
 				while( blockmain ){
 					// do nothing
 					try {
@@ -139,7 +139,7 @@ public class Game{
 				// fight
 				blockmain = true;
 				MainFrame.btnFight.setEnabled(true);
-				print_msg_to_textArea("\nNow please set [ Fight ], player1\n\n");
+				TotalPrint.print_msg_to_textArea("\nNow please set [ Deploy ], player1\n\n", (turn+1)%2);
 				while( blockmain ){
 					// do nothing
 					try {
@@ -153,9 +153,10 @@ public class Game{
 				// action
 				turn ++;
 				blockmain = true;
+				TotalPrint.print_msg_to_textArea("\n############ round " + round + " ############\n\n", (turn+1)%2);
 				MainFrame.actionbutton2.setEnabled(true);
 				TotalPrint.printTurn(2);
-				print_msg_to_textArea("\nPlease set [ Action ], player2\n");
+				TotalPrint.print_msg_to_textArea("\nPlease set [ Action ], player2\n\n", (turn+1)%2);
 				while( blockmain ){
 					// do nothing
 					try {
@@ -168,7 +169,7 @@ public class Game{
 				// fight
 				blockmain = true;
 				MainFrame.btnFight2.setEnabled(true);
-				print_msg_to_textArea("\nNow please set [ Fight ], player2\n");
+				TotalPrint.print_msg_to_textArea("\nNow please set [ Deploy ], player2\n\n", (turn+1)%2);
 				while( blockmain ){
 					// do nothing
 					try {
@@ -197,7 +198,7 @@ public class Game{
 				
 				// store round information back to history.txt
 				MainFrame.btnClear.setEnabled(true);
-				print_msg_to_textArea("\n\nPlease Check the result. Press [ clear ] to go to the next round... \n");
+				TotalPrint.print_msg_to_textArea("\n\nPlease Check the result. Press [ clear ] to go to the next round... \n", 3);
 				blockmain = true; 
 				while( blockmain ){
 					// do nothing
@@ -210,7 +211,7 @@ public class Game{
 				
 				try {
 					FileWriter fileWritter = new FileWriter("history.txt",true);
-				    String myString1 = MainFrame.textArea.getText();
+				    String myString1 = MainFrame.textArea_1.getText();
 				    if(round == 1){
 				    	PrintWriter writer = new PrintWriter("history.txt");
 				    	writer.print("");
@@ -266,7 +267,8 @@ public class Game{
 		}
 	}
 
-
+}
+/*
 	//////////////////////////////// for UI usage ///////////////////////////////////////
 
 	public static void print_status_to_UI( Player[] player, JTextArea textarea){
@@ -299,4 +301,4 @@ public class Game{
 		print_msg_to_UI(msg, MainFrame.textArea);
 	}
 
-}
+}*/

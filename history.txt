@@ -1,12 +1,12 @@
 ############ Two Camp Game Start!! ############
 
 ________________<Game status>________________
-                <player name>     1
+                <player name>     123
                 <camp name>       A Camp
                 <money>           100
                 <num of soldier>  100
 
-                <player name>     2
+                <player name>     1
                 <camp name>       B Camp
                 <money>           100
                 <num of soldier>  100
@@ -19,88 +19,27 @@ _____________________________________________
 ******************************
 
 Please set [ Action ], player1
-The player [ 1 ] choose [Do Nothing]
+[ Action ] completed.
+The player [ 123 ] choose [ Go To Bank ]
+and have [ Player@2521f586 ] (+ 20) dollar(s) now !
 
 Now please set [ Fight ], player1
 
-******************************
-*** Now is player2's turn ***
-******************************
-
-Please set [ Action ], player2
-The player [ 2 ] choose [Do Nothing]
-
-Now please set [ Fight ], player2
+Deployment completed!
 Please press [ War!! ] to see the result ...... 
 War Start !!!
-under tower A, no war happen
-under tower B, no war happen
 *************** war result ***************
-player1 [ 1 ]
-original offense unit : 0 original defense unit : 0
+player1 [ 123 ]
+original offense unit : 30 original defense unit : 70
 wining rate : (offense) 1.0: (defense) 1.0
 tower remaining : 100
 remaining army : 100
 ****************************************
 
-player2 [ 2 ]
+player2 [ 1 ]
 original offense unit : 0 original defense unit : 0
-wining rate : (offense) 1.0: (defense) 1.0
-tower remaining : 100
-remaining army : 100
-****************************************
-
-
-
-Please Check the result. Press [ clear ] to go to the next round... 
-
-________________<Game status>________________
-                <player name>     1
-                <camp name>       A Camp
-                <money>           100
-                <num of soldier>  100
-
-                <player name>     2
-                <camp name>       B Camp
-                <money>           100
-                <num of soldier>  100
-_____________________________________________
-
-############ round 2 ############
-
-******************************
-*** Now is player1's turn ***
-******************************
-
-Please set [ Action ], player1
-The player [ 1 ] choose [Do Nothing]
-
-Now please set [ Fight ], player1
-
-******************************
-*** Now is player2's turn ***
-******************************
-
-Please set [ Action ], player2
-The player [ 2 ] choose [Do Nothing]
-
-Now please set [ Fight ], player2
-Please press [ War!! ] to see the result ...... 
-War Start !!!
-under tower A, no war happen
-under tower B, no war happen
-*************** war result ***************
-player1 [ 1 ]
-original offense unit : 0 original defense unit : 0
-wining rate : (offense) 1.0: (defense) 1.0
-tower remaining : 100
-remaining army : 100
-****************************************
-
-player2 [ 2 ]
-original offense unit : 0 original defense unit : 0
-wining rate : (offense) 1.0: (defense) 1.0
-tower remaining : 100
+wining rate : (offense) 0.0: (defense) 0.0
+tower remaining : 80
 remaining army : 100
 ****************************************
 

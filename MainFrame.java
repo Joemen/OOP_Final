@@ -25,7 +25,8 @@ public class MainFrame {
 	public static JMenu fileMenu ;
 	public static JMenu historyMenu ;	
 
-	public static JTextArea textArea;
+	public static JTextArea textArea_1;
+	public static JTextArea textArea_2;
 
 	public static MyApplet scrollPane;
 
@@ -115,13 +116,13 @@ public class MainFrame {
 		mFrame_panel.setLayout(null);
 
 		btnClear =  new JButton("Clear");
-		btnClear.setBounds(487, 353, 87, 23);		
+		btnClear.setBounds(457, 353, 87, 23);		
 		MainFrame.mFrame_panel.add(btnClear);
 		MainFrame.btnClear.setEnabled(false);
 		mFrame_panel.add(btnClear);
 		
 		btnPlayer_1 = new JButton("start");
-		btnPlayer_1.setBounds(402, 353, 87, 23);
+		btnPlayer_1.setBounds(372, 353, 87, 23);
 		mFrame_panel.add(btnPlayer_1);
 		MainFrame.mFrame_panel.add(btnPlayer_1);
 		
@@ -134,22 +135,38 @@ public class MainFrame {
 		btnPlayer_1.addActionListener(scrollPane);
 		
 		// lower pane
-		JScrollPane scrollPane_1 = new JScrollPane(textArea);
+		JScrollPane scrollPane_1 = new JScrollPane(textArea_1);
 		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane_1.setBounds(10, 383, 1212, 208);
+		scrollPane_1.setBounds(10, 383, 550, 208);
 		mFrame_panel.add(scrollPane_1);
+		
+		JScrollPane scrollPane_2 = new JScrollPane(textArea_2);
+		scrollPane_2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane_2.setBounds(670, 383, 550, 208);
+		mFrame_panel.add(scrollPane_2);
 
 		
-		textArea = new JTextArea();
-		textArea.setLineWrap(true);
-		textArea.setEditable(false);
-		scrollPane_1.setViewportView(new JScrollPane(textArea));
+		textArea_1 = new JTextArea();
+		textArea_1.setLineWrap(true);
+		textArea_1.setEditable(false);
+		scrollPane_1.setViewportView(new JScrollPane(textArea_1));
 		scrollPane_1.setHorizontalScrollBarPolicy(   
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPane_1.setVerticalScrollBarPolicy(   
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED); 
-		textArea.setSelectedTextColor(Color.RED);
-		textArea.setFont(new Font("Arial", Font.PLAIN, 12) );	
+		textArea_1.setSelectedTextColor(Color.RED);
+		textArea_1.setFont(new Font("Arial", Font.PLAIN, 12) );	
+		
+		textArea_2 = new JTextArea();
+		textArea_2.setLineWrap(true);
+		textArea_2.setEditable(false);
+		scrollPane_2.setViewportView(new JScrollPane(textArea_2));
+		scrollPane_2.setHorizontalScrollBarPolicy(   
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollPane_2.setVerticalScrollBarPolicy(   
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED); 
+		textArea_2.setSelectedTextColor(Color.RED);
+		textArea_2.setFont(new Font("Arial", Font.PLAIN, 12) );	
 		
 
 		btnShake = new JButton("Shake");
@@ -203,7 +220,7 @@ public class MainFrame {
 		
 		// for fight use ===================HuangYuNien===================================================================jedijedijedimaster
 		
-		btnFight = new JButton("Fight");
+		btnFight = new JButton("Deploy");
 		btnFight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("You have clicked on the Fight botton");
@@ -215,7 +232,7 @@ public class MainFrame {
 		btnFight.setEnabled(false);
 		mFrame_panel.add(btnFight);
 		
-		btnFight2 = new JButton("Fight");
+		btnFight2 = new JButton("Deploy");
 		btnFight2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("You have clicked on the Fight2 botton");
@@ -231,7 +248,7 @@ public class MainFrame {
 		btnWar = new JButton("WAR!!");
 		btnWar.setForeground(new Color(0, 0, 255));
 		btnWar.setBackground(new Color(255, 0, 0));
-		btnWar.setBounds(595, 347, 117, 35);
+		btnWar.setBounds(556, 347, 117, 35);
 		btnWar.setEnabled(false);
 		btnWar.addActionListener(scrollPane);
 		mFrame_panel.add(btnWar);

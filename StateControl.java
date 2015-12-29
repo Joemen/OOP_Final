@@ -27,6 +27,7 @@ public class StateControl {
             System.out.println("You clicked the button player1");
             Game.blockmain = false;
             MainFrame.btnPlayer_1.setEnabled(false);
+            TotalPrint.printPressAction();
         }
         else if(event.getSource() == MainFrame.btnClear ){
             Game.blockmain = false;
@@ -66,7 +67,7 @@ public class StateControl {
         }
         else if(event.getSource() == MainFrame.btnWar){
             drawHello = 1;
-            Game.print_msg_to_textArea("\nWar Start !!!\n");
+            TotalPrint.print_msg_to_textArea("\nWar Start !!!\n", 3);
             Computer.fight_UI(Game.tower[Game.player[(Game.turn+1)%2].getCampNum()-1], Game.tower[Game.player[(Game.turn)%2].getCampNum()-1], Game.player);
             MainFrame.btnWar.setEnabled(false);
             Game.blockmain = false;
