@@ -141,7 +141,7 @@ public class TotalPrint{
 		float a_defense_win_rate = win_rate[1];
 		float b_offense_win_rate = win_rate[2];
 		float b_defense_win_rate = win_rate[3];
-		print_msg_to_textArea("*************** war result ***************\n", (Game.turn+1)%2);
+		print_msg_to_textArea("*************** war result ***************\n", 3);
 		
 		for(i=0; i<player.length; i++){
 			team = player[i].getCampNum();
@@ -158,7 +158,7 @@ public class TotalPrint{
 				print_msg_to_textArea("tower remaining : " + tower_b.getBlood() + "\n", 3);
 			}
 			print_msg_to_textArea("remaining army : " + player[i].getNumSoldier() + "\n", 3);
-			print_msg_to_textArea("****************************************\n\n", 3);
+			print_msg_to_textArea("****************************************\n", 3);
 		}
 	}
 

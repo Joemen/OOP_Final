@@ -1,4 +1,7 @@
 import java.awt.event.ActionEvent;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.swing.ImageIcon;
 import javax.swing.WindowConstants;
@@ -21,6 +24,9 @@ public class StateControl {
             	MainFrame.actionbutton.setEnabled(true);
 				MainFrame.shopbutton.setEnabled(true);
 				MainFrame.btnClear.setEnabled(false);
+				TotalPrint.printStatus();
+				TotalPrint.print_msg_to_textArea("\n############ round " + Game.round + " ############\n\n", (Game.turn+1)%2);
+				TotalPrint.printTurn(1);
 				TotalPrint.printPressAction();
 				break;
             case DEPLOY_1:
@@ -30,9 +36,12 @@ public class StateControl {
 				TotalPrint.printPressDeploy();
             	break;
             case ACTION_2:
+            	Game.turn++;
             	MainFrame.actionbutton2.setEnabled(true);
             	MainFrame.btnFight.setEnabled(false);
             	MainFrame.shopbutton.setEnabled(true);
+            	TotalPrint.print_msg_to_textArea("\n############ round " + Game.round + " ############\n\n", (Game.turn+1)%2);
+            	TotalPrint.printTurn(2);
             	TotalPrint.printPressAction();
             	break;
             case DEPLOY_2:
@@ -54,27 +63,24 @@ public class StateControl {
             	TotalPrint.printPressClear();
             	break;
             default:
-                
                 break;
         }
     }
     public static void action(ActionEvent event){
         if(event.getSource() == MainFrame.btnPlayer_1 ){
             System.out.println("You clicked the button player1");
+            TotalPrint.clearTextArea();
+			TotalPrint.printStart();
             Game.blockmain = false;
             drawHello = 1;
             StateControl.control(StateControl.State.ACTION_1);
         }
-        else if(event.getSource() == MainFrame.btnClear ){
-            Game.blockmain = false;
-            System.out.println("You clicked the button clear");
-            StateControl.control(StateControl.State.ACTION_1);
-        }
+        
         else if(event.getSource() == NewFrame.btnOk ){
             if(NewFrame.num == 2 ){
                 Game.player[0].setPlayerName(NewFrame.textField_1.getText());
                 Game.player[1].setPlayerName(NewFrame.textField_2.getText());
-                drawHello = 1;
+                drawHello = 0;
             }
             if(NewFrame.currentChoice !=null && NewFrame.player1roleChoice !=null && NewFrame.player2roleChoice !=null && NewFrame.textField_1.getText().length()!=0 && NewFrame.textField_2.getText().length()!=0 ){
                 Game.player[0].setRole(NewFrame.player1_role_num);
@@ -161,6 +167,28 @@ public class StateControl {
             drawHello = 1;
             Game.blockmain = false;
             StateControl.control(StateControl.State.CLEAR);
+        }
+        else if(event.getSource() == MainFrame.btnClear ){
+            Game.blockmain = false;
+            drawHello = 0;
+            System.out.println("You clicked the button clear");
+            try {
+				FileWriter fileWritter = new FileWriter("history.txt",true);
+			    String myString1 = MainFrame.textArea_1.getText();
+			    if(Game.round == 1){
+			    	PrintWriter writer = new PrintWriter("history.txt");
+			    	writer.print("");
+			    	writer.close();
+			    	fileWritter.append(myString1 + "\n");
+			    }else{
+			    	fileWritter.append(myString1 + "\n");
+			    }    
+			    fileWritter.close();
+			} catch (IOException ioe) {
+			    ioe.printStackTrace();
+			}
+			TotalPrint.clearTextArea();
+            StateControl.control(StateControl.State.ACTION_1);
         }
         else {
             

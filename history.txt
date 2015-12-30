@@ -1,16 +1,12 @@
 ############ Two Camp Game Start!! ############
 
-Press [ Start ] and start the game .... 
-
-Press [ Action ] to take action .... 
-or press [ Shop ] to buy some treasures .... 
 ________________<Game status>________________
                 <player name>     qwe
                 <camp name>       A Camp
                 <money>           100
                 <num of soldier>  100
 
-                <player name>     qweqwe
+                <player name>     qweqw
                 <camp name>       B Camp
                 <money>           100
                 <num of soldier>  100
@@ -21,15 +17,10 @@ _____________________________________________
 ******************************
 *** Now is player1's turn ***
 ******************************
-[ Action ] completed.
-The player [ qwe ] choose [ Go To Explore ]
-and go expeditionary!
-You are beaten by the foreign enemy and lose 11 soldiers.
-You now have 89 soldiers.
-Press [ Deploy ] to dispatch .... 
-Deployment completed!
 Press [ Action ] to take action .... 
 or press [ Shop ] to buy some treasures .... 
+Press [ Deploy ] to dispatch .... 
+Deployment completed!
 Please press [ War!! ] to see the result ...... 
     War Start !!!
 under tower A, no war happen
@@ -39,10 +30,9 @@ player1 [ qwe ]
 original offense unit : 0 original defense unit : 0
 wining rate : (offense) 1.0: (defense) 1.0
 tower remaining : 100
-remaining army : 89
+remaining army : 100
 ****************************************
-
-player2 [ qweqwe ]
+player2 [ qweqw ]
 original offense unit : 0 original defense unit : 0
 wining rate : (offense) 1.0: (defense) 1.0
 tower remaining : 100
@@ -50,54 +40,5 @@ remaining army : 100
 ****************************************
 
 
-
 Please Check the result. Press [ clear ] to go to the next round... 
-Press [ Action ] to take action .... 
-or press [ Shop ] to buy some treasures .... 
-
-________________<Game status>________________
-                <player name>     qwe
-                <camp name>       A Camp
-                <money>           100
-                <num of soldier>  89
-
-                <player name>     qweqwe
-                <camp name>       B Camp
-                <money>           89
-                <num of soldier>  100
-_____________________________________________
-
-############ round 2 ############
-
-******************************
-*** Now is player1's turn ***
-******************************
-Press [ Deploy ] to dispatch .... 
-Deployment completed!
-Press [ Action ] to take action .... 
-or press [ Shop ] to buy some treasures .... 
-Please press [ War!! ] to see the result ...... 
-    War Start !!!
-under tower A, no war happen
-under tower B, no war happen
-*************** war result ***************
-player1 [ qwe ]
-original offense unit : 0 original defense unit : 0
-wining rate : (offense) 1.0: (defense) 1.0
-tower remaining : 100
-remaining army : 89
-****************************************
-
-player2 [ qweqwe ]
-original offense unit : 0 original defense unit : 0
-wining rate : (offense) 1.0: (defense) 1.0
-tower remaining : 100
-remaining army : 100
-****************************************
-
-
-
-Please Check the result. Press [ clear ] to go to the next round... 
-Press [ Action ] to take action .... 
-or press [ Shop ] to buy some treasures .... 
 
