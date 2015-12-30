@@ -25,7 +25,7 @@ public class StateControl {
 				MainFrame.shopbutton.setEnabled(true);
 				MainFrame.btnClear.setEnabled(false);
 				TotalPrint.printStatus();
-				TotalPrint.print_msg_to_textArea("\n############ round " + Game.round + " ############\n\n", (Game.turn+1)%2);
+				TotalPrint.printRound();
 				TotalPrint.printTurn(1);
 				TotalPrint.printPressAction();
 				break;
@@ -166,7 +166,7 @@ public class StateControl {
             
         }
         else if(event.getSource() == MainFrame.btnWar){
-            TotalPrint.print_msg_to_textArea("\n    War Start !!!\n", 3);
+            TotalPrint.printWarStart();
             Computer.fight_UI(Game.tower[Game.player[(Game.turn+1)%2].getCampNum()-1], Game.tower[Game.player[(Game.turn)%2].getCampNum()-1], Game.player);
             drawHello = 1;
             Game.blockmain = false;
