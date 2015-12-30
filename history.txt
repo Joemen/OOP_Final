@@ -1,12 +1,12 @@
 ############ Two Camp Game Start!! ############
 
 ________________<Game status>________________
-                <player name>     hioh
+                <player name>     Sam
                 <camp name>       A Camp
                 <money>           100
                 <num of soldier>  100
 
-                <player name>     hu
+                <player name>     Hank
                 <camp name>       B Camp
                 <money>           100
                 <num of soldier>  100
@@ -19,24 +19,68 @@ _____________________________________________
 ******************************
 Press [ Action ] to take action .... 
 or press [ Shop ] to buy some treasures .... 
+[ Action ] completed.
+The player [ Sam ] choose [ Go To Bank ]
+and have [ 120 ] (+ 20) dollar(s) now !
 Press [ Deploy ] to dispatch .... 
 Deployment completed!
 Please press [ War!! ] to see the result ...... 
     War Start !!!
-under tower A, no war happen
-under tower B, no war happen
 *************** war result ***************
-player1 [ hioh ]
-original offense unit : 0 original defense unit : 0
-wining rate : (offense) 1.0: (defense) 1.0
-tower remaining : 100
-remaining army : 100
+player1 [ Sam ]
+original offense unit : 50 original defense unit : 50
+wining rate : (offense) 0.56977147: (defense) 0.49896777
+tower remaining : 90
+remaining army : 53
 ****************************************
-player2 [ hu ]
-original offense unit : 0 original defense unit : 0
-wining rate : (offense) 1.0: (defense) 1.0
-tower remaining : 100
-remaining army : 100
+player2 [ Hank ]
+original offense unit : 50 original defense unit : 50
+wining rate : (offense) 0.50103223: (defense) 0.43022853
+tower remaining : 87
+remaining army : 47
+****************************************
+
+
+Please Check the result. Press [ clear ] to go to the next round... 
+
+________________<Game status>________________
+                <player name>     Sam
+                <camp name>       A Camp
+                <money>           120
+                <num of soldier>  53
+
+                <player name>     Hank
+                <camp name>       B Camp
+                <money>           100
+                <num of soldier>  47
+_____________________________________________
+
+############ round 2 ############
+
+******************************
+*** Now is player1's turn ***
+******************************
+Press [ Action ] to take action .... 
+or press [ Shop ] to buy some treasures .... 
+[ Action ] completed.
+The player [ Sam ] choose [ Go To MunitionFactory ]
+and have [ 83 ] (+ 30) soldier(s) now !
+Press [ Deploy ] to dispatch .... 
+Deployment completed!
+Please press [ War!! ] to see the result ...... 
+    War Start !!!
+*************** war result ***************
+player1 [ Sam ]
+original offense unit : 43 original defense unit : 40
+wining rate : (offense) 0.69317985: (defense) 0.85164475
+tower remaining : 90
+remaining army : 64
+****************************************
+player2 [ Hank ]
+original offense unit : 17 original defense unit : 20
+wining rate : (offense) 0.14835528: (defense) 0.30682015
+tower remaining : 69
+remaining army : 9
 ****************************************
 
 

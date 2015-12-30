@@ -57,7 +57,6 @@ public class StateControl {
             	//drawHello = 1; //to be modify
             	break;
             case CLEAR:
-            	
             	MainFrame.btnWar.setEnabled(false);
             	MainFrame.btnClear.setEnabled(true);
             	TotalPrint.printPressClear();

@@ -16,34 +16,28 @@ public class Game{
 	public static boolean blockmain;
 	
 	public static void main(String[] args) throws IOException{
-		// initialization
+		
+		/////// initialization
 		int i,j;
 		int one_side_player_num = Constants.player_num;
-
 		Computer computer = new Computer();
 		ActivityMenu AM = new ActivityMenu();
 		Create create = new Create();
 		round = 1;
 		turn = 1;
-
-		for(i=0; i<camp_num; i++){
+		for(i=0; i<camp_num; i++)
 			tower [ i ] = new Tower( i+1 );
-		}
-
 		for(i=0; i<camp_num; i++){
 			for(j=0; j<one_side_player_num; j++){
 				int player_id = i*one_side_player_num + j + 1;    // unique player id
 				player[ player_id - 1 ] = new Player( i+1, player_id);
 			}
 		}
-		// for UI use
-		// public static Player player1 = new Player(1, 1);
-		// player1 = player[0];
-
 		int term_or_UI = Integer.parseInt(args[0]);
+		/////// initialization done
 
+		
 		if( term_or_UI == 0){ // for terminal usage
-			
 			
 			for(i=0; i<camp_num; i++){
 				for(j=0; j<one_side_player_num; j++){
@@ -51,7 +45,6 @@ public class Game{
 					create.set_name_role(player[ player_id - 1]);
 				}
 			}
-
 			System.out.println( "################## Two Camp Game Start!! ##################");
 			print_status( player );
 
@@ -78,25 +71,16 @@ public class Game{
 
 				round++;
 			}
-
-			
-		}else if(term_or_UI == 1){ // for GUI usage
+		}
+		
+		else if(term_or_UI == 1){ // for GUI usage
 			MainFrame window = new MainFrame();
 			//	new a Frame
 			window.frame.setVisible(true);
-			blockmain = true;
-			while( blockmain ){
-				// do nothing
-				try {
-				    Thread.sleep(200);                 //1000 milliseconds is one second.
-				} catch(InterruptedException ex) {
-				    Thread.currentThread().interrupt();
-				}
-
-				 //System.out.println("waiting game start");
-			}
 			
-
+			//  waiting user to set up
+			pause();
+			
 			// true game loop 
 			while(round <= Constants.total_round){
 				
@@ -111,88 +95,32 @@ public class Game{
 					player[i].setNumOffSoldier(0);
 				}
 				
-				// set player1 action
-				blockmain = true;
-				///// player 1
+				//  player 1's turn
 				// action
-				while( blockmain ){
-					// do nothing
-					try {
-					    Thread.sleep(200);                 //1000 milliseconds is one second.
-					} catch(InterruptedException ex) {
-					    Thread.currentThread().interrupt();
-					}
-				}
-				// fight
-				blockmain = true;
-				while( blockmain ){
-					// do nothing
-					try {
-					    Thread.sleep(200);                 //1000 milliseconds is one second.
-					} catch(InterruptedException ex) {
-					    Thread.currentThread().interrupt();
-					}
-				}
+				pause();	
 				
-				///// player 2
+				// Deployment
+				pause();
+				
+				///// player 2's turn
 				// action
-				blockmain = true;
-				while( blockmain ){
-					// do nothing
-					try {
-					    Thread.sleep(200);                 //1000 milliseconds is one second.
-					} catch(InterruptedException ex) {
-					    Thread.currentThread().interrupt();
-					}
-				}
-				// fight
-				blockmain = true;
-				while( blockmain ){
-					// do nothing
-					try {
-					    Thread.sleep(200);                 //1000 milliseconds is one second.
-					} catch(InterruptedException ex) {
-					    Thread.currentThread().interrupt();
-					}
-				}
+				pause();
+				
+				// Deployment
+				pause();
+				
 				turn++;
 				
 				// war
-				blockmain = true; 
-				while( blockmain ){
-					// do nothing
-					try {
-					    Thread.sleep(200);                 //1000 milliseconds is one second.
-					} catch(InterruptedException ex) {
-					    Thread.currentThread().interrupt();
-					}
-				}
+				pause();
 				
-				// store round information back to history.txt
-				blockmain = true; 
-				while( blockmain ){
-					// do nothing
-					try {
-					    Thread.sleep(200);                 //1000 milliseconds is one second.
-					} catch(InterruptedException ex) {
-					    Thread.currentThread().interrupt();
-					}
-				}
-				
-				
-				
+				// clear
+				pause();	
 				
 			}
 		}
 	}
 
-	
-	
-	
-	
-	
-	
-	
 	
 	//////////////////////////////// for terminal usage ///////////////////////////////////////
 
@@ -222,10 +150,23 @@ public class Game{
 		}
 	}
 
+
+    ////////////////////////////////for UI usage ///////////////////////////////////////
+	public static void pause(){
+		blockmain = true; 
+		while( blockmain ){
+			try {
+			    Thread.sleep(200);                 //1000 milliseconds is one second.
+			} catch(InterruptedException ex) {
+			    Thread.currentThread().interrupt();
+			}
+		}	
+	}
 }
 /*
-	//////////////////////////////// for UI usage ///////////////////////////////////////
-
+	
+	
+	
 	public static void print_status_to_UI( Player[] player, JTextArea textarea){
 		// initialization
 		int i, len;

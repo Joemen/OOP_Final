@@ -81,6 +81,12 @@ public class TotalPrint{
 	}
 	
 	/************************** StateControl.java ******************************/
+	public static void printStart(){
+		print_msg_to_textArea("▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉\n", 3);
+		print_msg_to_textArea("▉　　　　　　　　　　　　 Two Camp Game Start!!　　　　　　　　　　　▉\n", 3);
+		print_msg_to_textArea("▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉\n\n", 3);
+	}
+	
 	public static void printPressStart(){
 		print_msg_to_textArea("Press [ Start ] and start the game .... \n\n", (Game.turn+1)%2);
 	}
@@ -102,9 +108,7 @@ public class TotalPrint{
 	}
 	
 	/************************** Game.java **************************************/
-	public static void printStart(){
-		print_msg_to_textArea("############ Two Camp Game Start!! ############\n\n", 3);
-	}
+	
 	
 	
 	public static void printTurn(int player_id){
@@ -118,7 +122,7 @@ public class TotalPrint{
 				int i;
 				int num = 3; 
 		// print player status
-				print_msg_to_textArea(     "________________<Game status>________________\n", num);
+				print_msg_to_textArea("▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒｜Game status｜▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒\n", num);
 				for(i=0; i<Game.player.length;i++){
 					print_msg_to_textArea( "                <player name>     " + Game.player[i].getPlayerName() + "\n", num);
 					print_msg_to_textArea( "                <camp name>       " + Game.player[i].getCampName() + "\n", num);
