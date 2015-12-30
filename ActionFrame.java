@@ -185,7 +185,7 @@ public class ActionFrame{
 		btnOk_1 = new JButton("OK");
 		btnOk_1.setBounds(75, 311, 117, 29);
 		mFrame_panel.add(btnOk_1);
-		btnOk_1.addActionListener(new ActionListener() {
+		btnOk_1.addActionListener(MainFrame.scrollPane);/*new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				if( action_flag == 1){ // Construction
@@ -204,7 +204,7 @@ public class ActionFrame{
 					
 				}else{
 					/*System.out.println("action_flag number error");
-					System.exit(1);*/
+					System.exit(1);
 					//maybe ask again
 					
 				}
@@ -213,7 +213,7 @@ public class ActionFrame{
 				Game.blockmain = false;
 				
 			}
-		});
+		}*/
 		
 		btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(350, 311, 117, 29);

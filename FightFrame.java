@@ -38,8 +38,8 @@ public class FightFrame extends JPanel implements PropertyChangeListener  {
     private int amount_1 = 0;
     private int amount_2 = 0;
     private NumberFormat amountFormat;
-    private static JButton btnReady;
-    private static JLabel lblIncorrectInput;
+    public static JButton btnReady;
+    public static JLabel lblIncorrectInput;
     
     public static JLabel lblalarm;
     
@@ -130,7 +130,7 @@ public class FightFrame extends JPanel implements PropertyChangeListener  {
             }
         });
         
-        btnReady.addActionListener(new ActionListener() {
+        btnReady.addActionListener(MainFrame.scrollPane);/*new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int i = -1;
                 int j = -1;
@@ -151,7 +151,7 @@ public class FightFrame extends JPanel implements PropertyChangeListener  {
                 else
                     lblalarm.setVisible(true);
             }
-        });
+        });*/
         
         
         fightframe.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);

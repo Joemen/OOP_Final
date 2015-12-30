@@ -94,15 +94,23 @@ public class TotalPrint{
 		print_msg_to_textArea("Press [ Deploy ] to dispatch .... \n", (Game.turn+1)%2);
 	}
 	
+	public static void printPressWar(){
+		print_msg_to_textArea("Please press [ War!! ] to see the result ...... ", 3);
+	}
+	public static void printPressClear(){
+		print_msg_to_textArea("\n\nPlease Check the result. Press [ clear ] to go to the next round... \n", 3);
+	}
+	
 	/************************** Game.java **************************************/
+	public static void printStart(){
+		print_msg_to_textArea("############ Two Camp Game Start!! ############\n\n", 3);
+	}
+	
+	
 	public static void printTurn(int player_id){
 		print_msg_to_textArea("******************************\n", (Game.turn+1)%2);
 		print_msg_to_textArea("*** Now is player" + player_id + "'s turn ***\n", (Game.turn+1)%2);
 		print_msg_to_textArea("******************************\n", (Game.turn+1)%2);
-	}
-	
-	public static void printPressWar(){
-		print_msg_to_textArea("Please press [ War!! ] to see the result ...... ", 3);
 	}
 	
 	public static void printStatus(){
@@ -176,7 +184,7 @@ public class TotalPrint{
 			print_msg_to_UI(msg, MainFrame.textArea_2);
 		else if (num == 3) {
 			print_msg_to_UI(msg, MainFrame.textArea_1);
-			MainFrame.textArea_2.append(msg);
+			print_msg_to_UI(msg, MainFrame.textArea_2);
 		}
 		else {
 			
