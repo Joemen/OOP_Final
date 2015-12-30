@@ -100,6 +100,10 @@ public class MyApplet extends JScrollPane implements ActionListener {
         setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(46, 139, 87));
         g.drawString(Integer.toString(Game.player[0].getNumSoldier()),30,108);
         
+        //draw string tower1 blood
+        setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(220, 20, 60));
+        g.drawString(Integer.toString(Game.tower[0].getBlood()),30,138);
+        
         // draw money sign
         g.drawImage(money_1, 10, 60,15, 21, null);
         
@@ -118,11 +122,14 @@ public class MyApplet extends JScrollPane implements ActionListener {
         setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(46, 139, 87));
         g.drawString(Integer.toString(Game.player[1].getNumSoldier()),1180,108);
         
+        setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(220, 20, 60));
+        g.drawString(Integer.toString(Game.tower[1].getBlood()),1180,138);
+        
         // draw money sign
-        g.drawImage(money_2, 1180, 60, 15, 21, null);
+        g.drawImage(money_2, 1160, 60, 15, 21, null);
         
         // draw soldier sign
-        g.drawImage(soldier_2, 1180, 90, 15, 21, null);
+        g.drawImage(soldier_2, 1160, 90, 15, 21, null);
         
         // draw player name
         setMyfont(g,"TimesRoman", Font.ITALIC, 15,Color.BLACK);

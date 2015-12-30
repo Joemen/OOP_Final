@@ -5,12 +5,12 @@
 -----------------------------------------------------------------------------------------------------------
 XXXXXXXXXXXXXXXXXXXXXX Game status XXXXXXXXXXXXXXXXXXXXXX
 -----------------------------------------------------------------------------------------------------------
-                <player name>     asd
+                <player name>     kml
                 <camp name>       A Camp
                 <money>           100
                 <num of soldier>  100
 
-                <player name>     asd
+                <player name>     kml
                 <camp name>       B Camp
                 <money>           100
                 <num of soldier>  100
@@ -33,18 +33,20 @@ Please press [ War!! ] to see the result ......
              WAR
       ===========
 under tower A, no war happen
-under tower B, no war happen
+      ===========
+             WAR
+      ===========
 *************** war result ***************
-player1 [ asd ]
-original offense unit : 0 original defense unit : 0
+player1 [ kml ]
+original offense unit : 80 original defense unit : 0
 wining rate : (offense) 1.0: (defense) 1.0
 tower remaining : 100
 remaining army : 100
 ****************************************
-player2 [ asd ]
+player2 [ kml ]
 original offense unit : 0 original defense unit : 0
-wining rate : (offense) 1.0: (defense) 1.0
-tower remaining : 100
+wining rate : (offense) 1.0: (defense) 0.0
+tower remaining : 80
 remaining army : 100
 ****************************************
 

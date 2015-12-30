@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.WindowConstants;
 public class StateControl {
     
-    public static enum State{ORIGIN,START,ACTION_1,DEPLOY_1,ACTION_2,DEPLOY_2,WAR,CLEAR,ENDROUND}
+    public static enum State{ORIGIN,START,ACTION_1,DEPLOY_1,ACTION_2,DEPLOY_2,WAR,CLEAR,ENDROUND,ENDGAME}
     static int drawHello = -1;	// Global Variable for State Control
     public static void control(State state){
         switch(state){
@@ -66,6 +66,17 @@ public class StateControl {
             	Game.round++;
             	StateControl.control(StateControl.State.ACTION_1);
             	break;
+            case ENDGAME:
+            	MainFrame.actionbutton.setEnabled(false);
+            	MainFrame.actionbutton2.setEnabled(false);
+            	MainFrame.shopbutton.setEnabled(false);
+            	MainFrame.btnFight.setEnabled(false);
+            	MainFrame.btnFight2.setEnabled(false);
+            	MainFrame.btnWar.setEnabled(false);
+            	MainFrame.btnPlayer_1.setEnabled(false);
+            	MainFrame.btnClear.setEnabled(false);
+            	break;
+            	
             	
             default:
                 break;

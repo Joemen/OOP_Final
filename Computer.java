@@ -299,9 +299,13 @@ public class Computer{
 		}
 		else if( def_win_rate < 0.25f ){
 			tower.setBlood( tower.getBlood() - 20 );
+			if(tower.getBlood()<0)
+				tower.setBlood(0);
 		}
 		else{
 			tower.setBlood( tower.getBlood() - ((int)Math.round(def_win_rate * (-40)) + 30) );
+			if(tower.getBlood()<0)
+				tower.setBlood(0);
 		}
 	}
 
