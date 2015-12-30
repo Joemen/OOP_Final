@@ -16,10 +16,8 @@ import javax.swing.border.LineBorder;
 public class MyApplet extends JScrollPane implements ActionListener {
     public static TimerAnimation Artanis = null ,Agumon = null ;
     public static Image background = null , money_1 = null, money_2 = null, soldier_1 = null, soldier_2 = null,
-    tower_1, tower_2;
+    tower_1, tower_2, towersmall;
     public static File background_png , money_png, tower_png , soldier_png;
-    public static String player1rolefile;
-    public static String player2rolefile;
     
     public MyApplet(){
         setViewportBorder(new LineBorder(new Color(0, 0, 0)));
@@ -41,6 +39,7 @@ public class MyApplet extends JScrollPane implements ActionListener {
             soldier_2 = ImageIO.read(soldier_png);
             tower_1 = ImageIO.read(tower_png);
             tower_2 = ImageIO.read(tower_png);
+            towersmall = ImageIO.read(tower_png);
             
         } catch (IOException e) {
             e.printStackTrace();
@@ -110,6 +109,8 @@ public class MyApplet extends JScrollPane implements ActionListener {
         // draw soldier sign
         g.drawImage(soldier_1,10,90,15, 21, null);
         
+        g.drawImage(towersmall,10,120,15, 21, null);
+        
         // draw player name
         setMyfont(g,"TimesRoman", Font.ITALIC, 15,Color.BLACK);
         g.drawString(Game.player[0].getPlayerName(),20,20);
@@ -130,6 +131,8 @@ public class MyApplet extends JScrollPane implements ActionListener {
         
         // draw soldier sign
         g.drawImage(soldier_2, 1160, 90, 15, 21, null);
+        
+        g.drawImage(towersmall,1160, 120, 15, 21, null);
         
         // draw player name
         setMyfont(g,"TimesRoman", Font.ITALIC, 15,Color.BLACK);
