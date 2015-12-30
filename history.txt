@@ -1,12 +1,12 @@
 ############ Two Camp Game Start!! ############
 
 ________________<Game status>________________
-                <player name>     qwe
+                <player name>     hioh
                 <camp name>       A Camp
                 <money>           100
                 <num of soldier>  100
 
-                <player name>     qweqw
+                <player name>     hu
                 <camp name>       B Camp
                 <money>           100
                 <num of soldier>  100
@@ -26,13 +26,13 @@ Please press [ War!! ] to see the result ......
 under tower A, no war happen
 under tower B, no war happen
 *************** war result ***************
-player1 [ qwe ]
+player1 [ hioh ]
 original offense unit : 0 original defense unit : 0
 wining rate : (offense) 1.0: (defense) 1.0
 tower remaining : 100
 remaining army : 100
 ****************************************
-player2 [ qweqw ]
+player2 [ hu ]
 original offense unit : 0 original defense unit : 0
 wining rate : (offense) 1.0: (defense) 1.0
 tower remaining : 100

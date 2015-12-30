@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.WindowConstants;
 public class StateControl {
     
-    public static enum State{ORIGIN,START,ACTION_1,DEPLOY_1,ACTION_2,DEPLOY_2,WAR,CLEAR}
+    public static enum State{ORIGIN,START,ACTION_1,DEPLOY_1,ACTION_2,DEPLOY_2,WAR,CLEAR,ENDROUND}
     static int drawHello = -1;	// Global Variable for State Control
     public static void control(State state){
         switch(state){
@@ -16,7 +16,7 @@ public class StateControl {
                 MainFrame.btnPlayer_1.setVisible(false);
                 break;
             case START:
-                MainFrame.btnClear.setVisible(false);
+                MainFrame.btnClear.setVisible(true);
                 MainFrame.btnPlayer_1.setVisible(true);
                 break;
             case ACTION_1:
@@ -57,11 +57,16 @@ public class StateControl {
             	//drawHello = 1; //to be modify
             	break;
             case CLEAR:
-            	MainFrame.btnClear.setVisible(true);
+            	
             	MainFrame.btnWar.setEnabled(false);
             	MainFrame.btnClear.setEnabled(true);
             	TotalPrint.printPressClear();
             	break;
+            case ENDROUND:
+            	Game.round++;
+            	StateControl.control(StateControl.State.ACTION_1);
+            	break;
+            	
             default:
                 break;
         }
@@ -170,7 +175,7 @@ public class StateControl {
         }
         else if(event.getSource() == MainFrame.btnClear ){
             Game.blockmain = false;
-            drawHello = 0;
+            drawHello = 1;
             System.out.println("You clicked the button clear");
             try {
 				FileWriter fileWritter = new FileWriter("history.txt",true);
@@ -188,7 +193,7 @@ public class StateControl {
 			    ioe.printStackTrace();
 			}
 			TotalPrint.clearTextArea();
-            StateControl.control(StateControl.State.ACTION_1);
+            StateControl.control(StateControl.State.ENDROUND);
         }
         else {
             

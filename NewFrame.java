@@ -266,7 +266,10 @@ public class NewFrame {
                 JComboBox<?> combo = (JComboBox<?>)e.getSource();
                 player1roleChoice = (String)combo.getSelectedItem();
                 
-                player1_role_num = Integer.parseInt(player1roleChoice);
+                try {player1_role_num = Integer.parseInt(player1roleChoice);
+                }catch(Exception ex){
+                	
+                }
                 if(player1_role_num == 0 ){
                     set1UnVisable();
                     Label_1_0.setVisible(true);
@@ -299,7 +302,10 @@ public class NewFrame {
                 JComboBox<?> combo = (JComboBox<?>)e.getSource();
                 player2roleChoice = (String)combo.getSelectedItem();
                 
-                player2_role_num = Integer.parseInt(player2roleChoice);
+                try{player2_role_num = Integer.parseInt(player2roleChoice);
+                }catch(Exception ex){
+                	
+                }
                 if(player2_role_num == 0 ){
                     set2UnVisable();
                     Label_2_0.setVisible(true);
