@@ -37,7 +37,24 @@ public class TimerAnimation extends MyApplet{
 						xPos = xOther - img.getWidth();
 						direction *= -1;
 						try {
-							img = ImageIO.read(new File("pic/Artanis_l.png"));
+							if(Game.player[0].getRole().getRoleName()=="Sun"){
+								img = ImageIO.read(new File("pic/Sun_r.png"));
+							}
+							if(Game.player[0].getRole().getRoleName()=="Cao"){
+								img = ImageIO.read(new File("pic/Cao_r.png"));
+							}
+							if(Game.player[0].getRole().getRoleName()=="Liu"){
+								img = ImageIO.read(new File("pic/Liu_r.png"));
+							}
+							if(Game.player[0].getRole().getRoleName()=="Chang"){
+								img = ImageIO.read(new File("pic/Chang_r.png"));
+							}
+							if(Game.player[0].getRole().getRoleName()=="Zhao"){
+								img = ImageIO.read(new File("pic/Zhao_r.png"));
+							}
+							if(Game.player[0].getRole().getRoleName()=="Chou"){
+								img = ImageIO.read(new File("pic/Chou_r.png"));
+							}							
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -47,7 +64,24 @@ public class TimerAnimation extends MyApplet{
 						direction *= -1;
 						xPos = 10;
 						try {
-							img = ImageIO.read(new File("pic/Artanis.png"));
+							if(Game.player[0].getRole().getRoleName()=="Sun"){
+								img = ImageIO.read(new File("pic/Sun.png"));
+							}
+							if(Game.player[0].getRole().getRoleName()=="Cao"){
+								img = ImageIO.read(new File("pic/Cao.png"));
+							}
+							if(Game.player[0].getRole().getRoleName()=="Liu"){
+								img = ImageIO.read(new File("pic/Liu.png"));
+							}
+							if(Game.player[0].getRole().getRoleName()=="Chang"){
+								img = ImageIO.read(new File("pic/Chang.png"));
+							}
+							if(Game.player[0].getRole().getRoleName()=="Zhao"){
+								img = ImageIO.read(new File("pic/Zhao.png"));
+							}
+							if(Game.player[0].getRole().getRoleName()=="Chou"){
+								img = ImageIO.read(new File("pic/Chou.png"));
+							}
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -67,7 +101,24 @@ public class TimerAnimation extends MyApplet{
 						xPos = MainFrame.scrollPane.getWidth()- img.getWidth();
 						timer.stop();
 						try {
-							img = ImageIO.read(new File("pic/Agumon.png"));
+							if(Game.player[1].getRole().getRoleName()=="Sun"){
+								img = ImageIO.read(new File("pic/Sun_r.png"));
+							}
+							if(Game.player[1].getRole().getRoleName()=="Cao"){
+								img = ImageIO.read(new File("pic/Cao_r.png"));
+							}
+							if(Game.player[1].getRole().getRoleName()=="Liu"){
+								img = ImageIO.read(new File("pic/Liu_r.png"));
+							}
+							if(Game.player[1].getRole().getRoleName()=="Chang"){
+								img = ImageIO.read(new File("pic/Chang_r.png"));
+							}
+							if(Game.player[1].getRole().getRoleName()=="Zhao"){
+								img = ImageIO.read(new File("pic/Zhao_r.png"));
+							}
+							if(Game.player[1].getRole().getRoleName()=="Chou"){
+								img = ImageIO.read(new File("pic/Chou_r.png"));
+							}		
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -76,7 +127,24 @@ public class TimerAnimation extends MyApplet{
 						direction *= -1;
 					} else if (xPos < xOther + img.getWidth()) {
 						try {
-							img = ImageIO.read(new File("pic/Agumon_r.png"));
+							if(Game.player[1].getRole().getRoleName()=="Sun"){
+								img = ImageIO.read(new File("pic/Sun.png"));
+							}
+							if(Game.player[1].getRole().getRoleName()=="Cao"){
+								img = ImageIO.read(new File("pic/Cao.png"));
+							}
+							if(Game.player[1].getRole().getRoleName()=="Liu"){
+								img = ImageIO.read(new File("pic/Liu.png"));
+							}
+							if(Game.player[1].getRole().getRoleName()=="Chang"){
+								img = ImageIO.read(new File("pic/Chang.png"));
+							}
+							if(Game.player[1].getRole().getRoleName()=="Zhao"){
+								img = ImageIO.read(new File("pic/Zhao.png"));
+							}
+							if(Game.player[1].getRole().getRoleName()=="Chou"){
+								img = ImageIO.read(new File("pic/Chou.png"));
+							}		
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();

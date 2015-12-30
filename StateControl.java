@@ -16,6 +16,7 @@ public class StateControl {
                 MainFrame.btnPlayer_1.setVisible(false);
                 break;
             case START:
+            	
                 MainFrame.btnClear.setVisible(true);
                 MainFrame.btnPlayer_1.setVisible(true);
                 break;
@@ -83,7 +84,7 @@ public class StateControl {
         else if(event.getSource() == NewFrame.btnOk ){
             if(NewFrame.num == 2 ){
                 Game.player[0].setPlayerName(NewFrame.textField_1.getText());
-                Game.player[1].setPlayerName(NewFrame.textField_2.getText());
+                Game.player[1].setPlayerName(NewFrame.textField_2.getText());               
                 drawHello = 0;
             }
             if(NewFrame.currentChoice !=null && NewFrame.player1roleChoice !=null && NewFrame.player2roleChoice !=null && NewFrame.textField_1.getText().length()!=0 && NewFrame.textField_2.getText().length()!=0 ){
@@ -91,6 +92,7 @@ public class StateControl {
                 Game.player[1].setRole(NewFrame.player2_role_num);
                 NewFrame.startframe.dispose();
                 TotalPrint.printPressStart();
+                MainFrame.scrollPane.readFile();
                 StateControl.control(StateControl.State.START);
             }
         }

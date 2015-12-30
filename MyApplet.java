@@ -18,6 +18,8 @@ public class MyApplet extends JScrollPane implements ActionListener {
     public static Image background = null , money_1 = null, money_2 = null, soldier_1 = null, soldier_2 = null,
     tower_1, tower_2;
     public static File background_png , money_png, tower_png , soldier_png;
+    public static String player1rolefile;
+    public static String player2rolefile;
     
     public MyApplet(){
         setViewportBorder(new LineBorder(new Color(0, 0, 0)));
@@ -44,11 +46,14 @@ public class MyApplet extends JScrollPane implements ActionListener {
             e.printStackTrace();
         }
         //	Time Animation
-        Artanis = new TimerAnimation(new File("pic/Artanis.png"),1);
-        Artanis.setPara(10, 160,100, 135,1,10,1000);
+      
+        Artanis = new TimerAnimation(new File("pic/"+Game.player[0].getRole().getRoleName()+".png"),1);
+     	Artanis.setPara(10, 180,100, 135,1,10,1000);
+        	
         
-        Agumon = new TimerAnimation(new File("pic/Agumon.png"),-1);
-        Agumon.setPara(1100, 130, 100, 135,-1,0,110);
+
+        Agumon = new TimerAnimation(new File("pic/"+Game.player[1].getRole().getRoleName()+"_r.png"),-1);
+        Agumon.setPara(1100, 180, 100, 135,-1,0,110);
     }
     @Override
     public void actionPerformed(ActionEvent event) {
@@ -69,20 +74,20 @@ public class MyApplet extends JScrollPane implements ActionListener {
             return ;
         g.drawImage(background, 0, 0,1212, 325, null);
         if(StateControl.drawHello == 1){
-            g.drawImage(Artanis.img, 10, 160, null);
-            g.drawImage(Agumon.img, 1100, 130, null);
+            g.drawImage(Artanis.img, 10, 180, null);
+            g.drawImage(Agumon.img, 1100, 180, null);
         }
         else if(StateControl.drawHello == 2){
             //	player1
             Artanis.paintComponent(g);
             // draw tower sign
-            g.drawImage(Agumon.img, 1100, 130, null);
+            g.drawImage(Agumon.img, 1100, 180, null);
             
         }
         else if(StateControl.drawHello == 3){
             Agumon.paintComponent(g);
             // draw tower sign
-            g.drawImage(Artanis.img, 10, 160, null);
+            g.drawImage(Artanis.img, 10, 180, null);
         }
         g.drawImage(tower_1, 110, 50, null);
         g.drawImage(tower_2, 1000, 50, null);
@@ -114,10 +119,10 @@ public class MyApplet extends JScrollPane implements ActionListener {
         g.drawString(Integer.toString(Game.player[1].getNumSoldier()),1180,108);
         
         // draw money sign
-        g.drawImage(money_2, 1160, 60, 15, 21, null);
+        g.drawImage(money_2, 1180, 60, 15, 21, null);
         
         // draw soldier sign
-        g.drawImage(soldier_2, 1160, 90, 15, 21, null);
+        g.drawImage(soldier_2, 1180, 90, 15, 21, null);
         
         // draw player name
         setMyfont(g,"TimesRoman", Font.ITALIC, 15,Color.BLACK);
