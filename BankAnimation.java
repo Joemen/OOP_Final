@@ -1,7 +1,9 @@
-import java.awt.BorderLayout;
+
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -9,13 +11,18 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+
 
 public class BankAnimation{
+	public static JFrame bankframe;
+	
+	public BankAnimationPane bankanimatepane;
+	
 	public static Timer timer;
 	
 	private int origin_bank_xpos;
@@ -23,7 +30,7 @@ public class BankAnimation{
 	private int origin_money_xpos;
 	private int origin_money_ypos;
 	
-	public static BufferedImage bank, money1, money2, money3, money4, money5;
+	public static BufferedImage bank, money1, money2, money3, money4, money5, bg;
 	
 	private int y_offset1 = 180;
 	private int y_offset2 = 180;
@@ -38,41 +45,53 @@ public class BankAnimation{
 	public boolean draw_money4;
 	public boolean draw_money5;
 	
-	public static void main(String[] args) throws InterruptedException {
-		BankAnimation bank_animation = new BankAnimation();
-		Thread.sleep(1000);
-		bank_animation.draw_money1 = true;
-		timer.start();
-		Thread.sleep(450);
-		bank_animation.draw_money2 = true;
-		Thread.sleep(450);
-		bank_animation.draw_money3 = true;
-		Thread.sleep(450);
-		bank_animation.draw_money4 = true;
-		Thread.sleep(450);
-		bank_animation.draw_money5 = true;
+	
+	public static void main(String[] args){
+		new BankAnimation(10);
 	}
-
-	public BankAnimation() {
-		super();
-		JFrame bankframe = new JFrame("");
+	
+	
+	public BankAnimation(int money) {
+		// super();
+		bankframe = new JFrame("");
 		bankframe.setResizable(false);
 		bankframe.setSize(640, 512);
-		bankframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		bankframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		// bankframe.setLayout(new BorderLayout());
-		bankframe.add(new AnimationPane());
-		// bankframe.pack();
-		bankframe.setLocationRelativeTo(null);
-		bankframe.setVisible(true);
-	}
-
-	public class AnimationPane extends JPanel {
-
 		
-		private int xPos = 0;
-		private int direction = 1;
-
-		public AnimationPane() {
+		BankAnimationPane bankanimatepane = new BankAnimationPane(money);
+		bankframe.add(bankanimatepane);
+		while(!bankanimatepane.ready){
+			System.out.println(bankanimatepane.ready);
+		};
+		// bankframe.pack();
+		
+		// bankframe.setLocationRelativeTo(null);
+		timer.start();
+		try{
+			bankframe.setVisible(true);
+			draw_money1 = true;
+			Thread.sleep(450);
+			draw_money2 = true;
+			Thread.sleep(450);
+			draw_money3 = true;
+			Thread.sleep(450);
+			draw_money4 = true;
+			Thread.sleep(450);
+			draw_money5 = true;
+		}catch (Exception ex){
+			System.out.println("exception happen");
+		}
+		// control(money);
+		
+	}
+	
+	public class BankAnimationPane extends JPanel {
+		private static final long serialVersionUID = 1L;
+		public boolean ready = false;
+		public boolean canexit = false;
+		
+		public BankAnimationPane(int printmoney) {
 			try {
 				bank = ImageIO.read(new File("pic/bank.png"));
 				money1 = ImageIO.read(new File("pic/money.png"));
@@ -80,6 +99,7 @@ public class BankAnimation{
 				money3 = ImageIO.read(new File("pic/money.png"));
 				money4 = ImageIO.read(new File("pic/money.png"));
 				money5 = ImageIO.read(new File("pic/money.png"));
+				bg = ImageIO.read(new File("pic/background.png"));
 				
 				// for positioning use
 				origin_bank_xpos = 0;
@@ -91,7 +111,6 @@ public class BankAnimation{
 				ActionListener timer_action = new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-							
 							if(counter <= 10){
 								y_offset1 = (int)Math.round((1.8)*(counter-10)*(counter-10)) ;
 								y_offset2 = 180;
@@ -131,9 +150,12 @@ public class BankAnimation{
 							}else{
 								System.out.println("Timer Stop");
 								timer.stop();
+								new NotifyFrame(printmoney);
+								
 							}
 							repaint();
 							counter ++;
+							System.out.println(counter);
 
 					}
 
@@ -142,17 +164,27 @@ public class BankAnimation{
 				timer = new Timer(40, timer_action);
 				timer.setRepeats(true);
 				timer.setCoalesce(true);
-				// timer.start();
+				isReady();
 			} catch (IOException ex) {
-				ex.printStackTrace();
+				System.out.println("error in BankAnimationPane");
 			}
 		}
-
+		
+		public void isReady(){
+			this.ready = true;
+		}
+		
+		public void finish(){
+			this.canexit = true;
+		}
+		
 		@Override
 		protected void paintComponent(Graphics g) {
-			super.paintComponent(g);
-
+			
+			// super.paintComponent(g);
+			// System.out.println("printing");
 			// int y = getHeight() - boat.getHeight();
+			g.drawImage(bg, 0 , 0 , this);
 			
 			// draw bank
 			g.drawImage(bank, origin_bank_xpos , origin_bank_ypos , this);
@@ -180,7 +212,42 @@ public class BankAnimation{
 			}
 
 		}
-
+	}	
+	
+public class NotifyFrame extends JFrame{
+		
+		private static final long serialVersionUID = 1L;
+		public JButton btnOK;
+		public JLabel lblyouveGet;
+		public JPanel panel;
+		
+		public NotifyFrame(int money){
+			new JFrame();
+			this.setSize(300, 225);
+			setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			setVisible(true);
+			getContentPane().setLayout(null);
+			getContentPane().setBackground(SystemColor.window);
+			
+			btnOK = new JButton("OK");
+			btnOK.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					dispose();
+					BankAnimation.bankframe.dispose();
+				}
+			});
+			btnOK.setBackground(SystemColor.desktop);
+			btnOK.setBounds(98, 150, 87, 23);
+			getContentPane().add( btnOK );
+			
+			
+			String moneytostring = new String( "You've get $" + money + " from bank" );
+			lblyouveGet = new JLabel(moneytostring);
+			lblyouveGet.setFont(new Font("Arial", Font.PLAIN, 18));
+			lblyouveGet.setBounds(42, 79, 215, 23);
+			getContentPane().add(lblyouveGet);
+			
+		}
 	}
 
 }
