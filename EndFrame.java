@@ -121,7 +121,7 @@ public class EndFrame extends JPanel{
 		}
 		
 		
-		else if (Game.round==10){
+		else if (Game.round== Constants.total_round){
 			win_flag = 2;
 			EndFrame endframe = new EndFrame();
 			EndFrame.endframe.setVisible(true);
@@ -131,7 +131,7 @@ public class EndFrame extends JPanel{
 			player_1.append("<Money>                   "+Game.player[0].getMoney()+"\n");
 			player_1.append("<Remaining Soldiers>  "+Game.player[0].getNumSoldier()+"\n");
 			player_1.append("<Tower HP>              "+Game.tower[0].getBlood()+"\n");
-			player_1.append("<Treasures>             "+"Nothing"+"\n\n");
+			player_1.append("<Treasures>    "+Game.player[0].getTreasure() +"\n\n");
 			player_1.append(">==Total Point==>        "+CountPoints(Game.player[0],Game.tower[0])+"  Points\n");
 			player_1.append("<Money>  x "+ Constants.money_weighted +"          "+Game.player[0].getMoney()+ " *" + Constants.money_weighted +"\n");
 			player_1.append("<Rning Soldiers>  x "+ Constants.soldier_weighted +"          "+Game.player[0].getNumSoldier()+ " *" + Constants.soldier_weighted +"\n");
@@ -144,7 +144,7 @@ public class EndFrame extends JPanel{
 			player_2.append("<Money>               "+Game.player[1].getMoney()+"\n");
 			player_2.append("<Remaining Soldiers>  "+Game.player[1].getNumSoldier()+"\n");
 			player_2.append("<Tower HP>            "+Game.tower[1].getBlood()+"\n");
-			player_2.append("<Treasures>           "+"Nothing"+"\n\n");
+			player_2.append("<Treasures>    "+Game.player[1].getTreasure() +"\n\n");
 			player_2.append(">==Total Point==>        "+CountPoints(Game.player[1],Game.tower[1])+"  Points\n");
 			player_2.append("<Money>  x "+ Constants.money_weighted +"          "+Game.player[0].getMoney()+ " *" + Constants.money_weighted +"\n");
 			player_2.append("<Rning Soldiers>  x "+ Constants.soldier_weighted +"          "+Game.player[0].getNumSoldier()+ " *" + Constants.soldier_weighted +"\n");
