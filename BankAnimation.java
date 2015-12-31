@@ -1,9 +1,5 @@
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -11,9 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -30,8 +24,14 @@ public class BankAnimation{
 	private int origin_money_xpos;
 	private int origin_money_ypos;
 	
-	public static BufferedImage bank, money1, money2, money3, money4, money5, bg;
-	
+	public static BufferedImage bank;
+	public static BufferedImage money1;
+	public static BufferedImage money2;
+	public static BufferedImage money3;
+	public static BufferedImage money4;
+	public static BufferedImage money5;
+	public static BufferedImage bg;
+
 	private int y_offset1 = 180;
 	private int y_offset2 = 180;
 	private int y_offset3 = 180;
@@ -61,9 +61,6 @@ public class BankAnimation{
 		
 		BankAnimationPane bankanimatepane = new BankAnimationPane(money);
 		bankframe.add(bankanimatepane);
-		while(!bankanimatepane.ready){
-			System.out.println(bankanimatepane.ready);
-		};
 		// bankframe.pack();
 		
 		// bankframe.setLocationRelativeTo(null);
@@ -88,8 +85,6 @@ public class BankAnimation{
 	
 	public class BankAnimationPane extends JPanel {
 		private static final long serialVersionUID = 1L;
-		public boolean ready = false;
-		public boolean canexit = false;
 		
 		public BankAnimationPane(int printmoney) {
 			try {
@@ -147,43 +142,34 @@ public class BankAnimation{
 								y_offset3 = 180 ;
 								y_offset4 = 180 ;
 								y_offset5 = (int)Math.round((1.8)*(counter-50)*(counter-50)) ;
+							}else if( counter <= 65){
+								y_offset1 = 180 ;
+								y_offset2 = 180 ;
+								y_offset3 = 180 ;
+								y_offset4 = 180 ;
+								y_offset5 = 180 ;
 							}else{
 								System.out.println("Timer Stop");
 								timer.stop();
-								new NotifyFrame(printmoney);
-								
+								new NotifyFrame("You've got $" + printmoney + " from the bank", bankframe);	
 							}
 							repaint();
 							counter ++;
-							System.out.println(counter);
-
-					}
-
+							}
 				};
 				
 				timer = new Timer(40, timer_action);
 				timer.setRepeats(true);
 				timer.setCoalesce(true);
-				isReady();
 			} catch (IOException ex) {
 				System.out.println("error in BankAnimationPane");
 			}
 		}
-		
-		public void isReady(){
-			this.ready = true;
-		}
-		
-		public void finish(){
-			this.canexit = true;
-		}
-		
 		@Override
 		protected void paintComponent(Graphics g) {
 			
-			// super.paintComponent(g);
+			super.paintComponent(g);
 			// System.out.println("printing");
-			// int y = getHeight() - boat.getHeight();
 			g.drawImage(bg, 0 , 0 , this);
 			
 			// draw bank
@@ -214,40 +200,6 @@ public class BankAnimation{
 		}
 	}	
 	
-public class NotifyFrame extends JFrame{
-		
-		private static final long serialVersionUID = 1L;
-		public JButton btnOK;
-		public JLabel lblyouveGet;
-		public JPanel panel;
-		
-		public NotifyFrame(int money){
-			new JFrame();
-			this.setSize(300, 225);
-			setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			setVisible(true);
-			getContentPane().setLayout(null);
-			getContentPane().setBackground(SystemColor.window);
-			
-			btnOK = new JButton("OK");
-			btnOK.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					dispose();
-					BankAnimation.bankframe.dispose();
-				}
-			});
-			btnOK.setBackground(SystemColor.desktop);
-			btnOK.setBounds(98, 150, 87, 23);
-			getContentPane().add( btnOK );
-			
-			
-			String moneytostring = new String( "You've get $" + money + " from bank" );
-			lblyouveGet = new JLabel(moneytostring);
-			lblyouveGet.setFont(new Font("Arial", Font.PLAIN, 18));
-			lblyouveGet.setBounds(42, 79, 215, 23);
-			getContentPane().add(lblyouveGet);
-			
-		}
-	}
+
 
 }

@@ -107,6 +107,18 @@ public class StateControl {
                 StateControl.control(StateControl.State.START);
             }
         }
+
+        else if(event.getSource() == MainFrame.quickStartBtn ){
+            drawHello = 0;
+            Game.player[0].setPlayerName("player 1");
+            Game.player[1].setPlayerName("player 2");
+            Game.player[0].setRole(1);
+            Game.player[1].setRole(1);
+            TotalPrint.printPressStart();
+            StateControl.control(StateControl.State.START);
+               
+         }
+
         else if(event.getSource() == ActionFrame.btnOk_1){
         	drawHello = 1;
         	if(ActionFrame.action_flag == 1&&ActionFrame.ConstructionCombo.getSelectedIndex()!=-1){ // Construction
@@ -116,7 +128,9 @@ public class StateControl {
 				MunitionsFactory.BuySoldier_UI(Game.player[(Game.turn+1)%2]);
 	
 			}else if(ActionFrame.action_flag == 3){ // Bank 
+				int money = (int)Math.round(Bank.give_money*Game.player[(Game.turn+1)%2].getRole().getProperty().is_add_money_rate);
 				Game.player[(Game.turn+1)%2].setMoney((int)(Game.player[(Game.turn+1)%2].getMoney()+Math.round(Bank.give_money*Game.player[(Game.turn+1)%2].getRole().getProperty().is_add_money_rate)));
+				new BankAnimation(money);
 				
 			}else if(ActionFrame.action_flag == 4&&ActionFrame.ExploreCombo.getSelectedIndex()!=-1){ // Explore
 				Explore.explore_UI(Game.player[(Game.turn+1)%2]);
