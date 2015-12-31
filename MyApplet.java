@@ -16,7 +16,7 @@ import javax.swing.border.LineBorder;
 public class MyApplet extends JScrollPane implements ActionListener {
     public static TimerAnimation Artanis = null ,Agumon = null ;
     public static Image background = null , money_1 = null, money_2 = null, soldier_1 = null, soldier_2 = null,
-    tower_1, tower_2;
+    tower_1, tower_2, towersmall;
     public static File background_png , money_png, tower_png , soldier_png;
     
     public MyApplet(){
@@ -39,16 +39,20 @@ public class MyApplet extends JScrollPane implements ActionListener {
             soldier_2 = ImageIO.read(soldier_png);
             tower_1 = ImageIO.read(tower_png);
             tower_2 = ImageIO.read(tower_png);
+            towersmall = ImageIO.read(tower_png);
             
         } catch (IOException e) {
             e.printStackTrace();
         }
         //	Time Animation
-        Artanis = new TimerAnimation(new File("pic/Artanis.png"),1);
-        Artanis.setPara(10, 160,100, 135,1,10,1000);
+      
+        Artanis = new TimerAnimation(new File("pic/"+Game.player[0].getRole().getRoleName()+".png"),1);
+     	Artanis.setPara(10, 180,100, 135,1,10,1000);
+        	
         
-        Agumon = new TimerAnimation(new File("pic/Agumon.png"),-1);
-        Agumon.setPara(1100, 130, 100, 135,-1,0,110);
+
+        Agumon = new TimerAnimation(new File("pic/"+Game.player[1].getRole().getRoleName()+"_r.png"),-1);
+        Agumon.setPara(1100, 180, 100, 135,-1,0,110);
     }
     @Override
     public void actionPerformed(ActionEvent event) {
@@ -69,20 +73,20 @@ public class MyApplet extends JScrollPane implements ActionListener {
             return ;
         g.drawImage(background, 0, 0,1212, 325, null);
         if(StateControl.drawHello == 1){
-            g.drawImage(Artanis.img, 10, 160, null);
-            g.drawImage(Agumon.img, 1100, 130, null);
+            g.drawImage(Artanis.img, 10, 180, null);
+            g.drawImage(Agumon.img, 1100, 180, null);
         }
         else if(StateControl.drawHello == 2){
             //	player1
             Artanis.paintComponent(g);
             // draw tower sign
-            g.drawImage(Agumon.img, 1100, 130, null);
+            g.drawImage(Agumon.img, 1100, 180, null);
             
         }
         else if(StateControl.drawHello == 3){
             Agumon.paintComponent(g);
             // draw tower sign
-            g.drawImage(Artanis.img, 10, 160, null);
+            g.drawImage(Artanis.img, 10, 180, null);
         }
         g.drawImage(tower_1, 110, 50, null);
         g.drawImage(tower_2, 1000, 50, null);
@@ -95,11 +99,17 @@ public class MyApplet extends JScrollPane implements ActionListener {
         setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(46, 139, 87));
         g.drawString(Integer.toString(Game.player[0].getNumSoldier()),30,108);
         
+        //draw string tower1 blood
+        setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(220, 20, 60));
+        g.drawString(Integer.toString(Game.tower[0].getBlood()),30,138);
+        
         // draw money sign
         g.drawImage(money_1, 10, 60,15, 21, null);
         
         // draw soldier sign
         g.drawImage(soldier_1,10,90,15, 21, null);
+        
+        g.drawImage(towersmall,10,120,15, 21, null);
         
         // draw player name
         setMyfont(g,"TimesRoman", Font.ITALIC, 15,Color.BLACK);
@@ -113,11 +123,16 @@ public class MyApplet extends JScrollPane implements ActionListener {
         setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(46, 139, 87));
         g.drawString(Integer.toString(Game.player[1].getNumSoldier()),1180,108);
         
+        setMyfont(g,"Impact", Font.ITALIC, 15 , new Color(220, 20, 60));
+        g.drawString(Integer.toString(Game.tower[1].getBlood()),1180,138);
+        
         // draw money sign
         g.drawImage(money_2, 1160, 60, 15, 21, null);
         
         // draw soldier sign
         g.drawImage(soldier_2, 1160, 90, 15, 21, null);
+        
+        g.drawImage(towersmall,1160, 120, 15, 21, null);
         
         // draw player name
         setMyfont(g,"TimesRoman", Font.ITALIC, 15,Color.BLACK);

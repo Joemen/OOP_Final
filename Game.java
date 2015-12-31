@@ -113,6 +113,7 @@ public class Game{
 				
 				// war
 				pause();
+				EndFrame.gameJudge();
 				
 				// clear
 				pause();	

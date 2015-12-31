@@ -10,6 +10,7 @@ public class Player extends Camp{
 	private int num_def_soldier;		// to count total defensive soldier
     public Commander commander = new Commander();
     private int intelligence;
+    public int[] pocket;
 
 	public Player(int num, int player_id){
         // Camp
@@ -22,6 +23,7 @@ public class Player extends Camp{
 		this.setNumDefSoldier(0); 			// initial defensive soldier
         this.setPlayerID( player_id );
 		this.setIntelligence(0);
+		this.setPocket();
         this.player_name = new String("player_no_name"+this.player_id) ;
 		role = setRole(0);
 		
@@ -61,6 +63,12 @@ public class Player extends Camp{
 	public void setIntelligence(int num){
     	this.intelligence = num;
     }
+	public void setPocket(){
+		pocket = new int[Constants.total_shop_stuff];
+		for(int i=0 ; i<Constants.total_shop_stuff;i++){
+			pocket[i] = 0;
+		}
+	}
 
 	////////// about get //////////
 	public Role getRole(){
@@ -98,4 +106,17 @@ public class Player extends Camp{
     public int getIntelligence(){
 		return this.intelligence;
 	}
+    public String getTreasure(){
+    	String temp = "";
+    	for(int i = 0; i<Constants.total_shop_stuff ; i++ ){
+    		if (this.pocket[i]==1)
+    			temp = temp +" "+Shop.stuff[i].getName();
+    	}
+    	return temp;
+    }
+    ///////////////////////////////
+    public void buyTreasure(int num){
+    	this.pocket[num] = 1;
+    	
+    }
 }

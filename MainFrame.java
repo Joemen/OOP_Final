@@ -131,7 +131,7 @@ public class MainFrame {
 		
 		// upper pane
 		scrollPane = new MyApplet();
-		scrollPane.readFile();
+		//scrollPane.readFile();
 		mFrame_panel.add(scrollPane);	
 		
 		btnClear.addActionListener(scrollPane);
