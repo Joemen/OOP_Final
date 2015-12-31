@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.WindowConstants;
 public class StateControl {
     
-    public static enum State{ORIGIN,START,ACTION_1,DEPLOY_1,ACTION_2,DEPLOY_2,WAR,CLEAR,ENDROUND,ENDGAME}
+    public static enum State{ORIGIN,START,ACTION_1,DEPLOY_1,ACTION_2,DEPLOY_2,WAR,CLEAR,ENDROUND}
     static int drawHello = -1;	// Global Variable for State Control
     public static void control(State state){
         switch(state){
@@ -16,7 +16,6 @@ public class StateControl {
                 MainFrame.btnPlayer_1.setVisible(false);
                 break;
             case START:
-            	
                 MainFrame.btnClear.setVisible(true);
                 MainFrame.btnPlayer_1.setVisible(true);
                 break;
@@ -66,17 +65,6 @@ public class StateControl {
             	Game.round++;
             	StateControl.control(StateControl.State.ACTION_1);
             	break;
-            case ENDGAME:
-            	MainFrame.actionbutton.setEnabled(false);
-            	MainFrame.actionbutton2.setEnabled(false);
-            	MainFrame.shopbutton.setEnabled(false);
-            	MainFrame.btnFight.setEnabled(false);
-            	MainFrame.btnFight2.setEnabled(false);
-            	MainFrame.btnWar.setEnabled(false);
-            	MainFrame.btnPlayer_1.setEnabled(false);
-            	MainFrame.btnClear.setEnabled(false);
-            	break;
-            	
             	
             default:
                 break;
@@ -106,7 +94,7 @@ public class StateControl {
         else if(event.getSource() == NewFrame.btnOk ){
             if(NewFrame.num == 2 ){
                 Game.player[0].setPlayerName(NewFrame.textField_1.getText());
-                Game.player[1].setPlayerName(NewFrame.textField_2.getText());               
+                Game.player[1].setPlayerName(NewFrame.textField_2.getText());
                 drawHello = 0;
             }
             if(NewFrame.currentChoice !=null && NewFrame.player1roleChoice !=null && NewFrame.player2roleChoice !=null && NewFrame.textField_1.getText().length()!=0 && NewFrame.textField_2.getText().length()!=0 ){
@@ -114,7 +102,6 @@ public class StateControl {
                 Game.player[1].setRole(NewFrame.player2_role_num);
                 NewFrame.startframe.dispose();
                 TotalPrint.printPressStart();
-                MainFrame.scrollPane.readFile();
                 StateControl.control(StateControl.State.START);
             }
         }
