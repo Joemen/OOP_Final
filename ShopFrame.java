@@ -106,28 +106,28 @@ public class ShopFrame{
 				if(temp != null){
 					Player player_this_turn = Game.player[(Game.turn+1)%2];
 					int money = player_this_turn.getMoney();
-					if( temp.indexOf("" + Game.shop.stuff[0].getPrice()) >= 0 ){
+					if( temp.equals("$" +Game.shop.stuff[0].price + "  " + Game.shop.stuff[0].point + " points")){
 						player_this_turn.setMoney( money - Game.shop.stuff[0].getPrice());
 						Game.shop.stuff_sold_out[0] = true;
-						System.out.println("Buy " + Game.shop.stuff[0].getName() + " Success!");
-						System.out.println( player_this_turn.getPlayerName() + " now have $" 
-												+ player_this_turn.getMoney());
+						TotalPrint.print_msg_to_textArea("Buy " + Game.shop.stuff[0].getName() + " Success!\n", (Game.turn+1)%2);
+						TotalPrint.print_msg_to_textArea( player_this_turn.getPlayerName() + " now have $" 
+												+ player_this_turn.getMoney() + "\n", (Game.turn+1)%2);
 						player_this_turn.buyTreasure(0);
-					}else if(temp.indexOf( "" + Game.shop.stuff[1].getPrice()) >= 0 ){
+					}else if(temp.equals("$" +Game.shop.stuff[1].price + "  " + Game.shop.stuff[1].point + " points")){
 						player_this_turn.setMoney( money - Game.shop.stuff[1].getPrice());
 						Game.shop.stuff_sold_out[1] = true;
 						TotalPrint.print_msg_to_textArea("Buy " + Game.shop.stuff[1].getName() + " Success!\n", (Game.turn+1)%2);
 						TotalPrint.print_msg_to_textArea( player_this_turn.getPlayerName() + " now have $" 
 												+ player_this_turn.getMoney() + "\n", (Game.turn+1)%2);
 						player_this_turn.buyTreasure(1);
-					}else if(temp.indexOf( "" + Game.shop.stuff[2].getPrice())>=0 ){
+					}else if(temp.equals("$" +Game.shop.stuff[2].price + "  " + Game.shop.stuff[2].point + " points")){
 						player_this_turn.setMoney( money - Game.shop.stuff[2].getPrice());
 						Game.shop.stuff_sold_out[2] = true;
 						TotalPrint.print_msg_to_textArea("Buy " + Game.shop.stuff[2].getName() + " Success!\n", (Game.turn+1)%2);
 						TotalPrint.print_msg_to_textArea( player_this_turn.getPlayerName() + " now have $" 
 												+ player_this_turn.getMoney() + "\n", (Game.turn+1)%2);
 						player_this_turn.buyTreasure(2);
-					}else if(temp.indexOf( "" + Game.shop.stuff[3].getPrice()) >= 0 ){
+					}else if(temp.equals("$" +Game.shop.stuff[3].price + "  " + Game.shop.stuff[3].point + " points")){
 						player_this_turn.setMoney( money - Game.shop.stuff[3].getPrice());
 						Game.shop.stuff_sold_out[3] = true;
 						TotalPrint.print_msg_to_textArea("Buy " + Game.shop.stuff[3].getName() + " Success!\n", (Game.turn+1)%2);
@@ -244,23 +244,17 @@ public class ShopFrame{
 		setAllEnable();
 		int money = player.getMoney();
 		int i;
-		for(i=0; i<Game.shop.stuff_acc; i++){
-			if(money < Game.shop.stuff[i].price){
-				if(Game.shop.stuff_sold_out[0] ){
-					rdbtnthreasure1.setEnabled(false);
-				}else if(Game.shop.stuff_sold_out[1]){
-					rdbtnthreasure2.setEnabled(false);
-				}else if(Game.shop.stuff_sold_out[2]){
-					rdbtnthreasure3.setEnabled(false);
-				}else if(Game.shop.stuff_sold_out[3]){
-					rdbtnthreasure4.setEnabled(false);
-				}else{
-					///// nothing
-				}
-			}
-		}
-		System.out.println(Game.shop.stuff[3].price);
-		for(i=0; i<Game.shop.stuff_acc; i++){
+		
+		if(Game.shop.stuff_sold_out[0] )
+			rdbtnthreasure1.setEnabled(false);
+		if(Game.shop.stuff_sold_out[1])
+			rdbtnthreasure2.setEnabled(false);
+		if(Game.shop.stuff_sold_out[2])
+			rdbtnthreasure3.setEnabled(false);
+		if(Game.shop.stuff_sold_out[3])
+			rdbtnthreasure4.setEnabled(false);
+	
+		for(i =0; i<Game.shop.stuff_acc; i++){
 			if(money < Game.shop.stuff[i].price){
 				if(i == 0){
 					rdbtnthreasure1.setEnabled(false);

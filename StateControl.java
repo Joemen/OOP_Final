@@ -109,23 +109,27 @@ public class StateControl {
         }
         else if(event.getSource() == ActionFrame.btnOk_1){
         	drawHello = 1;
-        	if( ActionFrame.action_flag == 1){ // Construction
+        	if(ActionFrame.action_flag == 1&&ActionFrame.ConstructionCombo.getSelectedIndex()!=-1){ // Construction
 				ConstructionDep.RepairTower_UI( Game.player[(Game.turn+1)%2], Game.tower[Game.player[(Game.turn+1)%2].getCampNum()-1] );
 				
-			}else if(ActionFrame.action_flag == 2){ // Munition
+			}else if(ActionFrame.action_flag == 2&&ActionFrame.MuntionCombo.getSelectedIndex()!=-1){ // Munition
 				MunitionsFactory.BuySoldier_UI(Game.player[(Game.turn+1)%2]);
 	
 			}else if(ActionFrame.action_flag == 3){ // Bank 
 				Game.player[(Game.turn+1)%2].setMoney((int)(Game.player[(Game.turn+1)%2].getMoney()+Math.round(Bank.give_money*Game.player[(Game.turn+1)%2].getRole().getProperty().is_add_money_rate)));
 				
-			}else if(ActionFrame.action_flag == 4){ // Explore
+			}else if(ActionFrame.action_flag == 4&&ActionFrame.ExploreCombo.getSelectedIndex()!=-1){ // Explore
 				Explore.explore_UI(Game.player[(Game.turn+1)%2]);
 				
 			}else if(ActionFrame.action_flag == 5){ // Nothing to do
 				
 			}else{
-				
+				TotalPrint.print_msg_to_textArea("\n",(Game.turn+1)%2 );
 			}
+        	if ((ActionFrame.action_flag == 1&&ActionFrame.ConstructionCombo.getSelectedIndex()==-1)||(ActionFrame.action_flag == 2&&ActionFrame.MuntionCombo.getSelectedIndex()==-1)||(ActionFrame.action_flag == 4&&ActionFrame.ExploreCombo.getSelectedIndex()==-1)){ 
+        		
+        	}
+        	else{
 			TotalPrint.printAction();
 			ActionFrame.actionframe.dispose();
 			Game.blockmain = false;
@@ -133,6 +137,7 @@ public class StateControl {
 				StateControl.control(StateControl.State.DEPLOY_1);
 			else if ((Game.turn+1)%2 == 1)
 				StateControl.control(StateControl.State.DEPLOY_2);
+        	}
         }
         else if(event.getSource() == FightFrame.btnReady){
         	drawHello = 1;

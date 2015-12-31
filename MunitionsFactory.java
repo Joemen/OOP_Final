@@ -24,7 +24,7 @@ public class MunitionsFactory extends Functions{
     public static void BuySoldier_UI( Player player){
     	selection = ActionFrame.MuntionCombo.getSelectedIndex();
 		player.setMoney((int)(player.getMoney()-Math.round(price[selection]*player.getRole().getProperty().is_discount)));
-		player.setNumSoldier((int)(player.getNumSoldier()+Math.round(add_soldier[selection]*player.getRole().getProperty().is_add_soldier_generate)));
+		player.setNumSoldier((int)(player.getNumSoldier()+Math.round(add_soldier[selection]*player.getRole().getProperty().is_add_soldier_generate)));   
     }
     
     public boolean BuySoldier(Player player) throws IOException{

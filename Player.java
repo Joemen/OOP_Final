@@ -112,11 +112,13 @@ public class Player extends Camp{
     		if (this.pocket[i]==1)
     			temp = temp +" "+Shop.stuff[i].getName();
     	}
+    	if (temp == ""){
+    		temp = "Nothing";
+    	}
     	return temp;
     }
     ///////////////////////////////
     public void buyTreasure(int num){
     	this.pocket[num] = 1;
-    	
     }
 }

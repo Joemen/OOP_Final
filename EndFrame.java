@@ -27,11 +27,12 @@ public class EndFrame extends JPanel{
 	public static JFrame endframe;
 	private static JLabel winner;
 	private static JLabel winner_name;
+	private static JLabel winner_source;
 	private static JLabel statistics;
 	private static JTextArea player_1;
 	private static JTextArea player_2;
 	private static JLabel winner_1;
-	public static int win_flag;
+	public static int win_flag = -1;
 	
 	
 	public EndFrame() {
@@ -44,6 +45,7 @@ public class EndFrame extends JPanel{
         
         winner = new JLabel("Winner is :");
         winner.setFont(new Font("Arial", Font.PLAIN, 30) );
+        winner.setForeground(Color.RED);
         winner.setBounds(210, 50, 291, 27);
         winner.setVisible(false);
         endframe.getContentPane().add(winner);
@@ -53,6 +55,12 @@ public class EndFrame extends JPanel{
         winner_name.setBounds(190, 100, 291, 27);
         winner_name.setVisible(false);
         endframe.getContentPane().add(winner_name);
+        
+        winner_source = new JLabel("");
+        winner_source.setFont(new Font("Arial", Font.PLAIN, 12) );
+        winner_source.setBounds(110, 200, 400, 27);
+        winner_source.setVisible(false);
+        endframe.getContentPane().add(winner_source);
         
         statistics = new JLabel("<Game Statistics> ");
         statistics.setFont(new Font("Arial", Font.PLAIN, 20) );
@@ -85,42 +93,63 @@ public class EndFrame extends JPanel{
         winner_1.setVisible(false);
         endframe.getContentPane().add(winner_1);
         
-        win_flag = -1;
 		
 	}
 	
 	public static void gameJudge(){
-		if (Game.tower[0].getBlood()==0&&Game.tower[1].getBlood()==0) {
-			win_flag = -1;
-			EndFrame endframe = new EndFrame();
-			EndFrame.endframe.setVisible(true);
-			winner_name.setText("Both of you lost the Game!!");
-			winner_name.setVisible(true);
-			StateControl.control(StateControl.State.ENDGAME);
-		}
-		else if (Game.tower[0].getBlood()==0){
+		/////player1 collected three treasures
+		if (Game.player[0].pocket[0]+Game.player[0].pocket[1]+Game.player[0].pocket[2]+Game.player[0].pocket[3]>=3) {
 			win_flag = 0;
 			EndFrame endframe = new EndFrame();
 			EndFrame.endframe.setVisible(true);
 			winner.setVisible(true);
 			winner_name.setText("Player "+Game.player[win_flag].getPlayerID()+ "  " + Game.player[win_flag].getPlayerName());
 			winner_name.setVisible(true);
+			winner_source.setText("You have collected three treatures and seized the win of the war");
+			winner_source.setVisible(true);
 			StateControl.control(StateControl.State.ENDGAME);
-			
-			
-		}
-		else if (Game.tower[1].getBlood()==0){
+		}////player2 collected three treasures
+		else if (Game.player[1].pocket[0]+Game.player[1].pocket[1]+Game.player[1].pocket[2]+Game.player[1].pocket[3]>=3) {
 			win_flag = 1;
 			EndFrame endframe = new EndFrame();
 			EndFrame.endframe.setVisible(true);
 			winner.setVisible(true);
 			winner_name.setText("Player "+Game.player[win_flag].getPlayerID()+ "  " + Game.player[win_flag].getPlayerName());
 			winner_name.setVisible(true);
+			winner_source.setText("You have collected three treatures and seized the win of the war");
+			winner_source.setVisible(true);
 			StateControl.control(StateControl.State.ENDGAME);
-			
-		}
-		
-		
+		}/// two towers' HP are zero
+		else if (Game.tower[0].getBlood()==0&&Game.tower[1].getBlood()==0) {
+			win_flag = -1;
+			EndFrame endframe = new EndFrame();
+			EndFrame.endframe.setVisible(true);
+			winner_name.setText("Both of you lost the Game!!");
+			winner_name.setVisible(true);
+			StateControl.control(StateControl.State.ENDGAME);
+		}///player1 lost
+		else if (Game.tower[0].getBlood()==0){
+			win_flag = 1;
+			EndFrame endframe = new EndFrame();
+			EndFrame.endframe.setVisible(true);
+			winner.setVisible(true);
+			winner_name.setText("Player "+Game.player[win_flag].getPlayerID()+ "  " + Game.player[win_flag].getPlayerName());
+			winner_name.setVisible(true);
+			winner_source.setText("You have beaten your enemy!! Big success!");
+			winner_source.setVisible(true);
+			StateControl.control(StateControl.State.ENDGAME);
+		}///player2 lost
+		else if (Game.tower[1].getBlood()==0){
+			win_flag = 0;
+			EndFrame endframe = new EndFrame();
+			EndFrame.endframe.setVisible(true);
+			winner.setVisible(true);
+			winner_name.setText("Player "+Game.player[win_flag].getPlayerID()+ "  " + Game.player[win_flag].getPlayerName());
+			winner_name.setVisible(true);
+			winner_source.setText("You have beaten your enemy!! Big success!");
+			winner_source.setVisible(true);
+			StateControl.control(StateControl.State.ENDGAME);
+		}///all rounds are done
 		else if (Game.round== Constants.total_round){
 			win_flag = 2;
 			EndFrame endframe = new EndFrame();
@@ -136,8 +165,12 @@ public class EndFrame extends JPanel{
 			player_1.append("<Money>  x "+ Constants.money_weighted +"          "+Game.player[0].getMoney()+ " *" + Constants.money_weighted +"\n");
 			player_1.append("<Rning Soldiers>  x "+ Constants.soldier_weighted +"          "+Game.player[0].getNumSoldier()+ " *" + Constants.soldier_weighted +"\n");
 			player_1.append("<Tower HP>  x "+ Constants.tower_hp_weighted +"          "+Game.tower[0].getBlood()+ " *" + Constants.tower_hp_weighted+"\n");
-			player_1.append("<Treasures>             "+"Nothing"+"\n\n");
-			
+			player_1.append("<Treasures>    ");
+			for (int i = 0; i<Constants.total_shop_stuff; i++){
+				if (Game.player[0].pocket[i]==1)
+				player_1.append(Shop.stuff[i].getName()+"*"+Shop.stuff[i].getPoint()+"  ");
+			}
+			player_1.append("\n");
 			
 			player_2.append("Player "+Game.player[1].getPlayerID()+ "  " + Game.player[1].getPlayerName()+"\n");
 			player_2.append("<Camp Name>           "+Game.player[1].getCampName()+"\n");
@@ -149,7 +182,12 @@ public class EndFrame extends JPanel{
 			player_2.append("<Money>  x "+ Constants.money_weighted +"          "+Game.player[0].getMoney()+ " *" + Constants.money_weighted +"\n");
 			player_2.append("<Rning Soldiers>  x "+ Constants.soldier_weighted +"          "+Game.player[0].getNumSoldier()+ " *" + Constants.soldier_weighted +"\n");
 			player_2.append("<Tower HP>  x "+ Constants.tower_hp_weighted +"          "+Game.tower[0].getBlood()+ " *" + Constants.tower_hp_weighted+"\n");
-			player_2.append("<Treasures>             "+"Nothing"+"\n\n");
+			player_2.append("<Treasures>    ");
+			for (int i = 0; i<Constants.total_shop_stuff; i++){
+				if (Game.player[1].pocket[i]==1)
+				player_2.append(Shop.stuff[i].getName()+"*"+Shop.stuff[i].getPoint()+"  ");
+			}
+			player_2.append("\n");
 			winner_1.setVisible(true);
 			if (CountPoints(Game.player[0],Game.tower[0])>CountPoints(Game.player[1],Game.tower[1]))
 				winner_1.setText("Winner is  :   " +"Player "+Game.player[0].getPlayerID()+ "  " + Game.player[0].getPlayerName());
@@ -157,20 +195,22 @@ public class EndFrame extends JPanel{
 				winner_1.setText("Winner is  :   " +"Player "+Game.player[1].getPlayerID()+ "  " + Game.player[1].getPlayerName());
 			else 
 				winner_1.setText("Both of you are Winners!");
-			//
+			
 			StateControl.control(StateControl.State.ENDGAME);
-			
-			
 		}
 		
 		else {
 			
 		}
 	}
-	// treasure undone
+	
 	public static int CountPoints(Player player, Tower tower){
-		int total;
-		total = Math.round(player.getMoney()*Constants.money_weighted + player.getNumSoldier()*Constants.soldier_weighted + tower.getBlood()*Constants.tower_hp_weighted);
+		int total = 0;
+		for(int i =0; i<Constants.total_shop_stuff; i++){
+			total = total + player.pocket[i]*Shop.stuff[i].getPoint();
+		}
+		
+		total = total + Math.round(player.getMoney()*Constants.money_weighted + player.getNumSoldier()*Constants.soldier_weighted + tower.getBlood()*Constants.tower_hp_weighted);
 		return total;
 	}
 }

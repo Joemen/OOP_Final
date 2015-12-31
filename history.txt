@@ -5,12 +5,12 @@
 -----------------------------------------------------------------------------------------------------------
 XXXXXXXXXXXXXXXXXXXXXX Game status XXXXXXXXXXXXXXXXXXXXXX
 -----------------------------------------------------------------------------------------------------------
-                <player name>     kml
+                <player name>     asdasd
                 <camp name>       A Camp
                 <money>           100
                 <num of soldier>  100
 
-                <player name>     kml
+                <player name>     asdas
                 <camp name>       B Camp
                 <money>           100
                 <num of soldier>  100
@@ -24,6 +24,13 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 Press [ Action ] to take action .... 
 or press [ Shop ] to buy some treasures .... 
+Buy Bow Success!
+asdasd now have $80
+[ Action ] completed.
+
+The player [ asdasd ] choose [ Go To Bank ]
+and have [ 100 ] (+ 20) dollar(s) now !
+
 Press [ Deploy ] to dispatch .... 
 Deployment completed!
 
@@ -33,20 +40,70 @@ Please press [ War!! ] to see the result ......
              WAR
       ===========
 under tower A, no war happen
-      ===========
-             WAR
-      ===========
+under tower B, no war happen
 *************** war result ***************
-player1 [ kml ]
-original offense unit : 80 original defense unit : 0
+player1 [ asdasd ]
+original offense unit : 0 original defense unit : 0
 wining rate : (offense) 1.0: (defense) 1.0
 tower remaining : 100
 remaining army : 100
 ****************************************
-player2 [ kml ]
+player2 [ asdas ]
 original offense unit : 0 original defense unit : 0
-wining rate : (offense) 1.0: (defense) 0.0
-tower remaining : 80
+wining rate : (offense) 1.0: (defense) 1.0
+tower remaining : 100
+remaining army : 100
+****************************************
+
+
+Please Check the result. Press [ clear ] to go to the next round... 
+
+-----------------------------------------------------------------------------------------------------------
+XXXXXXXXXXXXXXXXXXXXXX Game status XXXXXXXXXXXXXXXXXXXXXX
+-----------------------------------------------------------------------------------------------------------
+                <player name>     asdasd
+                <camp name>       A Camp
+                <money>           100
+                <num of soldier>  100
+
+                <player name>     asdas
+                <camp name>       B Camp
+                <money>           100
+                <num of soldier>  100
+-----------------------------------------------------------------------------------------------------------
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+-----------------------------------------------------------------------------------------------------------
+
+<<         Round  2         >>         
+
+-->  Now is Player 1 's turn  <-- 
+
+Press [ Action ] to take action .... 
+or press [ Shop ] to buy some treasures .... 
+Buy Spring-Fall Success!
+asdasd now have $20
+
+Press [ Deploy ] to dispatch .... 
+Deployment completed!
+
+Please press [ War!! ] to see the result ...... 
+
+      ===========
+             WAR
+      ===========
+under tower A, no war happen
+under tower B, no war happen
+*************** war result ***************
+player1 [ asdasd ]
+original offense unit : 0 original defense unit : 0
+wining rate : (offense) 1.0: (defense) 1.0
+tower remaining : 100
+remaining army : 100
+****************************************
+player2 [ asdas ]
+original offense unit : 0 original defense unit : 0
+wining rate : (offense) 1.0: (defense) 1.0
+tower remaining : 100
 remaining army : 100
 ****************************************
 
