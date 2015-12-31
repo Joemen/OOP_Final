@@ -27,6 +27,7 @@ public class EndFrame extends JPanel{
 	public static JFrame endframe;
 	private static JLabel winner;
 	private static JLabel winner_name;
+	private static JLabel statistics;
 	private static JTextArea player_1;
 	private static JTextArea player_2;
 	private static JLabel winner_1;
@@ -47,11 +48,17 @@ public class EndFrame extends JPanel{
         winner.setVisible(false);
         endframe.getContentPane().add(winner);
         
-        winner_name = new JLabel("FUCK");
+        winner_name = new JLabel("");
         winner_name.setFont(new Font("Arial", Font.PLAIN, 25) );
         winner_name.setBounds(190, 100, 291, 27);
         winner_name.setVisible(false);
         endframe.getContentPane().add(winner_name);
+        
+        statistics = new JLabel("<Game Statistics> ");
+        statistics.setFont(new Font("Arial", Font.PLAIN, 20) );
+        statistics.setBounds(190, 10, 291, 27);
+        statistics.setVisible(false);
+        endframe.getContentPane().add(statistics);
        
 		player_1 = new JTextArea();
 		player_1.setBounds(25, 40, 240, 280);
@@ -59,7 +66,7 @@ public class EndFrame extends JPanel{
 		player_1.setBackground(SystemColor.window);
 		player_1.setForeground(null);
 		player_1.setLineWrap(true);
-		player_1.setFont(new Font("Arial", Font.PLAIN, 12) );
+		player_1.setFont(new Font("Arial", Font.PLAIN, 14) );
 		endframe.add(player_1);
 		
 		player_2 = new JTextArea();
@@ -68,40 +75,36 @@ public class EndFrame extends JPanel{
 		player_2.setForeground(null);
 		player_2.setLineWrap(true);
 		player_2.setEditable(false);
-		player_2.setFont(new Font("Arial", Font.PLAIN, 12) );
+		player_2.setFont(new Font("Arial", Font.PLAIN, 14) );
 		endframe.add(player_2);
 		
 		winner_1 = new JLabel("Winner is :");
+		winner_1.setForeground(Color.RED);
         winner_1.setFont(new Font("Arial", Font.PLAIN, 14) );
         winner_1.setBounds(150, 330, 291, 27);
         winner_1.setVisible(false);
         endframe.getContentPane().add(winner_1);
         
-        win_flag = 0;
+        win_flag = -1;
 		
 	}
 	
 	public static void gameJudge(){
-		if (Game.round==10){
-			win_flag = 1;
+		if (Game.tower[0].getBlood()==0&&Game.tower[1].getBlood()==0) {
+			win_flag = -1;
 			EndFrame endframe = new EndFrame();
 			EndFrame.endframe.setVisible(true);
-			//
-			player_1.append("FUCK");
-			
-			winner_1.setVisible(true);
-			winner_1.setText("Winner is :goood");
-			//
+			winner_name.setText("Both of you lost the Game!!");
+			winner_name.setVisible(true);
 			StateControl.control(StateControl.State.ENDGAME);
-			
-			
 		}
 		else if (Game.tower[0].getBlood()==0){
-			win_flag = 1;
+			win_flag = 0;
 			EndFrame endframe = new EndFrame();
 			EndFrame.endframe.setVisible(true);
-			//
-			//
+			winner.setVisible(true);
+			winner_name.setText("Player "+Game.player[win_flag].getPlayerID()+ "  " + Game.player[win_flag].getPlayerName());
+			winner_name.setVisible(true);
 			StateControl.control(StateControl.State.ENDGAME);
 			
 			
@@ -110,13 +113,64 @@ public class EndFrame extends JPanel{
 			win_flag = 1;
 			EndFrame endframe = new EndFrame();
 			EndFrame.endframe.setVisible(true);
-			//
-			//
+			winner.setVisible(true);
+			winner_name.setText("Player "+Game.player[win_flag].getPlayerID()+ "  " + Game.player[win_flag].getPlayerName());
+			winner_name.setVisible(true);
 			StateControl.control(StateControl.State.ENDGAME);
 			
 		}
+		
+		
+		else if (Game.round==10){
+			win_flag = 2;
+			EndFrame endframe = new EndFrame();
+			EndFrame.endframe.setVisible(true);
+			statistics.setVisible(true);
+			player_1.append("Player "+Game.player[0].getPlayerID()+ "  " + Game.player[0].getPlayerName()+"\n");
+			player_1.append("<Camp Name>       "+Game.player[0].getCampName()+"\n");
+			player_1.append("<Money>                   "+Game.player[0].getMoney()+"\n");
+			player_1.append("<Remaining Soldiers>  "+Game.player[0].getNumSoldier()+"\n");
+			player_1.append("<Tower HP>              "+Game.tower[0].getBlood()+"\n");
+			player_1.append("<Treasures>             "+"Nothing"+"\n\n");
+			player_1.append(">==Total Point==>        "+CountPoints(Game.player[0],Game.tower[0])+"  Points\n");
+			player_1.append("<Money>  x "+ Constants.money_weighted +"          "+Game.player[0].getMoney()+ " *" + Constants.money_weighted +"\n");
+			player_1.append("<Rning Soldiers>  x "+ Constants.soldier_weighted +"          "+Game.player[0].getNumSoldier()+ " *" + Constants.soldier_weighted +"\n");
+			player_1.append("<Tower HP>  x "+ Constants.tower_hp_weighted +"          "+Game.tower[0].getBlood()+ " *" + Constants.tower_hp_weighted+"\n");
+			player_1.append("<Treasures>             "+"Nothing"+"\n\n");
+			
+			
+			player_2.append("Player "+Game.player[1].getPlayerID()+ "  " + Game.player[1].getPlayerName()+"\n");
+			player_2.append("<Camp Name>           "+Game.player[1].getCampName()+"\n");
+			player_2.append("<Money>               "+Game.player[1].getMoney()+"\n");
+			player_2.append("<Remaining Soldiers>  "+Game.player[1].getNumSoldier()+"\n");
+			player_2.append("<Tower HP>            "+Game.tower[1].getBlood()+"\n");
+			player_2.append("<Treasures>           "+"Nothing"+"\n\n");
+			player_2.append(">==Total Point==>        "+CountPoints(Game.player[1],Game.tower[1])+"  Points\n");
+			player_2.append("<Money>  x "+ Constants.money_weighted +"          "+Game.player[0].getMoney()+ " *" + Constants.money_weighted +"\n");
+			player_2.append("<Rning Soldiers>  x "+ Constants.soldier_weighted +"          "+Game.player[0].getNumSoldier()+ " *" + Constants.soldier_weighted +"\n");
+			player_2.append("<Tower HP>  x "+ Constants.tower_hp_weighted +"          "+Game.tower[0].getBlood()+ " *" + Constants.tower_hp_weighted+"\n");
+			player_2.append("<Treasures>             "+"Nothing"+"\n\n");
+			winner_1.setVisible(true);
+			if (CountPoints(Game.player[0],Game.tower[0])>CountPoints(Game.player[1],Game.tower[1]))
+				winner_1.setText("Winner is  :   " +"Player "+Game.player[0].getPlayerID()+ "  " + Game.player[0].getPlayerName());
+			else if (CountPoints(Game.player[0],Game.tower[0])<CountPoints(Game.player[1],Game.tower[1]))
+				winner_1.setText("Winner is  :   " +"Player "+Game.player[1].getPlayerID()+ "  " + Game.player[1].getPlayerName());
+			else 
+				winner_1.setText("Both of you are Winners!");
+			//
+			StateControl.control(StateControl.State.ENDGAME);
+			
+			
+		}
+		
 		else {
 			
 		}
+	}
+	// treasure undone
+	public static int CountPoints(Player player, Tower tower){
+		int total;
+		total = Math.round(player.getMoney()*Constants.money_weighted + player.getNumSoldier()*Constants.soldier_weighted + tower.getBlood()*Constants.tower_hp_weighted);
+		return total;
 	}
 }
