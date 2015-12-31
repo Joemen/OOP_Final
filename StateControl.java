@@ -80,6 +80,17 @@ public class StateControl {
             StateControl.control(StateControl.State.ACTION_1);
         }
         
+        else if(event.getSource() == MainFrame.quickStartBtn ){
+        	drawHello = 0;
+        	Game.player[0].setPlayerName("player 1");
+            Game.player[1].setPlayerName("player 2");
+            Game.player[0].setRole(1);
+            Game.player[1].setRole(1);
+            TotalPrint.printPressStart();
+            StateControl.control(StateControl.State.START);
+            	
+        }
+        
         else if(event.getSource() == NewFrame.btnOk ){
             if(NewFrame.num == 2 ){
                 Game.player[0].setPlayerName(NewFrame.textField_1.getText());
@@ -103,6 +114,8 @@ public class StateControl {
 				MunitionsFactory.BuySoldier_UI(Game.player[(Game.turn+1)%2]);
 	
 			}else if(ActionFrame.action_flag == 3){ // Bank 
+				int money = (int)Math.round(Bank.give_money*Game.player[(Game.turn+1)%2].getRole().getProperty().is_add_money_rate);
+				new BankAnimation(money);
 				Game.player[(Game.turn+1)%2].setMoney((int)(Game.player[(Game.turn+1)%2].getMoney()+Math.round(Bank.give_money*Game.player[(Game.turn+1)%2].getRole().getProperty().is_add_money_rate)));
 				
 			}else if(ActionFrame.action_flag == 4){ // Explore

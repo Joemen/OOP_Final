@@ -36,6 +36,8 @@ public class MainFrame {
 	private JMenuItem exitMenuItem;
 	private JMenuItem newGameMenuItem;
 	private JMenuItem historyMenuItem ;
+	
+	
 
 	public static JButton btnPlayer_1;
 	public static JButton btnClear;
@@ -47,6 +49,7 @@ public class MainFrame {
 	public static JButton btnFight2;
 	public static JButton btnWar;
     public static JButton shopbutton;
+    public static JButton quickStartBtn;
 
 	public MainFrame() {
 		initialize();
@@ -91,7 +94,7 @@ public class MainFrame {
 			}
 		});
 		fileMenu.add(newGameMenuItem);		
-
+		
 		//	Add exitMenuItem in File
 		exitMenuItem = new JMenuItem("CloseProject");
 		exitMenuItem.addActionListener(new ActionListener() {
@@ -217,6 +220,11 @@ public class MainFrame {
         MainFrame.shopbutton.setEnabled(false);
         mFrame_panel.add(shopbutton);
         
+        quickStartBtn= new JButton("QuickStart");
+		quickStartBtn.addActionListener(MainFrame.scrollPane);
+		quickStartBtn.setVisible(true);
+		quickStartBtn.setBounds(565, 603, 101, 23);
+		mFrame_panel.add(quickStartBtn);	
 		
 		// for fight use ===================HuangYuNien===================================================================jedijedijedimaster
 		
