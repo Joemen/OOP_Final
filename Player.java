@@ -121,4 +121,7 @@ public class Player extends Camp{
     public void buyTreasure(int num){
     	this.pocket[num] = 1;
     }
+    public int checkTreasure(int check){
+    	return this.pocket[check];
+    }
 }
