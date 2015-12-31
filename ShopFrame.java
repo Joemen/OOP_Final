@@ -113,6 +113,7 @@ public class ShopFrame{
 						TotalPrint.print_msg_to_textArea( player_this_turn.getPlayerName() + " now have $" 
 												+ player_this_turn.getMoney() + "\n", (Game.turn+1)%2);
 						player_this_turn.buyTreasure(0);
+						MainFrame.shopbutton.setEnabled(false);
 					}else if(temp.equals("$" +Game.shop.stuff[1].price + "  " + Game.shop.stuff[1].point + " points")){
 						player_this_turn.setMoney( money - Game.shop.stuff[1].getPrice());
 						Game.shop.stuff_sold_out[1] = true;
@@ -120,6 +121,7 @@ public class ShopFrame{
 						TotalPrint.print_msg_to_textArea( player_this_turn.getPlayerName() + " now have $" 
 												+ player_this_turn.getMoney() + "\n", (Game.turn+1)%2);
 						player_this_turn.buyTreasure(1);
+						MainFrame.shopbutton.setEnabled(false);
 					}else if(temp.equals("$" +Game.shop.stuff[2].price + "  " + Game.shop.stuff[2].point + " points")){
 						player_this_turn.setMoney( money - Game.shop.stuff[2].getPrice());
 						Game.shop.stuff_sold_out[2] = true;
@@ -127,6 +129,7 @@ public class ShopFrame{
 						TotalPrint.print_msg_to_textArea( player_this_turn.getPlayerName() + " now have $" 
 												+ player_this_turn.getMoney() + "\n", (Game.turn+1)%2);
 						player_this_turn.buyTreasure(2);
+						MainFrame.shopbutton.setEnabled(false);
 					}else if(temp.equals("$" +Game.shop.stuff[3].price + "  " + Game.shop.stuff[3].point + " points")){
 						player_this_turn.setMoney( money - Game.shop.stuff[3].getPrice());
 						Game.shop.stuff_sold_out[3] = true;
@@ -134,6 +137,7 @@ public class ShopFrame{
 						TotalPrint.print_msg_to_textArea( player_this_turn.getPlayerName() + " now have $" 
 												+ player_this_turn.getMoney() + "\n", (Game.turn+1)%2);
 						player_this_turn.buyTreasure(3);
+						MainFrame.shopbutton.setEnabled(false);
 					}else{
 						System.out.println("get treasure name error");
 						System.exit(1);

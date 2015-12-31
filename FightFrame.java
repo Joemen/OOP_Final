@@ -130,29 +130,7 @@ public class FightFrame extends JPanel implements PropertyChangeListener  {
             }
         });
         
-        btnReady.addActionListener(MainFrame.scrollPane);/*new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                int i = -1;
-                int j = -1;
-                try{
-                    i = Integer.parseInt(amount_Off.getText());
-                    j = Integer.parseInt(amount_Def.getText());
-                } catch (Exception ex){
-                    
-                }
-                if( i>=0 && j>=0 && Game.player[(Game.turn+1)%2].getNumSoldier()-((Number)amount_Off.getValue()).intValue()-((Number)amount_Def.getValue()).intValue()>=0){
-                    Commander.dispatchArmy_UI(Game.player[(Game.turn+1)%2], Game.tower[Game.player[(Game.turn+1)%2].getCampNum()-1]);
-                    Game.blockmain = false;
-                    TotalPrint.printPressReady();
-                    fightframe.dispose();
-                }
-                else if (i<0 || j<0)
-                    lblIncorrectInput.setVisible(true);
-                else
-                    lblalarm.setVisible(true);
-            }
-        });*/
-        
+        btnReady.addActionListener(MainFrame.scrollPane);
         
         fightframe.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         fightframe.getRootPane().setDefaultButton(btnReady);

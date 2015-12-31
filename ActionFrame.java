@@ -185,35 +185,7 @@ public class ActionFrame{
 		btnOk_1 = new JButton("OK");
 		btnOk_1.setBounds(75, 311, 117, 29);
 		mFrame_panel.add(btnOk_1);
-		btnOk_1.addActionListener(MainFrame.scrollPane);/*new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				if( action_flag == 1){ // Construction
-					ConstructionDep.RepairTower_UI( Game.player[(Game.turn+1)%2], Game.tower[Game.player[(Game.turn+1)%2].getCampNum()-1] );
-					
-				}else if(action_flag == 2){ // Munition
-					MunitionsFactory.BuySoldier_UI(Game.player[(Game.turn+1)%2]);
-		
-				}else if(action_flag == 3){ // Bank 
-					Game.player[(Game.turn+1)%2].setMoney((int)(Game.player[(Game.turn+1)%2].getMoney()+Math.round(Bank.give_money*Game.player[(Game.turn+1)%2].getRole().getProperty().is_add_money_rate)));
-					
-				}else if(action_flag == 4){ // Explore
-					Explore.explore_UI(Game.player[(Game.turn+1)%2]);
-					
-				}else if(action_flag == 5){ // Nothing to do
-					
-				}else{
-					/*System.out.println("action_flag number error");
-					System.exit(1);
-					//maybe ask again
-					
-				}
-				TotalPrint.printAction();
-				actionframe.dispose();
-				Game.blockmain = false;
-				
-			}
-		}*/
+		btnOk_1.addActionListener(MainFrame.scrollPane);
 		
 		btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(350, 311, 117, 29);

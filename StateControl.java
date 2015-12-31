@@ -16,15 +16,16 @@ public class StateControl {
                 MainFrame.btnPlayer_1.setVisible(false);
                 break;
             case START:
-            	
                 MainFrame.btnClear.setVisible(true);
                 MainFrame.btnPlayer_1.setVisible(true);
+                MainFrame.frame.getRootPane().setDefaultButton(MainFrame.btnPlayer_1);
                 break;
             case ACTION_1:
             	MainFrame.btnPlayer_1.setEnabled(false);
             	MainFrame.actionbutton.setEnabled(true);
 				MainFrame.shopbutton.setEnabled(true);
 				MainFrame.btnClear.setEnabled(false);
+				MainFrame.frame.getRootPane().setDefaultButton(MainFrame.actionbutton);
 				TotalPrint.printStatus();
 				TotalPrint.printRound();
 				TotalPrint.printTurn(1);
@@ -32,8 +33,8 @@ public class StateControl {
 				break;
             case DEPLOY_1:
             	MainFrame.actionbutton.setEnabled(false);
-				MainFrame.shopbutton.setEnabled(false);
 				MainFrame.btnFight.setEnabled(true);
+				MainFrame.frame.getRootPane().setDefaultButton(MainFrame.btnFight);
 				TotalPrint.printPressDeploy();
             	break;
             case ACTION_2:
@@ -41,25 +42,29 @@ public class StateControl {
             	MainFrame.actionbutton2.setEnabled(true);
             	MainFrame.btnFight.setEnabled(false);
             	MainFrame.shopbutton.setEnabled(true);
-            	TotalPrint.print_msg_to_textArea("\n############ round " + Game.round + " ############\n\n", (Game.turn+1)%2);
+            	MainFrame.frame.getRootPane().setDefaultButton(MainFrame.actionbutton2);
+            	TotalPrint.printRound();
             	TotalPrint.printTurn(2);
             	TotalPrint.printPressAction();
             	break;
             case DEPLOY_2:
             	MainFrame.actionbutton2.setEnabled(false);
             	MainFrame.btnFight2.setEnabled(true);
-            	MainFrame.shopbutton.setEnabled(false);
+            	MainFrame.frame.getRootPane().setDefaultButton(MainFrame.btnFight2);
             	TotalPrint.printPressDeploy();
             	break;
             case WAR:
+            	Game.turn++;
             	MainFrame.btnFight2.setEnabled(false);
+            	MainFrame.shopbutton.setEnabled(false);
             	MainFrame.btnWar.setEnabled(true);
+            	MainFrame.frame.getRootPane().setDefaultButton(MainFrame.btnWar);
             	TotalPrint.printPressWar();
-            	//drawHello = 1; //to be modify
             	break;
             case CLEAR:
             	MainFrame.btnWar.setEnabled(false);
             	MainFrame.btnClear.setEnabled(true);
+            	MainFrame.frame.getRootPane().setDefaultButton(MainFrame.btnClear);
             	TotalPrint.printPressClear();
             	break;
             case ENDROUND:
@@ -115,6 +120,7 @@ public class StateControl {
             Game.player[0].setRole(1);
             Game.player[1].setRole(1);
             TotalPrint.printPressStart();
+            MainFrame.scrollPane.readFile();
             StateControl.control(StateControl.State.START);
                
          }
@@ -168,10 +174,17 @@ public class StateControl {
                 Game.blockmain = false;
                 TotalPrint.printPressReady();
                 FightFrame.fightframe.dispose();
-                if ((Game.turn+1)%2 == 0)
+                if ((Game.turn+1)%2 == 0){
+                	System.out.println("1.   "+Game.turn);
                 	StateControl.control(StateControl.State.ACTION_2);
-                else if ((Game.turn+1)%2 == 1)
+                }
+                else if ((Game.turn+1)%2 == 1){
+                	System.out.println("2.   "+Game.turn);
                 	StateControl.control(StateControl.State.WAR);
+                }
+                else {
+                	System.out.println("3.   "+Game.turn);
+                }
             }
             else if (i<0 || j<0)
             	FightFrame.lblIncorrectInput.setVisible(true);

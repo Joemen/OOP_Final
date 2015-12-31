@@ -168,7 +168,7 @@ public class EndFrame extends JPanel{
 			player_1.append("<Treasures>    ");
 			for (int i = 0; i<Constants.total_shop_stuff; i++){
 				if (Game.player[0].pocket[i]==1)
-				player_1.append(Shop.stuff[i].getName()+"*"+Shop.stuff[i].getPoint()+"  ");
+				player_1.append(Shop.stuff[i].getName()+"+"+Shop.stuff[i].getPoint()+"  ");
 			}
 			player_1.append("\n");
 			
@@ -185,7 +185,7 @@ public class EndFrame extends JPanel{
 			player_2.append("<Treasures>    ");
 			for (int i = 0; i<Constants.total_shop_stuff; i++){
 				if (Game.player[1].pocket[i]==1)
-				player_2.append(Shop.stuff[i].getName()+"*"+Shop.stuff[i].getPoint()+"  ");
+				player_2.append(Shop.stuff[i].getName()+"+"+Shop.stuff[i].getPoint()+"  ");
 			}
 			player_2.append("\n");
 			winner_1.setVisible(true);

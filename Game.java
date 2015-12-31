@@ -109,7 +109,7 @@ public class Game{
 				// Deployment
 				pause();
 				
-				turn++;
+				
 				
 				// war
 				pause();
@@ -164,38 +164,3 @@ public class Game{
 		}	
 	}
 }
-/*
-	
-	
-	
-	public static void print_status_to_UI( Player[] player, JTextArea textarea){
-		// initialization
-		int i, len;
-
-		// print player status
-		textarea.append(     "________________<Game status>________________\n");
-		for(i=0; i<player.length;i++){
-			textarea.append( "                <player name>     " + player[i].getPlayerName() + "\n");
-			textarea.append( "                <camp name>       " + player[i].getCampName() + "\n");
-			textarea.append( "                <money>           " + player[i].getMoney() + "\n");
-			textarea.append( "                <num of soldier>  " + player[i].getNumSoldier() + "\n");
-			if( i != player.length - 1)
-				textarea.append("\n");
-		}
-		textarea.append(     "_____________________________________________\n");
-
-		len = textarea.getDocument().getLength();
-		textarea.setCaretPosition(len);
-	}
-
-	public static void print_msg_to_UI(String msg, JTextArea textarea){
-		textarea.append(msg);
-		int len = textarea.getDocument().getLength();
-		textarea.setCaretPosition(len);
-	}
-
-	public static void print_msg_to_textArea(String msg){
-		print_msg_to_UI(msg, MainFrame.textArea);
-	}
-
-}*/

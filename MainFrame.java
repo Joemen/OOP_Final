@@ -18,7 +18,7 @@ import javax.swing.JTextArea;
 
 public class MainFrame {
 
-	public JFrame frame;
+	public static JFrame frame;
 	
 	public static JMenuBar menuBar;
 	
