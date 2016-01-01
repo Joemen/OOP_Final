@@ -68,14 +68,15 @@ public class BankAnimation{
 		try{
 			bankframe.setVisible(true);
 			draw_money1 = true;
-			Thread.sleep(450);
+			// Thread.sleep(450);
 			draw_money2 = true;
-			Thread.sleep(450);
+			// Thread.sleep(450);
 			draw_money3 = true;
-			Thread.sleep(450);
+			// Thread.sleep(450);
 			draw_money4 = true;
-			Thread.sleep(450);
+			// Thread.sleep(450);
 			draw_money5 = true;
+			
 		}catch (Exception ex){
 			System.out.println("exception happen");
 		}
@@ -106,6 +107,9 @@ public class BankAnimation{
 				ActionListener timer_action = new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
+							if(counter == 0){
+								System.out.println("timer start");
+							}
 							if(counter <= 10){
 								y_offset1 = (int)Math.round((1.8)*(counter-10)*(counter-10)) ;
 								y_offset2 = 180;

@@ -58,6 +58,8 @@ public class NotifyFrame extends JFrame{
 		notifylabel.setFont(new Font("Apple Braille", Font.PLAIN, 18));
 		notifylabel.setBounds(18, 79, 264, 23);
 		getContentPane().add(notifylabel);
+		
+		this.getRootPane().setDefaultButton(btnOK);
 	}
 
 	public void runframe(){
