@@ -143,6 +143,7 @@ public class ShopFrame{
 						System.exit(1);
 					}
 				}
+				MainFrame.scrollPane.repaint();
 				shopframe.dispose();
 			}
 		});
