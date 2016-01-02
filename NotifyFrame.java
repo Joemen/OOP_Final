@@ -15,7 +15,8 @@ public class NotifyFrame extends JFrame{
 	
 	// element in this frame
 	public JLabel notifylabel;
-	public JButton btnOK;
+	public JButton btnOK;	
+	public JLabel pressOKlbl; 
 	
 	/**
 	 * @wbp.parser.constructor
@@ -60,6 +61,11 @@ public class NotifyFrame extends JFrame{
 		getContentPane().add(notifylabel);
 		
 		this.getRootPane().setDefaultButton(btnOK);
+		
+		pressOKlbl = new JLabel("(press OK and close the frame ... )");
+		pressOKlbl.setFont(new Font("Apple Braille", Font.PLAIN, 13));
+		pressOKlbl.setBounds(40, 115, 227, 23);
+		getContentPane().add(pressOKlbl);
 	}
 
 	public void runframe(){
