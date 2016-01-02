@@ -65,22 +65,7 @@ public class BankAnimation{
 		
 		// bankframe.setLocationRelativeTo(null);
 		timer.start();
-		try{
-			bankframe.setVisible(true);
-			draw_money1 = true;
-			// Thread.sleep(450);
-			draw_money2 = true;
-			// Thread.sleep(450);
-			draw_money3 = true;
-			// Thread.sleep(450);
-			draw_money4 = true;
-			// Thread.sleep(450);
-			draw_money5 = true;
-			
-		}catch (Exception ex){
-			System.out.println("exception happen");
-		}
-		// control(money);
+		bankframe.setVisible(true);
 		
 	}
 	
@@ -109,7 +94,17 @@ public class BankAnimation{
 					public void actionPerformed(ActionEvent e) {
 							if(counter == 0){
 								System.out.println("timer start");
+								draw_money1 = true;
+							}else if( counter == 10){
+								draw_money2 = true;
+							}else if( counter == 20){
+								draw_money3 = true;
+							}else if( counter == 30){
+								draw_money4 = true;
+							}else if( counter == 40){
+								draw_money5 = true;
 							}
+							
 							if(counter <= 10){
 								y_offset1 = (int)Math.round((1.8)*(counter-10)*(counter-10)) ;
 								y_offset2 = 180;
