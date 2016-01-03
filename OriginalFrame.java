@@ -154,7 +154,7 @@ public class OriginalFrame{
 				
 				g2d.setFont( new Font("TimesRoman", Font.BOLD, 50) ); 
 				g2d.setColor(wordcolor);
-				g2d.drawString("金剛豆腐隊 之 對戰桌遊", 120, 400);
+				g2d.drawString("豆腐金鋼隊 之 對戰桌遊", 120, 400);
 				
 				g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1));
 				g2d.setFont( new Font("TimesRoman", Font.BOLD, 75) ); 
