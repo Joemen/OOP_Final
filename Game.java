@@ -78,8 +78,9 @@ public class Game{
 			// newly add welcome frame
 			if(Constants.have_origin_frame_or_not){
 				new OriginalFrame();
+				pause();
 			}
-			pause();
+			
 			
 			//	new a Frame
 			window.frame.setVisible(true);
