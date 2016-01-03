@@ -27,5 +27,6 @@ public class Constants{
 	public static final float tower_hp_weighted = 1.2f;
 	// # final Game Statistics <TowerHP>
 	
-	
+	public static final boolean have_origin_frame_or_not = true;
+	// have origin frame display or not
 }
