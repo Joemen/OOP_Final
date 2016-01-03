@@ -75,6 +75,12 @@ public class Game{
 		
 		else if(term_or_UI == 1){ // for GUI usage
 			MainFrame window = new MainFrame();
+			// newly add welcome frame
+			if(Constants.have_origin_frame_or_not){
+				new OriginalFrame();
+			}
+			pause();
+			
 			//	new a Frame
 			window.frame.setVisible(true);
 			
