@@ -1,8 +1,8 @@
 all: 
-	javac -d . -classpath . *.java
+	javac -classpath . src/*.java
 run:
-	java Game 0
-runUI:
-	java Game 1	
+	java -cp ./src Game 1	
+runterm:
+	java -cp ./src Game 0
 clean:
-	rm -f *.class
+	rm -f src/*.class
